@@ -2,6 +2,8 @@ html, body {
 	margin: 0;
 	padding: 0;
 	font-size: 80%;
+	position: relative;
+	overflow: hidden;
 	font-family: Calibri, sans-serif;
 	color: #000;
 	background-color: white;
@@ -53,7 +55,7 @@ img {
 }
 
 #banner{
-	min-width: 10%;
+	width: 25%;
 	float: right;
 	text-align: right;
 	margin-top: 1.2%;
@@ -69,12 +71,10 @@ img {
 
 #portfolio_wrapper {
 	width: 100%;
-	min-height: 85vh;
 	overflow: hidden;
 	clear: both;
 	position: relative;
 	box-sizing: border-box;
-	margin-bottom: 0;
 	-webkit-transform: translateZ(0);
    -moz-transform: translateZ(0);
    -ms-transform: translateZ(0);
@@ -83,28 +83,34 @@ img {
 }
 
 #footer{
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	min-height: 15vh;
+	height: 15vh;
 	width: 100%;
-	clear: both;
-	background-color: #F4F4F4;
-	text-align: center;
 	color: #EEE;
 	margin: 0;
-	border-top: solid 1px #CCC;
-	padding: 1% 5% 0 5%;
 	z-index: 100;
 	position: fixed;
 	bottom: 0;
 }
 
+#innerFooter{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	clear: both;
+	background-color: #F4F4F4;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	border-top: solid 1px #CCC;
+	padding: 0 5% 0 5%;
+
+}
+
 #portfolio_menu {
 	min-width: 75%;
-	min-height: 31px;
+	/*min-height: 31px;*/
+	height: 100%;
 	margin: 0;
-	position: relative;
 	float: left;
 }
 
@@ -200,7 +206,7 @@ img {
 li#imageButtonListElement{
 	width: 11em;
 	height: 2.5em;
-	margin: 2.7% 3% 0 3%;
+	margin: 1.7em 3% 0 3%;
 	background-image: url("../FILES/IMG/signature.png");
 	background-size: 100% 100%;
 	opacity: 0.7;
@@ -219,14 +225,14 @@ ul.menu {
 	padding: 0;
 	margin:0;
 	float: left;
-	height: auto;
+	height: 100%;
 }
 ul.menu li {
 	display: block;
-	position: relative;
-	margin: 3% 1%;
+	margin: 2em 1%;
 	padding: 0 5px 0 5px;
 	float: left;
+	height: 100%;
 }
 ul.social_icons {
 	width: auto;
@@ -489,11 +495,17 @@ img.profilepic{
 	html, body{
 		font-size: 70%;
 		background-color: white;
+		overflow: hidden;
 	}
 
     #footer{
         width: 100%;
     }
+
+	#innerFooter{
+		width: 100%;
+	}
+
 	div#banner{
 		display: none;
 	}

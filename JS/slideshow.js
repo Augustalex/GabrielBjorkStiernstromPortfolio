@@ -78,10 +78,11 @@ function Coolshow(imageSourceArray){
         );
 
         window.addEventListener("resize", resizeReloader);
-
+        window.addEventListener("orientationchange", resizeReloader);
         function resizeReloader(){
             if(!document.getElementsByClassName("coolshow")[0]) {
                 window.removeEventListener("resize", resizeReloader);
+                window.removeEventListener("orientationchange", resizeReloader);
                 console.log("Removed resize event.")
             }
             else {
@@ -290,7 +291,6 @@ function Coolshow(imageSourceArray){
 
     function reload(allImages) {
         console.log("RELOAD");
-
         carousel = getOffsetParameters(
             {
                 width: mainContainer.offsetWidth,
@@ -301,7 +301,7 @@ function Coolshow(imageSourceArray){
 
         conformImagesToHeight(allImages, flowContainerElement.offsetHeight);
 
-        currentSlideshowIndex = 0;
+        //currentSlideshowIndex = 0;
         centerCurrentImage(allImages, currentSlideshowIndex);
     }
 
