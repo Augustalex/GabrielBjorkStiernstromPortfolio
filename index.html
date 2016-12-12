@@ -10,7 +10,7 @@
         <!--    Removes Windows Phone tap highlighting  -->
         <meta name="msapplication-tap-highlight" content="no" />
 
-        <!--    Disables Zoom on mobile phones          -->
+        <!--    Disables Zoom on mobile phones -->
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport' />
 
         <meta name="description" content="Gabriel Björk Stiernströms portfolio" />
@@ -123,7 +123,7 @@
 
             function setFooterSizeToJustFit(){
                 var footer = document.getElementById("footer");
-
+/*
                 var calcHeight;
                 try {
                     calcHeight = window.getComputedStyle(footer, null)
@@ -138,41 +138,55 @@
                 console.log($("#footer").css("height"));
                 $("#footer").css("height", calcHeight + newHeightToAdd + "px");
                 console.log($("#footer").css("height"));
-                console.log("New height to add: ", newHeightToAdd);
+                console.log("New height to add: ", newHeightToAdd);*/
+
+                var newHeight = window.innerHeight * 0.15;
+                footer.style.height = newHeight + "px";
 
                 //var height = document.getElementById("footer").offsetHeight;
                 //document.getElementById("portfolio_wrapper").style.marginBottom = height + "px";
             }
 
             function setSlideshowSizeToJustFit(){
-                if(document.getElementsByClassName("coolshow").length == 1) {
-                    var newHeight = window.innerHeight * 0.85;
-                    document.getElementById("portfolio_wrapper").style.minHeight = newHeight + "px";
-                    document.getElementById("portfolio_wrapper").style.maxHeight = newHeight + "px";
-                }
-                else
-                    document.getElementById("portfolio_wrapper").style.height = "100%";
+                console.log("Fixed portfolio wrapper");
+                newHeight = window.innerHeight * 0.85;
+
+                document.getElementById("portfolio_wrapper").style.height = newHeight + "px";
+                //document.getElementById("portfolio_wrapper").style.maxHeight = newHeight + "px";
+            }
+
+            function setFixedSlideshow(){
+                document.getElementById("coolshow").style.position = "fixed";
             }
 
             $(document).ready(function(){
                 // Loading function for Portfolio categories buttons
                 $(".buttonPortfolio").click(function(){
-                    var name = $(this);
-                    loadImages($(this).attr("alt"));
+                    loadImages($(this).attr("alt"))
+                            .onSet(function(){
+                                console.log("Footer click.");
+                                reevaluateHeights();
+                            });
                 });
 
-                window.addEventListener("resize", function(){
-                    if(document.getElementsByClassName("coolshow").length == 1)
+                function reevaluateHeights(){
+                    if(document.getElementsByClassName("coolshow").length == 1) {
+                        console.log("coolshow present.");
                         setSlideshowSizeToJustFit();
+                        setFixedSlideshow();
+                    }
+                    else
+                        document.getElementById("portfolio_wrapper").style.height = "auto";
 
                     setFooterSizeToJustFit();
-                });
+                }
 
+                window.addEventListener("resize", reevaluateHeights);
+                window.addEventListener("orientationchange", reevaluateHeights);
 
                 loadImages("HTML/home.html")
                         .onSet(function(){
-                            setSlideshowSizeToJustFit();
-                            setFooterSizeToJustFit();
+                            reevaluateHeights();
                         });
             });
 

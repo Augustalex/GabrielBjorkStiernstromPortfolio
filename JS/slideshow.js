@@ -79,6 +79,7 @@ function Coolshow(imageSourceArray){
 
         window.addEventListener("resize", resizeReloader);
         window.addEventListener("orientationchange", resizeReloader);
+
         function resizeReloader(){
             if(!document.getElementsByClassName("coolshow")[0]) {
                 window.removeEventListener("resize", resizeReloader);
@@ -111,15 +112,34 @@ function Coolshow(imageSourceArray){
         var previousHammer = new Hammer(previousButton);
 
         nextHammer.on("tap", function(){
-            currentSlideshowIndex = nextIndex(allImages, currentSlideshowIndex);
-            centerCurrentImage(allImages, currentSlideshowIndex);
+            moveSlideshow(allImages, nextSlide);
         });
 
         previousHammer.on("tap", function(){
-            currentSlideshowIndex = previousIndex(allImages, currentSlideshowIndex);
-            centerCurrentImage(allImages, currentSlideshowIndex);
+            moveSlideshow(allImages, previousSlide);
         });
 
+        window.addEventListener("keyup", moveSlideshowOnArrayKeys);
+
+        function moveSlideshowOnArrayKeys(e){
+            var key = e.keyCode ? e.keyCode : e.which;
+
+            if (key == 37)
+                setTimeout(function(){
+                    moveSlideshow(allImages, previousSlide);
+                },0);
+            else if (key == 39)
+                setTimeout(function(){
+                    moveSlideshow(allImages, nextSlide);
+                },0);
+
+
+        }
+    }
+
+    function moveSlideshow(allImages, switchFunction) {
+        currentSlideshowIndex = switchFunction(allImages, currentSlideshowIndex);
+        centerCurrentImage(allImages, currentSlideshowIndex);
     }
 
     /**
@@ -134,12 +154,12 @@ function Coolshow(imageSourceArray){
         var coolshowHammer = new Hammer(controllerContainer);
 
         coolshowHammer.on("swipeleft", function(){
-            currentSlideshowIndex = nextIndex(allImages, currentSlideshowIndex);
+            currentSlideshowIndex = nextSlide(allImages, currentSlideshowIndex);
             centerCurrentImage(allImages, currentSlideshowIndex);
         });
 
         coolshowHammer.on("swiperight", function(){
-            currentSlideshowIndex = previousIndex(allImages, currentSlideshowIndex);
+            currentSlideshowIndex = previousSlide(allImages, currentSlideshowIndex);
             centerCurrentImage(allImages, currentSlideshowIndex);
         });
 
@@ -162,7 +182,7 @@ function Coolshow(imageSourceArray){
      * If the current slide is the last slide, then focus
      * is put on the first slide in the slideshow.
      */
-    function nextIndex(allImages, currentImageIndex){
+    function nextSlide(allImages, currentImageIndex){
         if(currentImageIndex >= allImages.length - 1)
             return 0;
         else
@@ -176,7 +196,7 @@ function Coolshow(imageSourceArray){
      * If the current slide is the first slide, then focus
      * is put on the last slide in the slideshow.
      */
-    function previousIndex(allImages, currentImageIndex){
+    function previousSlide(allImages, currentImageIndex){
         if(currentImageIndex <= 0)
             return allImages.length - 1;
         else

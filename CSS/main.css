@@ -3,11 +3,11 @@ html, body {
 	padding: 0;
 	font-size: 80%;
 	position: relative;
-	overflow: hidden;
 	font-family: Calibri, sans-serif;
 	color: #000;
 	background-color: white;
 }
+
 h1 {
 	margin:0;
 	color:#555;
@@ -71,15 +71,16 @@ img {
 
 #portfolio_wrapper {
 	width: 100%;
-	overflow: hidden;
-	clear: both;
 	position: relative;
+	top: 0;
+	left: 0;
 	box-sizing: border-box;
 	-webkit-transform: translateZ(0);
    -moz-transform: translateZ(0);
    -ms-transform: translateZ(0);
    -o-transform: translateZ(0);
    transform: translateZ(0);
+	–webkit-overflow-scrolling: touch;
 }
 
 #footer{
@@ -152,7 +153,8 @@ img {
 	vertical-align: top;
 	text-align: center;
 	max-width: 800px;
-	padding: 6em 4% 1% 4%;
+	/*padding: 6em 4% 1% 4%;*/
+	padding: 6em 2% 200px 2%;
 }
 
 #aboutMeClients h1{
@@ -221,7 +223,7 @@ ul.menu {
 	width: 100%;
 	display: block;
 	list-style: none;
-	font-size: 1.3em;
+	font-size: 2em;
 	padding: 0;
 	margin:0;
 	float: left;
@@ -345,11 +347,10 @@ a.lightboxLink{
 
 /*	The div containing all thumbnails.	*/
 div#portfolioLibrary{
-	list-style: none;
 	margin: 0;
 	padding: 0;
-	position: relative;
-	float: left;
+	overflow: auto;
+	clear: both;
 	width: 100%;
 }
 
@@ -480,7 +481,6 @@ img.profilepic{
 	#aboutMeClients{
 		text-align: center;
 		width: 96%;
-		padding: 2% 2% 1% 2%;
 	}
 
 	footer{
@@ -495,11 +495,11 @@ img.profilepic{
 	html, body{
 		font-size: 70%;
 		background-color: white;
-		overflow: hidden;
 	}
 
     #footer{
         width: 100%;
+		font-size: 0.7em;
     }
 
 	#innerFooter{
@@ -527,11 +527,12 @@ img.profilepic{
 
 	#aboutMe{
 		color: #000;
+		margin-bottom: 100px;
 	}
 
 	#aboutMeClients{
 		text-align: center;
 		width: 96%;
-		padding: 2% 2% 1% 2%;
+		/*padding: 2% 2% 200px 2%;*/
 	}
 }

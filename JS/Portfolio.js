@@ -20,7 +20,7 @@ function Portfolio(images, containerId){
     }
 
     function initPortfolio(dynamicImages, imageElements) {
-
+        console.log("initiating portfolio.");
         for (var i = 0; i < imageElements.length; i++) {
             var imageContainer = document.createElement("div");
 
@@ -48,13 +48,17 @@ function Portfolio(images, containerId){
 
             fitImageContainersToContainer(imageContainers, containerId);
             adjustPortfolioWrapperMargins();
-        }
 
-        window.addEventListener("resize", resizeReload);
+            window.addEventListener("resize", resizeReload);
+            window.addEventListener("orientationchange", resizeReload);
+
+        }
 
         function resizeReload(){
             if(!document.getElementById(containerId)){
                 window.removeEventListener("resize", resizeReload);
+                window.removeEventListener("orientationchange", resizeReload);
+
                 console.log("Removed event listener for portfolio.");
             }
             else {
@@ -106,5 +110,7 @@ function newTextTag(tagName, text){
 
 function adjustPortfolioWrapperMargins(){
     var newMargin = document.getElementById("footer").offsetHeight;
-    document.getElementById("portfolio_wrapper").style.marginBottom = newMargin + "px";
+    document.getElementById("portfolioLibrary").style.marginBottom = newMargin + "px";
+    console.log("adjusting portfolio wrapper margins.", newMargin);
+
 }
