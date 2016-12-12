@@ -1,0 +1,484 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	font-size: 80%;
+	font-family: Calibri, sans-serif;
+	width: 100%;
+	position: absolute;
+	color: #000;
+	background-image: url(../FILES/IMG/BACKGROUND/space2.jpg);
+	background: no-repeat;
+	min-height: 100%;
+	background-color: white;
+}
+h1 {
+	margin:0;
+	color:#555;
+	font-weight:100;
+}
+h2 {
+	margin: 0;
+	padding: 0;
+	color:#777;
+	font-weight:100;
+}
+h3 {
+	color: #FFFFFF;
+	font-size: 2em;
+	font-weight:100;
+	padding: 0;
+}
+h4 {
+	font-size: 1.6em;
+	font-weight:100;
+	color:#BBB;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	color: #000000;
+}
+p {
+	font-size: 2em;
+	padding: 0;
+	font-weight: 100;
+	margin-left: 5px;
+}
+p.information {
+	text-align: left;
+	margin-top: 50px;
+	margin-left: 50px;
+	padding: 0;
+}
+ul {
+	list-style: none;
+}
+img {
+	border: 0;
+}
+
+#banner{
+	min-width: 10%;
+	float: right;
+	text-align: right;
+	margin-top: 1.2%;
+	padding: 0;
+	/*margin-left: 5%; */
+}
+.greater {
+	font-size: 3em;
+	font-weight: bold;
+	padding: auto;
+	margin: auto;
+}
+
+#portfolio_wrapper {
+	width: 100%;
+	min-height: 85vh;
+	overflow: auto;
+	clear: both;
+	position: relative;
+	box-sizing: border-box;
+	margin-bottom: 0;
+	-webkit-transform: translateZ(0);
+   -moz-transform: translateZ(0);
+   -ms-transform: translateZ(0);
+   -o-transform: translateZ(0);
+   transform: translateZ(0);
+}
+
+#footer{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	min-height: 15vh;
+	width: 100%;
+	clear: both;
+	background-color: #F4F4F4;
+	text-align: center;
+	color: #EEE;
+	margin: 0;
+	border-top: solid 1px #CCC;
+	padding: 1% 5% 0 5%;
+	z-index: 100;
+	position: fixed;
+	bottom: 0;
+}
+
+#portfolio_menu {
+	min-width: 75%;
+	min-height: 31px;
+	margin: 0;
+	position: relative;
+	float: left;
+}
+
+/**		ABOUT ME			*/
+
+#aboutMeWrapper {
+	width: 92%;
+	max-width: 600px;
+	margin: 2% auto;
+	height: 100%;
+	margin-bottom: 100px;
+	padding: 0 auto;
+	clear: both;
+}
+
+#aboutMe{
+	width: 100%;
+	font-size: 1.5em;
+	font-family: sans-serif;
+}
+
+#aboutMe h1{
+	font-size: 5em;
+	text-align: center;
+	color: #000;
+	line-height: 1.2em;
+	letter-spacing: -0.01em;
+}
+
+#aboutMeContent p{
+	line-height: 1.5em;
+	text-align: left;
+}
+
+#aboutMeClients{
+	margin-top: 10%;
+	text-align: center;
+}
+
+#aboutMeClients h1{
+	font-size: 4em;
+	color: #000;
+	border-bottom: 1px solid #000;
+	width: 68%;
+	margin: 0 auto;
+}
+
+#aboutMeClients p.clientList{
+	font-size: 2.2em;
+	line-height: 1.5em;
+	letter-spacing: 0.2em;
+	font-weight: bolder;
+	font-family: "Arial Narrow";
+}
+
+/*Style for button on menu*/
+.buttonPortfolio {
+	padding: 0;
+	margin: 0;
+	font-size: 1.3em;
+	text-align: center;
+	color: #AAA;
+	width: auto;
+	background:none;
+	border: none;
+	text-decoration: none;
+	font-family: "Cabin-Regular", Arial, Helvetica, sans-serif;
+	/*	For IE extra button margin shit	*/
+	overflow: hidden;
+	cursor: pointer;
+	transition: .1s ease-in-out;
+	-moz-transition: .1s ease-in-out;
+	-webkit-transition: .1s ease-in-out;
+	font-weight:100;
+}
+
+.buttonPortfolio:hover {
+	/*background: url(../FILES/IMG/border.gif);
+	background-repeat: repeat; */
+	color: #555;
+}
+
+li#imageButtonListElement{
+	width: 11em;
+	height: 2.5em;
+	margin: 2.7% 3% 0 3%;
+	background-image: url("../FILES/IMG/signature.png");
+	background-size: 100% 100%;
+	opacity: 0.7;
+}
+
+#homeButton{
+	width: 100%;
+	height: 100%;
+}
+
+ul.menu {
+	width: 100%;
+	display: block;
+	list-style: none;
+	font-size: 1.3em;
+	padding: 0;
+	margin:0;
+	float: left;
+	height: auto;
+}
+ul.menu li {
+	display: block;
+	position: relative;
+	margin: 3% 1%;
+	padding: 0 5px 0 5px;
+	float: left;
+}
+ul.social_icons {
+	width: auto;
+	padding: 0;
+	margin: 0 auto;
+	float: right;
+	clear: both;
+}
+ul.social_icons li {
+	margin-left: auto;
+	margin-right: auto;
+	display: inline;
+	margin: 5px;
+	height: auto;
+}
+.icon_all {
+	padding: 3px;
+	position: relative;
+	margin: 0px;
+	width: 22px;
+	height: 22px;
+	transition: .1s ease-in-out;
+	-moz-transition: .1s ease-in-out;
+	-webkit-transition: .1s ease-in-out;
+	opacity: 0.5;
+}
+
+.icon_all:hover{
+	opacity: 0.8;
+}
+
+#authorInfo{
+	float: right;
+	clear: both;	
+}
+
+/*		PORTFOLIO page css		*/
+
+/*	The outer container for a single thumbnail	*/
+.thumbnailContainer{
+	position: relative;
+	width: 100%;
+	float: left;
+	margin: 0;
+	padding: 0;
+	display: block;
+	overflow: hidden;
+}
+
+/* The description that will show
+	up when the mouse hovers over a thumbnail	*/
+.imageDescription{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80%;
+	padding-top: 20%;
+	background-color: #111;
+	text-shadow: 0 0 1px #000;
+	text-align: center;
+	opacity: 0;
+	z-index: 10;
+	transition: opacity .3s ease-in-out;
+	-moz-transition: opacity .3s ease-in-out;
+	-webkit-transition: opacity .3s ease-in-out;
+	display: block;
+	margin: 0;
+}
+
+.imageDescription h1, .imageDescription h2, .imageDescription p{
+	color: white;
+}
+
+.imageDescription h1{
+	
+}
+
+.imageDescription h2{
+	
+}
+
+.imageDescription p{
+	
+}
+
+/*	When a thumbnail is hovered over
+	the imageDescription will appear.
+	Why the link is the one triggered
+	by hover is because the link needs to have
+	the highest z-index!				*/
+a.lightboxLink:hover + .imageDescription {
+	opacity: 0.9;
+}
+
+a.lightboxLink:hover + .imageDescription > *{
+	opacity: 1;
+}
+
+/*	Just for the link that is an invisible
+	overlay for a thumbnail.		*/
+a.lightboxLink{
+	position: absolute;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+/*	The div containing all thumbnails.	*/
+div#portfolioLibrary{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+/*	The image contained inside a thumbnailContainer	*/
+img.thumbnail {
+	position: relative;
+	padding: 0;
+	margin: 0;
+	border: none; /*	For IE		*/
+	width:	100%;
+	height:	100%;
+}
+
+img.logo {
+	position: relative;
+	margin-top: -50px;
+	margin-left: 5px;
+	margin-right: 5px;
+	transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-webkit-transition: .25s ease-in-out;
+	padding: 0;
+}
+
+img.logo:hover {
+	margin-top: 0px;
+}
+
+img.wrapper {
+	margin-top: 30%;
+	margin-left: 0px;
+}
+
+img.profilepic{
+	float: left;
+	width: 75%;
+	height:auto;
+	align: center;	
+	clear: both;
+}
+
+
+@font-face {
+	font-family: Cabin-Medium;
+	src: url(../FILES/FONTS/Cabin-Medium.otf);
+	font-weight: 600;
+}
+@font-face {
+	font-family: Cabin-Regular;
+	src: url(../FILES/FONTS/Cabin-Regular.otf);
+	font-weight: 100;
+}
+.p_contact {
+	padding: 3%;
+	text-shadow: 1px 1px 1px #000;
+	width: 100%;
+}
+/* SLIDESHOW */
+
+.coolshow{
+	height: 100%;
+	width: 100%;
+    overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0;
+	margin: 0;
+	visibility: hidden;
+}
+
+#coolshowFlow{
+    height: 100%;
+    width: 100%;
+	padding: 0;
+	margin: 0;
+    transform: translateZ(0);
+    transition: 0.5s ease;
+    white-space: nowrap;
+	position: relative;
+}
+
+#coolshowFlow > div{
+	display:inline;
+}
+#coolshowFlow img{
+	display: inline;
+}
+
+#coolshowControllerContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} 
+
+#coolshowNextButton, #coolshowPreviousButton{
+    height: 45px;
+    width: 50px;
+    position: absolute;
+    top: 45%;
+    background-size: 100% 100%;
+}
+
+#coolshowNextButton{
+    background-image: url("../FILES/IMG/ICONS/next.png");
+    right: 0;
+}
+
+#coolshowPreviousButton{
+    background-image: url("../FILES/IMG/ICONS/prev.png");
+    left: 0;
+}
+
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+	/* Retina-specific stuff here */
+	html, body{
+		font-size: 70%;
+		background-color: white;
+	}
+
+	div#banner{
+		display: none;
+	}
+
+	#coolshowPreviousButton, #coolshowNextButton{
+		top: 0;
+		background-image: none;
+		height: 100%;
+	}
+
+	#aboutMeWrapper{
+		background-color: white;
+	}
+
+	#aboutMe{
+		color: #000;
+	}
+}
