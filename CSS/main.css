@@ -223,7 +223,7 @@ ul.menu {
 	width: 100%;
 	display: block;
 	list-style: none;
-	font-size: 2em;
+	font-size: 1.3em;
 	padding: 0;
 	margin:0;
 	float: left;
@@ -484,7 +484,7 @@ img.profilepic{
 	}
 
 	footer{
-		font-size: 2em;
+		font-size: 1em;
 	}
 }
 
@@ -499,7 +499,7 @@ img.profilepic{
 
     #footer{
         width: 100%;
-		font-size: 0.7em;
+		/*font-size: 0.7em;*/
     }
 
 	#innerFooter{
