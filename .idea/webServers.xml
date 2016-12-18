@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="31a1e263-4820-4844-a1f8-c08d083860db" name="Bohuslanet.se/grabrielbjorkstiernstrom" url="http://ftp.bohuslanet.se/">
+        <fileTransfer host="ftp.bohuslanet.se" port="21" rootFolder="/bohuslanet.se/public_html/gabrielbjorkstiernstrom">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
