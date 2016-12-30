@@ -1,14 +1,20 @@
 <div id="coolshow" class="coolshow"></div>
-
-<script src="JS/slideshow.js" type="text/javascript"></script>
 <script type="text/javascript">
 
-    var protocol = "https://";
-    var webPage = "bohuslanet.se/gabrielbjorkstiernstrom/";
-
-    $.getScript(protocol + webPage + "JS/slideshow.js", function(){
-        $.getScript(protocol + webPage + "JS/homePageScript.js");
-    });
-
-    loadScript()
+    /*new Promise()
+        .combine([
+                loadScript("JS/slideshow.js"),
+                loadScript("JS/homePageScript.js")
+        ]*/
+    new Promise()
+        .synchronize([
+            syncedLoadScript("JS/slideshow.js"),
+            syncedLoadScript("JS/homePageScript.js")
+        ]).onSet(function(){
+            console.log("Loaded.");
+        }).onCancel(function(message){
+            console.log("Loading canceled: " + message);
+        }).onError(function(message){
+            console.log("Loading interrupted: " + message);
+        });
 </script>

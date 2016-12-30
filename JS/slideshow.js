@@ -1,6 +1,7 @@
 function Coolshow(imageSourceArray){
+    var self = this;
 
-    //Returns the function (before slideshow setup) if the input number of images is too small.
+    //Returns the function (before slideshow setup) if the input number of coolshowImages is too small.
     if(imageSourceArray.length < 2)
         return;
 
@@ -36,17 +37,23 @@ function Coolshow(imageSourceArray){
     controllerContainerElement.setAttribute("id", properties.controllerContainerId);
     mainContainer.appendChild(controllerContainerElement);
 
-    init();
+    this.init = function(){
+        var loadedPromise = new Promise();
 
-    function init(){
+        console.log("init");
         DynamicImageLoader.loadAllImages(imageSourceArray)
+            .onError(function(message){ //TODO onError is semantically incorrect, needs to change in Promsise object
+                console.log("\nCould not load all images: " + message);
+            })
             .onSet(function(loadedImages){
-                console.log("loaded all images.");
+                console.log("loaded all coolshowImages: ", loadedImages);
                 initCarousel(loadedImages);
                 document.getElementsByClassName("coolshow")[0].style.visibility = "visible";
+                loadedPromise.set(true);
+            });
 
-            })
-    }
+        return loadedPromise;
+    };
 
     function initCarousel(loadedImages){
 
@@ -59,9 +66,10 @@ function Coolshow(imageSourceArray){
             loadedImages
         );
 
-        for(var i = 0; i < loadedImages.length; i++)
+        for (var i = 0; i < loadedImages.length; i++)
             flowContainerElement.appendChild(loadedImages[i]);
 
+        console.log("Appended images", flowContainerElement);
         //Setting up next and previous event handlers
         if(!properties.hasCustomControllers)
             createControls();
@@ -88,7 +96,7 @@ function Coolshow(imageSourceArray){
             }
             else {
                 reload(loadedImages);
-                console.log("loaded images", loadedImages);
+                console.log("loaded coolshowImages", loadedImages);
             }
         }
 
@@ -96,6 +104,13 @@ function Coolshow(imageSourceArray){
         centerCurrentImage(loadedImages, 0);
 
         mainContainer.style.opacity = 1;
+
+       // windowLoaderPromise.set(true); //TODO fix loading pages and promises with that
+
+        self.reevaluateImageSize = function(){
+            reload(loadedImages);
+        };
+
     }
 
     /**
@@ -247,10 +262,10 @@ function Coolshow(imageSourceArray){
      * Returns a new object containing offset limits (min, max).
      *
      * Calculates the limitations based on the actual width
-     * of all images, minus the width of the screen.
+     * of all coolshowImages, minus the width of the screen.
      *
-     * The actual width of the images is calculated by getting
-     * the scale factor between the images actual size v.s. the
+     * The actual width of the coolshowImages is calculated by getting
+     * the scale factor between the coolshowImages actual size v.s. the
      * size of the containing element in the DOM.
      *
      * @param containerDimensions
@@ -270,10 +285,10 @@ function Coolshow(imageSourceArray){
     }
 
     /**
-     * Takes all loaded images and adds their width up until the specified indexed
+     * Takes all loaded coolshowImages and adds their width up until the specified indexed
      * image. For the specified image it only adds half of its width, and in that way
      * getting the total offset value (from the left) to the center of the specified
-     * images (in the array of all loaded images).
+     * coolshowImages (in the array of all loaded coolshowImages).
      *
      * @param images
      * @param index
@@ -282,7 +297,7 @@ function Coolshow(imageSourceArray){
     function getImageCenterPosition(images, index){
         var leftPos = getOffset(images, index);
 
-        console.log("[centerPosition] images", images);
+        console.log("[centerPosition] coolshowImages", images);
         console.log("Index", index);
         leftPos += ((mainContainer.offsetHeight / images[index].naturalHeight) * images[index].naturalWidth) / 2;
 
@@ -291,7 +306,7 @@ function Coolshow(imageSourceArray){
 
     /**
      * Returns the offset value from the left, of the image
-     * at the specified index in an array of images.
+     * at the specified index in an array of coolshowImages.
      * @param images
      * @param index
      * @returns {number}
@@ -305,8 +320,12 @@ function Coolshow(imageSourceArray){
     }
 
     function conformImagesToHeight(images, height){
-        for(var i = 0; i < images.length; i++)
+        console.log("Conforming heights", height);
+        for(var i = 0; i < images.length; i++) {
             images[i].style.height = height + "px";
+            console.log("Image " + i, images[i].height);
+
+        }
     }
 
     function reload(allImages) {
@@ -324,5 +343,10 @@ function Coolshow(imageSourceArray){
         //currentSlideshowIndex = 0;
         centerCurrentImage(allImages, currentSlideshowIndex);
     }
+
+    this.reevaluateImageSize = function(){
+        console.log("No images to reevaluate.");
+    }
+
 
 }

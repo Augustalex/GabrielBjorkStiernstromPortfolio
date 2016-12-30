@@ -2,6 +2,30 @@
  * Created by August on 2016-12-06.
  */
 
+/**
+ * Used in the Promise object. Takes a function callback and a single value
+ * to be passed into the function. Has a function that initiates the function
+ * and returns a promise.
+ *
+ * @param func
+ * @param value
+ * @constructor
+ */
+function PromiseCallback(func, value){
+    var self = this;
+
+    this.promise = new Promise();
+    this.func = func;
+    this.value = value;
+
+    this.start = function(){
+        this.func(this.value)
+            .onSet(function(){
+                self.promise.set(true);
+            });
+    };
+}
+
 function Countdown(goal, callbackFunction){
     this.time = 0;
 
@@ -21,73 +45,136 @@ function Countdown(goal, callbackFunction){
  */
 function Promise(){
 
-    var onHold = false;
-    var valueHolder = null;
+    var fulfilment = null;
 
-    this.errorCallback = null;
-    this.cancelCallback = null;
-    this.successCallback = null;
+    var errorCallback = {func: null};
+    var cancelCallback = {func: null};
+    var successCallback = {func: null};
+    var finalCallback = {func: null};
 
     /**
-     * Sets a callback for if any of the callback
-     * of the Promise fails, or if any passed value
-     * to the success callback is null.
-     * @param callback
+     * Prepares the error callback object.
+     *
      * @returns {Promise}
      */
     this.onError = function(callback){
-        this.errorCallback = callback;
+        preparePromiseCallback(errorCallback, callback);
+
         return this;
     };
 
     /**
-     * Sets a callback for if the Promise is canceled.
+     * Prepares the cancel callback object.
+     *
      * @param callback
      * @returns {Promise}
      */
     this.onCancel = function(callback){
-        this.cancelCallback = callback;
+        preparePromiseCallback(cancelCallback, callback);
+
         return this;
     };
 
     /**
-     * Sets a callback for the success scenario,
-     * that is if a legitimate value is later set on
-     * the Promise object.
-     *
-     * If a value is already set on the Promise then
-     * this executes the success callback immediately.
+     * Prepares the success callback object.
      *
      * @param callback
      * @returns {Promise}
      */
     this.onSet = function(callback){
-        if(valueHolder != null)
-            try {
-                callback(valueHolder);
-            }
-            catch(error){
-                runCallback(this.errorCallback, error);
-            }
-        else
-            this.successCallback = callback;
+        preparePromiseCallback(successCallback, callback);
 
         return this;
     };
 
     /**
-     * Internal function for trying to run a callback.
-     * If the callback is not set (is null) then a
-     * console log is executed instead.
+     * Prepares the finally callback object.
+     *
+     * This executes after the successCallback.
+     * Useful for when additional successCallbacks might
+     * be adding during the Promise lifetime. The finally
+     * callback will always be called after all attached
+     * successCallbacks.
+     *
      * @param callback
+     * @returns {Promise}
+     */
+    this.finally = function(callback){
+        preparePromiseCallback(finalCallback, callback);
+        return this;
+    };
+
+    /**
+     * Run when a value has been set. (Could be an error or cancellation message
+     * as well as a success value).
+     *
+     * If the callback is null, then the Promise fulfilment is set to the callback variable
+     * reference. If any callback is set by onError, onSet or onCancel, the fulfilment is
+     * checked against each callback object reference. If the reference matches the fulfilment
+     * then the fulfilment is run with the value stored in the callback object.
+     *
+     * @param callbackObj
      * @param value
      */
-    var runCallback = function(callback, value){
-        if(callback == null)
-            console.log("No callback set.");
+    function fulfill(callbackObj, value){
+        setFulfilment(callbackObj, value);
+
+        if(callbackObj.func)
+            run(callbackObj);
+    }
+
+    /**
+     * Sets the value of a callback object and
+     * set the fulfilment reference to the
+     * callback object.
+     *
+     * @param callbackObj
+     * @param value
+     */
+    function setFulfilment(callbackObj, value){
+        callbackObj.value = value;
+
+        fulfilment = callbackObj;
+    }
+
+    /**
+     * Prepares a callback object with a given function.
+     *
+     * If the fulfilment of the Promise is already set
+     * then if the fulfilment is referencing the same
+     * callback object as the argument, then the fulfilment
+     * is run with the argument function.
+     *
+     * @param callbackObj
+     * @param callbackFunction
+     */
+    function preparePromiseCallback(callbackObj, callbackFunction){
+        if(fulfilment == callbackObj && !!callbackObj.value)
+            callbackFunction(fulfilment.value);
         else
-            callback(value);
-    };
+            callbackObj.func = callbackFunction;
+    }
+
+    /**
+     * Tries to run a callback object with its function and value.
+     *
+     * If an error is caught then the error callback is tried.
+     *
+     * @param callbackObject
+     */
+    function run(callbackObject){
+        callbackObject.func(callbackObject.value);
+
+        if(callbackObject != finalCallback)
+            runFinalCallback();
+    }
+
+    function runFinalCallback(){
+        if(finalCallback.func) {
+            console.log("RUNNING FINAL");
+            run(finalCallback);
+        }
+    }
 
     /**
      * Sets a value to the promise and tries to run the successCallback.
@@ -99,21 +186,7 @@ function Promise(){
      * @returns {Promise}
      */
     this.set = function(value){
-        if(this.successCallback == null)
-            valueHolder = value;
-        else if(!onHold) {
-            if (value == null)
-                runCallback(this.errorCallback, "Value was null.");
-            else
-                try {
-                    runCallback(this.successCallback, value);
-                }
-                catch (error) {
-                    runCallback(this.errorCallback, error);
-                    console.log(value);
-                    console.log(this.successCallback);
-                }
-        }
+        fulfill(successCallback, value);
 
         return this;
     };
@@ -127,12 +200,13 @@ function Promise(){
      * @param message
      */
     this.cancel = function(message){
-        if(this.cancelCallback != null)
-            this.cancelCallback(message);
-        else if(this.errorCallback != null)
-            this.errorCallback(message);
-        else
-            console.log("Promise was canceled. Cancellation message: " + message);
+        fulfill(cancelCallback, message);
+
+        return this;
+    };
+
+    this.error = function(message){
+        fulfill(errorCallback, message);
 
         return this;
     };
@@ -141,6 +215,15 @@ function Promise(){
         this.errorCallback = otherPromise.errorCallback;
         this.cancelCallback = otherPromise.cancelCallback;
         this.successCallback = otherPromise.successCallback;
+
+        return this;
+    };
+
+    this.attachOnSet = function(nextOnSet){
+        this.successCallback = function(value){
+            this.successCallback(value);
+            nextOnSet(value);
+        };
 
         return this;
     };
@@ -162,21 +245,6 @@ function Promise(){
         return this;
     };
 
-    /**
-     * Makes it so that callbacks are not triggered once the value is set.
-     * Instead they are only triggered once the method "activate" has been called.
-     *
-     * @returns {Promise}
-     */
-    this.setToHold = function(){
-        onHold = true;
-        return this;
-    };
-
-    this.active = function(){
-        runCallback(this.successCallback, valueHolder);
-    };
-
     this.combine = function(promisesArray){
         for(var i = 1; i < promisesArray.length; i++)
             promisesArray[i].connect(promisesArray[i-1]);
@@ -184,28 +252,87 @@ function Promise(){
         return this.connect(promisesArray[promisesArray.length - 1]);
     };
 
+    this.synchronize = function(callbackArray){
+        for(var i = 0; i < callbackArray.length-1; i++) {
+            const index = i;
+
+            callbackArray[i].promise.onSet(function () {
+                callbackArray[index + 1].start();
+            });
+        }
+
+        callbackArray[0].start();
+
+        return callbackArray[callbackArray.length-1].promise;
+    };
+
 }
 
+Promise.syncedBlock = function(promises){
+    return new PromiseCallback(
+        function(promises){
+            var promise = new Promise();
+
+            var countdown = new Countdown(promises.length, function(){
+                promise.set(true);
+            });
+
+            for(var i = 0; i < promises.length; i++)
+                promises[i].onSet(function(){
+                    countdown.tick();
+                });
+
+            return promise;
+        },
+        promises
+    );
+};
+
+
 function setRelativePath(path){
-    coolshowUtils = {};
-    coolshowUtils.relativePath = path;
+    window.coolshowUtils = {};
+    window.coolshowUtils.relativePath = path;
 }
 
 //Wraps JQuery AJAX with a Promise.
 function loadScript(subPageSrc){
     var promise = new Promise();
-    if(!coolshowUtils)
-        throw Error("Relative path not set");
-    $.getScript(coolshowUtils.relativePath + subPageSrc, function(){
-        promise.set(true);
-    });
+
+    try {
+        if (!window.coolshowUtils)
+            promise.cancel("Relative path not set.");
+
+        $.getScript(window.coolshowUtils.relativePath + subPageSrc, function () {
+            console.log("Loaded " + subPageSrc);
+            promise.set(true);
+        });
+    }
+    catch(error){
+        console.log("Error: ", error);
+        promise.cancel(error);
+    }
+
     return promise;
 }
+
+/**
+ * Wraps a loadScript function inside a PromiseCallback
+ * to be used in a synchronous Promise array.
+ * @param subPageSrc
+ * @returns {PromiseCallback}
+ */
+function syncedLoadScript(subPageSrc){
+    return new PromiseCallback(
+        loadScript,
+        subPageSrc
+    );
+}
+
 function loadAbsoluteScript(url){
     var promise = new Promise();
     $.getScript(url, function(){
-
+        promise.set(true);
     });
 
-    return promoi
+    return promise;
 }

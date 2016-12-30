@@ -3,12 +3,21 @@
 </div>
 <script type="text/javascript">
 
-    var protocol = "https://";
-    var webPage = "bohuslanet.se/gabrielbjorkstiernstrom/"; //should be replaced with gabriels page name
+    new Promise()
+        .synchronize([
+                syncedLoadScript("JS/Portfolio.js"),
+                syncedLoadScript("JS/portfolioPageScript.js")
+        ])
+        .onError(function(error){
+            console.log("Could not load Portfolio page scripts: ", error);
+        })
+        .onCancel(function(message){
+            console.log("Loading all Portfolio page scripts was canceled: ", message);
+        })
+        .onSet(function(){
+            console.log("Portfolio page scripts was successfully loaded.");
+        });
 
-    $.getScript(protocol + webPage + "JS/Portfolio.js", function(){
-        $.getScript(protocol + webPage + "JS/portfolioPageScript.js");
-    });
 
 </script>
 <!--<script src="../JS/thumbnails.js" text/javascript"></script>-->

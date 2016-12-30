@@ -66,6 +66,10 @@ function Portfolio(images, containerId){
                 adjustPortfolioWrapperMargins();
             }
         }
+
+        console.log("HERE", window.windowLoaderPromise);
+
+        window.windowLoaderPromise.set(true);
     }
 }
 

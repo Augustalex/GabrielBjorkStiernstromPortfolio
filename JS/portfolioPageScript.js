@@ -3,7 +3,6 @@
  */
 
 (function(){
-    var container = document.getElementById("portfolioLibrary");
     var images = [
         new DynamicImage()
             .addImage("FILES/IMG/THUMBNAIL/dragonvalley_thumbnail.png")

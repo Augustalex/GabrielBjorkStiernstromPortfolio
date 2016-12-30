@@ -5,13 +5,13 @@
  *
  * Returns a Promise when called with "load" method.
  *
- * Mainly used to dynamically load more heavy images into
+ * Mainly used to dynamically load more heavy coolshowImages into
  * an element as soon as they become available, starting with
  * the a more lightweight low resolution image and ending
  * with a beautiful full resolution photo.
  *
  * Parameters may include certain size limitations on what
- * images too load depending on the platform requesting them.
+ * coolshowImages too load depending on the platform requesting them.
  *
  * @constructor
  */
@@ -89,7 +89,7 @@ function DynamicImage(){
     };
 
     /**
-     * Will get the highest priority images currently in the pool
+     * Will get the highest priority coolshowImages currently in the pool
      * and load it through the given imageInjectionFunction.
      * @returns {Promise}
      */
@@ -106,6 +106,7 @@ var DynamicImageLoader = {
         const loadedImagesPromise = new Promise();
 
         var countdown = new Countdown(dynamicImages.length, function(){
+            console.log("countdown complete");
             loadedImagesPromise.set(loadedImages);
         });
 
@@ -128,17 +129,16 @@ var DynamicImageLoader = {
         const loadedTruePromise = new Promise();
 
         dynamicImage.load()
-            .setToHold()
             .onError(function(message){
                 console.log(message);
             })
             .onSet(function(value){
                 imageElement.onload = function(){
                     loadedTruePromise.set(true);
-                    console.log("Loaded image at resolution level " + dynamicImage.getResolutionLevel());
+                    //console.log("Loaded image at resolution level " + dynamicImage.getResolutionLevel());
                     setTimeout(function(){
                         //TODO implement loading next image first when the previous image has been shown to the screen.
-                        console.log("1 second passed.");
+                        //console.log("1 second passed.");
                         if(!dynamicImage.atHighestResolution())
                             DynamicImageLoader.loadDynamicImage(dynamicImage, imageElement);
                     }, 1000);
