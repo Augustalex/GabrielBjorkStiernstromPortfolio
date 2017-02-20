@@ -37,10 +37,10 @@ function Coolshow(imageSourceArray){
     controllerContainerElement.setAttribute("id", properties.controllerContainerId);
     mainContainer.appendChild(controllerContainerElement);
 
-    this.init = function(){
+    this.start = function(){
         var loadedPromise = new Promise();
 
-        console.log("init");
+        console.log("start");
         DynamicImageLoader.loadAllImages(imageSourceArray)
             .onError(function(message){ //TODO onError is semantically incorrect, needs to change in Promsise object
                 console.log("\nCould not load all images: " + message);
@@ -325,6 +325,8 @@ function Coolshow(imageSourceArray){
             images[i].style.height = height + "px";
             console.log("Image " + i, images[i].height);
 
+            //testing mini-lightbox
+            images[i].setAttribute("data-image-opened", images[i].src);
         }
     }
 
@@ -347,6 +349,5 @@ function Coolshow(imageSourceArray){
     this.reevaluateImageSize = function(){
         console.log("No images to reevaluate.");
     }
-
 
 }

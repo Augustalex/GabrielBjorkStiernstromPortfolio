@@ -31,7 +31,7 @@ function Portfolio(images, containerId){
             imageContainer.appendChild(imageElements[i]);
 
             //Add lightbox link
-            imageContainer.appendChild(newLightboxLink(dynamicImages[i].getHighestResolutionSource()));
+            //imageContainer.appendChild(newLightboxLink(dynamicImages[i].getHighestResolutionSource()));
 
             var descriptionDiv = document.createElement("div");
             //change id library_window_description to imageDescription class in main.css
@@ -42,9 +42,10 @@ function Portfolio(images, containerId){
             descriptionDiv.appendChild(newTextTag("h2", dynamicImages[i].subHeader));
             descriptionDiv.appendChild(newTextTag("p", dynamicImages[i].description));
 
-            imageContainer.appendChild(descriptionDiv);
+            //imageContainer.appendChild(descriptionDiv);
 
             imageElements[i].setAttribute("class", "thumbnail");
+            imageElements[i].setAttribute("data-high-res", dynamicImages[i].getHighestResolutionSource());
 
             fitImageContainersToContainer(imageContainers, containerId);
             adjustPortfolioWrapperMargins();
@@ -70,6 +71,9 @@ function Portfolio(images, containerId){
         console.log("HERE", window.windowLoaderPromise);
 
         window.windowLoaderPromise.set(true);
+
+        var aggeBox = new AggeBox();
+        aggeBox.start();
     }
 }
 
@@ -101,7 +105,6 @@ function newLightboxLink(href){
     link.setAttribute("class", "lightboxLink");
     link.setAttribute("href", href);
     link.setAttribute("data-lightbox", "digitalart");
-
     return link;
 }
 

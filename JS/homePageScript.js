@@ -42,8 +42,9 @@ var coolshowImages = [
 
 var coolshow = new Coolshow(coolshowImages);
 
-coolshow.init()
+coolshow.start()
     .onSet(function(){
+        console.log("Slideshow is loaded.");
         reevaluateHeights();
         coolshow.reevaluateImageSize();
         window.windowLoaderPromise.set(true);

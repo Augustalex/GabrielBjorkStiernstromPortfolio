@@ -54,7 +54,7 @@ function DynamicImage(){
         if(resolutionIndexLimit != null
             && resolutionIndexLimit < currentIndex
             && resolutionIndexLimit < this.imageArray.length)
-                return resolutionIndexLimit;
+            return resolutionIndexLimit;
         else if(currentIndex < this.imageArray.length)
             return currentIndex++;
         else
@@ -121,6 +121,13 @@ var DynamicImageLoader = {
                     countdown.tick();
                 });
 
+            var imagePromises =
+
+            new Promise().synchronize(
+                Promise.syncedBlock(
+
+                )
+            )
         }
 
         return loadedImagesPromise;
@@ -150,3 +157,56 @@ var DynamicImageLoader = {
         return loadedTruePromise;
     }
 };
+
+/**
+ * Created by August on 2017-02-15.
+ */
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+
+function solution(A) {
+    // write your code in JavaScript (Node.js 6.4.0)
+
+    groups = [];
+    previousHeight = undefined;
+    currentHeight = undefined;
+
+    currentGroup = [];
+    for(i = 0; i < A.length; i++){
+        if(isOnEdge(A, i)){
+            currentHeight = A[i];
+            currentGroup.push(i);
+        }
+        else if(A[i] == currentHeight)
+            currentGroup.push(i);
+        else{
+            if(onEdgeTerrainStructure(previousHeight)
+                || isEvenTerrainStructure(previousHeight, currentHeight, A[i]))
+                groups.push(currentGroup);
+
+            previousHeight = currentHeight;
+            currentHeight = A[i];
+            currentGroup = [i];
+        }
+    }
+
+    groups.push(currentGroup);
+    return groups.length;
+}
+
+function TerrainVerifier(){
+
+}
+
+
+function isOnEdge(array, currentIndex){
+    return currentIndex == array.length - 1 || currentIndex == 0;
+}
+
+function onEdgeTerrainStructure(previousHeight){
+    return previousHeight == undefined;
+}
+
+function isEvenTerrainStructure(previousHeight, currentHeight, newHeight){
+    return newHeight != currentHeight && newHeight == previousHeight;
+}

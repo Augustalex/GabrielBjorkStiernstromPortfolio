@@ -1,3 +1,5 @@
+/*      COOLSHOW PLUGINS        */
+
 /**
  * Created by August on 2016-12-06.
  */
@@ -294,22 +296,73 @@ function setRelativePath(path){
     window.coolshowUtils.relativePath = path;
 }
 
-//Wraps JQuery AJAX with a Promise.
-function loadScript(subPageSrc){
+/**
+ * Loads a file asynchronously with XHR.
+ *
+ * Wraps the progress in a Promise that can be used
+ * to handle error, cancel and success scenarios.
+ * @param fileSource
+ * @returns {Promise}
+ */
+function loadContent(fileSource){
+    var loadPromise = new Promise();
+
+    console.log("Going to load content at: " + fileSource);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", window.coolshowUtils.relativePath + fileSource, true);
+    xhr.onreadystatechange = function(){
+        if(this.status !== 200){
+            console.log(this);
+            loadPromise.error("Could not load " + window.coolshowUtils.relativePath + fileSource);
+        }
+        else{
+            loadPromise.set(this.responseText);
+        }
+    };
+    xhr.send();
+
+    return loadPromise;
+}
+
+//Wraps XHR AJAX with a Promise.
+function loadScript(subPageSource){
+    /*var promise = new Promise();
+
+     try {
+     if (!window.coolshowUtils)
+     promise.cancel("Relative path not set.");
+
+     $.getScript(window.coolshowUtils.relativePath + subPageSrc, function () {
+     console.log("Loaded " + subPageSrc);
+     promise.set(true);
+     });
+     }
+     catch(error){
+     console.log("Error: ", error);
+     promise.cancel(error);
+     }
+
+     return promise;*/
+
     var promise = new Promise();
 
-    try {
-        if (!window.coolshowUtils)
-            promise.cancel("Relative path not set.");
-
-        $.getScript(window.coolshowUtils.relativePath + subPageSrc, function () {
-            console.log("Loaded " + subPageSrc);
-            promise.set(true);
-        });
+    if (!window.coolshowUtils) {
+        console.log("Relative path not set, cannot load script " + subPageSource);
+        promise.cancel("Relative path not set, cannot load script " + subPageSource);
     }
-    catch(error){
-        console.log("Error: ", error);
-        promise.cancel(error);
+    else{
+        var element = document.createElement('script');
+
+        element.onload = function(){
+            document.body.appendChild(element);
+            promise.set(element);
+        };
+
+        element.onerror = promise.error;
+
+        element.async = false;
+        element.type = 'text/javascript';
+        element.src = window.coolshowUtils.relativePath + subPageSource;
     }
 
     return promise;

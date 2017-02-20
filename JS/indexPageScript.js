@@ -2,6 +2,7 @@
  * Created by DAW 28 on 2016-12-18.
  */
 
+console.log("\n\tLOADED INDEX PAGE SCRIPT\n");
 function setFooterSizeToJustFit() {
     var footer = document.getElementById("footer");
     /*
@@ -53,52 +54,50 @@ function reevaluateHeights() {
 }
 
 (function() {
-    $(document).ready(function () {
 
-        window.windowLoaderPromise = null;
+    window.windowLoaderPromise = null;
 
-        // Loading function for Portfolio categories buttons
-        $(".buttonPortfolio").click(function(){
-            if(windowLoaderPromise == null) {
-                console.log("Loader PROMISE is null");
-                windowLoaderPromise =
-                    loadPage($(this).attr("alt"))
-                        .onSet(function () {
-                            console.log("Footer click.");
-                            reevaluateHeights();
-                        })
-                        .finally(function(){
-                            console.log("\n\tSETTING WINDOW LOADER TO NULL");
-                            windowLoaderPromise = null;
-                        });
-            }
-            else {
-                console.log("Loader PROMISE is NOT null");
-                /*windowLoaderPromise.attachOnSet(function(value){
-                    loadPage($(this).attr("alt"))
-                        .onSet(function () {
-                            console.log("Attached Footer click.");
-                            reevaluateHeights();
-                        })
-                });*/
-            }
+    // Loading function for Portfolio categories buttons
+    document.getElementsByClassName("buttonPortfolio")[0].onclick = function(event){
+        if(windowLoaderPromise == null) {
+            console.log("Loader PROMISE is null");
+            windowLoaderPromise =
+                loadPage(event.target.getAttribute("alt"))
+                    .onSet(function () {
+                        console.log("Footer click.");
+                        reevaluateHeights();
+                    })
+                    .finally(function(){
+                        console.log("\n\tSETTING WINDOW LOADER TO NULL");
+                        windowLoaderPromise = null;
+                    });
+        }
+        else {
+            console.log("Loader PROMISE is NOT null");
+            /*windowLoaderPromise.attachOnSet(function(value){
+                loadPage($(this).attr("alt"))
+                    .onSet(function () {
+                        console.log("Attached Footer click.");
+                        reevaluateHeights();
+                    })
+            });*/
+        }
+    };
+
+
+    (function setupWindowEventListeners() {
+        window.addEventListener("resize", reevaluateHeights);
+        window.addEventListener("orientationchange", reevaluateHeights);
+    })();
+
+    console.log("\tLoading Page.");
+    windowLoaderPromise = loadPage("HTML/home.html")
+        .onSet(function () {
+            console.log("loaded page.");
+        })
+        .finally(function(){
+            windowLoaderPromise = null;
         });
-
-
-        (function setupWindowEventListeners() {
-            window.addEventListener("resize", reevaluateHeights);
-            window.addEventListener("orientationchange", reevaluateHeights);
-        })();
-
-        console.log("\tLoading Page.");
-        windowLoaderPromise = loadPage("HTML/home.html")
-            .onSet(function () {
-                console.log("loaded page.");
-            })
-            .finally(function(){
-                windowLoaderPromise = null;
-            })
-    });
 
 
     //Wraps JQuery AJAX load calls with a promise.
@@ -110,17 +109,18 @@ function reevaluateHeights() {
         element.innerHTML = "";
         console.log("Emptied portfolio_wrapper");
         console.log("START", new Date().getMilliseconds());
-        $(element).load(pageSrc, function () {
-            console.log("END", new Date().getMilliseconds() );
-            //promise.set(true); //this should be set globally!
-        });
+
+        loadContent(pageSrc)
+            .onSet(function(content){
+                console.log("END", new Date().getMilliseconds() );
+                element.innerHTML = content;
+                promise.set(true);
+            })
+            .onError(function(message){
+                console.log(message);
+            });
 
         return promise;
     }
-
-    lightbox.option({
-        'resizeDuration': 200,
-        'showImageNumberLabel': false
-    });
 
 })();

@@ -29,7 +29,7 @@
   function Lightbox(options) {
     this.album = [];
     this.currentImageIndex = void 0;
-    this.init();
+    this.start();
 
     // options
     this.options = $.extend({}, this.constructor.defaults);
@@ -59,7 +59,7 @@
     return this.options.albumLabel.replace(/%1/g, currentImageNum).replace(/%2/g, totalImages);
   };
 
-  Lightbox.prototype.init = function() {
+  Lightbox.prototype.start = function() {
     this.enable();
     this.build();
   };
