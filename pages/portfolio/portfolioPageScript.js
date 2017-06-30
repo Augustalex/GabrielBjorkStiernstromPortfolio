@@ -2,6 +2,9 @@
  * Created by DAW 28 on 2016-12-18.
  */
 
+require('./AggeBox.js')
+require('./Portfolio.js')
+
 (function(){
     var images = [
         new DynamicImage()

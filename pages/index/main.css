@@ -210,7 +210,7 @@ img {
 }
 
 .buttonPortfolio:hover {
-	/*background: url(../FILES/IMG/border.gif);
+	/*background: url(../../FILES/IMG/border.gif);
 	background-repeat: repeat; */
 	color: #555;
 }
@@ -219,7 +219,7 @@ li#imageButtonListElement{
 	width: 11em;
 	height: 2.5em;
 	margin: 1.7em 3% 0 3%;
-	background-image: url("../FILES/IMG/signature.png");
+	background-image: url("../../FILES/IMG/signature.png");
 	background-size: 100% 100%;
 	opacity: 0.7;
 }
@@ -405,12 +405,12 @@ img.profilepic{
 
 @font-face {
 	font-family: Cabin-Medium;
-	src: url(../FILES/FONTS/Cabin-Medium.otf);
+	src: url(../../FILES/FONTS/Cabin-Medium.otf);
 	font-weight: 600;
 }
 @font-face {
 	font-family: Cabin-Regular;
-	src: url(../FILES/FONTS/Cabin-Regular.otf);
+	src: url(../../FILES/FONTS/Cabin-Regular.otf);
 	font-weight: 100;
 }
 .p_contact {
@@ -468,12 +468,12 @@ img.profilepic{
 }
 
 #coolshowNextButton{
-    background-image: url("../FILES/IMG/ICONS/next.png");
+    background-image: url("../../FILES/IMG/ICONS/next.png");
     right: 0;
 }
 
 #coolshowPreviousButton{
-    background-image: url("../FILES/IMG/ICONS/prev.png");
+    background-image: url("../../FILES/IMG/ICONS/prev.png");
     left: 0;
 }
 
@@ -551,7 +551,7 @@ img.profilepic{
 /*		LIGHTBOX CSS		*/
 /* Preload images */
 body:after {
-	content: url(../FILES/IMG/LIGHTBOX/close.png) url(../FILES/IMG/LIGHTBOX/loading.gif) url(../FILES/IMG/LIGHTBOX/prev.png) url(../FILES/IMG/LIGHTBOX/next.png);
+	content: url(../../FILES/IMG/LIGHTBOX/close.png) url(../../FILES/IMG/LIGHTBOX/loading.gif) url(../../FILES/IMG/LIGHTBOX/prev.png) url(../../FILES/IMG/LIGHTBOX/next.png);
 	display: none;
 }
 
@@ -621,7 +621,7 @@ body:after {
 	width: 32px;
 	height: 32px;
 	margin: 0 auto;
-	background: url(../FILES/IMG/LIGHTBOX/loading.gif) no-repeat;
+	background: url(../../FILES/IMG/LIGHTBOX/loading.gif) no-repeat;
 }
 
 .lb-nav {
@@ -652,7 +652,7 @@ body:after {
 	width: 30%;
 	left: 0;
 	float: left;
-	background: url(../FILES/IMG/LIGHTBOX/prev.png) left 48% no-repeat;
+	background: url(../../FILES/IMG/LIGHTBOX/prev.png) left 48% no-repeat;
 	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 	opacity: 0;
 	-webkit-transition: opacity 0.6s;
@@ -670,7 +670,7 @@ body:after {
 	width: 30%;
 	right: 0;
 	float: right;
-	background: url(../FILES/IMG/LIGHTBOX/next.png) right 48% no-repeat;
+	background: url(../../FILES/IMG/LIGHTBOX/next.png) right 48% no-repeat;
 	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 	opacity: 0;
 	-webkit-transition: opacity 0.6s;
@@ -728,7 +728,7 @@ body:after {
 	float: right;
 	width: 30px;
 	height: 30px;
-	background: url(../FILES/IMG/LIGHTBOX/close.png) top right no-repeat;
+	background: url(../../FILES/IMG/LIGHTBOX/close.png) top right no-repeat;
 	text-align: right;
 	outline: none;
 	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);

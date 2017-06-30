@@ -4,7 +4,7 @@
 	<head>
 	    <title>GABRIEL BJÖRK STIERNSTRÖM</title>
 		<meta charset="utf-8" />
-		<link href="CSS/main.css" rel="stylesheet" />
+		<link href="main.css" rel="stylesheet" />
         <!--    Removes Windows Phone tap highlighting  -->
         <meta name="msapplication-tap-highlight" content="no" />
 
@@ -14,8 +14,6 @@
         <meta name="description" content="Gabriel Björk Stiernströms portfolio" />
 		<meta name="keywords" content="gabriel, björk, stiernström, bjork, stiernstrom, portfolio, illustrations, images, gallery, logotype, logo, awesome, digital, artist, concept, art" />
 		<meta name="author" content="Gabriel Björk Stiernström" />
-
-        <script src="JS/plugins.js"></script>
     </head>
     
 	<body>
@@ -28,10 +26,10 @@
                 <div id="portfolio_menu">
                     <ul class="menu">
                         <li id="imageButtonListElement" >
-                            <input type="button" class="buttonPortfolio" id="homeButton" value="" alt="HTML/home.html" />
+                            <input type="button" class="buttonPortfolio" id="homeButton" value="" alt="../home/home.html" />
                         </li>
                         <li>
-                            <input type="button" class="buttonPortfolio" id="portfolio" value="PORTFOLIO" alt="HTML/portfolio.html" />
+                            <input type="button" class="buttonPortfolio" id="portfolio" value="PORTFOLIO" alt="../portfolio/portfolio.html" />
                         </li>
                         <!--<li>
                             <input type="button" class="buttonPortfolio" id="graphicDesign" value="SKETCHES & STUDIES" alt="graphic.html" />
@@ -40,7 +38,7 @@
                             <input type="button" class="buttonPortfolio" id="photography" value="PHOTOGRAPHY" alt="photo.html" />
                         </li>-->
                         <li>
-                            <input type="button" class="buttonPortfolio" id="about" value="ABOUT ME" alt="HTML/about.html" />
+                            <input type="button" class="buttonPortfolio" id="about" value="ABOUT ME" alt="../about/about.html" />
                         </li>
                     </ul>
                 </div>
@@ -49,42 +47,42 @@
                     <ul class="social_icons">
                         <li>
                             <a href="http://www.artstation.com/artist/GabrielBjorkStiernstrom" target="_blank">
-                                <img src="FILES/IMG/ICONS/artstation_logo_icon.svg" class="icon_all" alt="ArtStation" />
+                                <img src="../../FILES/IMG/ICONS/artstation_logo_icon.svg" class="icon_all" alt="ArtStation" />
                             </a>
                         </li>
                         <li>
                             <a href="http://gabriel-bs.deviantart.com/" target="_blank">
-                                <img src="FILES/IMG/ICONS/deviantart_logo_icon.svg" class="icon_all" alt="deviantArt" />
+                                <img src="../../FILES/IMG/ICONS/deviantart_logo_icon.svg" class="icon_all" alt="deviantArt" />
                             </a>
                         </li>
                         <li>
                             <a href="https://www.facebook.com/gabriel.bjorkstiernstrom" target="_blank">
-                                <img src="FILES/IMG/ICONS/facebook_logo_icon.svg" class="icon_all" alt="Facebook" />
+                                <img src="../../FILES/IMG/ICONS/facebook_logo_icon.svg" class="icon_all" alt="Facebook" />
                             </a>
                         </li>
                         <li>
                             <a href="https://plus.google.com/102783959276403180148/posts" target="_blank">
-                                <img src="FILES/IMG/ICONS/google_logo_icon.svg" class="icon_all" alt="Google+" />
+                                <img src="../../FILES/IMG/ICONS/google_logo_icon.svg" class="icon_all" alt="Google+" />
                             </a>
                         </li>
                         <li>
                             <a href="https://www.linkedin.com/in/gabrielbjorkstiernstrom" target="_blank">
-                                <img src="FILES/IMG/ICONS/linkedin_logo_icon.svg" class="icon_all" alt="LinkedIn" />
+                                <img src="../../FILES/IMG/ICONS/linkedin_logo_icon.svg" class="icon_all" alt="LinkedIn" />
                             </a>
                         </li>
                         <li>
                             <a href="http://www.pinterest.com/bjrkstiernstrm/boards/" target="_blank">
-                                <img src="FILES/IMG/ICONS/pinterest_logo_icon.svg" class="icon_all" alt="Pinterest" />
+                                <img src="../../FILES/IMG/ICONS/pinterest_logo_icon.svg" class="icon_all" alt="Pinterest" />
                             </a>
                         </li>
                         <li>
                             <a href="http://gabrielbjorkstiernstrom.tumblr.com/" target="_blank">
-                                <img src="FILES/IMG/ICONS/tumblr_logo_icon.svg" class="icon_all" alt="Tumblr" />
+                                <img src="../../FILES/IMG/ICONS/tumblr_logo_icon.svg" class="icon_all" alt="Tumblr" />
                             </a>
                         </li>
                         <li>
                             <a href="https://vimeo.com/user17328738" target="_blank">
-                                <img src="FILES/IMG/ICONS/vimeo_logo_icon.svg" class="icon_all" alt="Vimeo" />
+                                <img src="../../FILES/IMG/ICONS/vimeo_logo_icon.svg" class="icon_all" alt="Vimeo" />
                             </a>
                         </li>
                     </ul>
@@ -99,41 +97,6 @@
                 </div>
             </div>
         </div>
-
-        <script src="JS/plugins.js" type="text/javascript"></script>
-        <!-- Slideshow -->
-       	<script type="text/javascript">
-            var protocol = "http://";
-            var webPage = "bohuslanet.se/gabrielbjorkstiernstrom/";
-
-            setRelativePath(protocol + webPage);
-
-                /*new Promise().combine([
-                   // loadScript("JS/lightbox.js"),
-                    loadScript("JS/CoolshowUtils.js"),
-                    loadScript("JS/DynamicImage.js"),
-                    loadScript("JS/hammer-time.min.js"),
-                    loadScript("JS/hammer.min.js"),
-                    loadScript("JS/indexPageScript.js")
-                ]*/
-
-           /*     new
-                new Promise().synchronize([
-                    /*Promise.syncedBlock([
-                            loadScript("JS/lightbox.js"),
-                            loadScript("JS/DynamicImage.js"),
-                            loadScript("JS/superHammer.min.js")
-                    ]),//test
-                    syncedLoadScript("JS/indexPageScript.js")
-                ]).onSet(function(){
-                    console.log("Index page was successfully loaded.");
-                }).onCancel(function(message){
-                    console.log("Could not load entire index page, loading was canceled: " + message)
-                }).onError(function(message){
-                    console.log("Could not load entire index page: " + message);
-                });*/
-        </script>
-        <script src="JS/indexPageScript.js" type="text/javascript"></script>
+        <script src="../../dist/main.js"></script>
 	</body>
-    
 </html>

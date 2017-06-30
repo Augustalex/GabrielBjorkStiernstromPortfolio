@@ -1,12 +1,12 @@
 function Coolshow(imageSourceArray){
-    var self = this;
+    let self = this;
 
     //Returns the function (before slideshow setup) if the input number of coolshowImages is too small.
     if(imageSourceArray.length < 2)
         return;
 
     //Properties of the slideshow that may be set by the user
-    var properties = {
+    let properties = {
         containerId: "coolshow",
         containerClass: 'coolshow',
         flowContainerId: "coolshowFlow",
@@ -16,43 +16,38 @@ function Coolshow(imageSourceArray){
         previousButtonId: "coolshowPreviousButton"
     };
 
-    var currentSlideshowIndex = 0;
+    let currentSlideshowIndex = 0;
 
     //Carousel automatic parameters
-    var carousel = {
+    let carousel = {
         minOffset: 0,
         maxOffset: 0
     };
 
     //Setting up the main container
-    var mainContainer = document.getElementsByClassName(properties.containerClass)[0];
-
+    let mainContainer = document.getElementsByClassName(properties.containerClass)[0]
+    
     //Creating and adding flowContainer to the main container (and also setting proper id)
-    var flowContainerElement = document.createElement("div");
+    let flowContainerElement = document.createElement("div")
     flowContainerElement.setAttribute("id", properties.flowContainerId);
     mainContainer.appendChild(flowContainerElement);
 
     //Creating and adding the ControllerContainer to the main container.
-    var controllerContainerElement = document.createElement("div");
+    let controllerContainerElement = document.createElement("div")
     controllerContainerElement.setAttribute("id", properties.controllerContainerId);
     mainContainer.appendChild(controllerContainerElement);
 
-    this.start = function(){
-        var loadedPromise = new Promise();
-
+    this.start = async function(){
         console.log("start");
-        DynamicImageLoader.loadAllImages(imageSourceArray)
-            .onError(function(message){ //TODO onError is semantically incorrect, needs to change in Promsise object
-                console.log("\nCould not load all images: " + message);
-            })
-            .onSet(function(loadedImages){
-                console.log("loaded all coolshowImages: ", loadedImages);
-                initCarousel(loadedImages);
-                document.getElementsByClassName("coolshow")[0].style.visibility = "visible";
-                loadedPromise.set(true);
-            });
-
-        return loadedPromise;
+        try {
+            let loadedImages = await DynamicImageLoader.loadAllImages(imageSourceArray)
+            console.log("loaded all coolshowImages: ", loadedImages);
+            initCarousel(loadedImages);
+            document.getElementsByClassName("coolshow")[0].style.visibility = "visible";
+        }
+        catch(err){
+            console.log("\nCould not load all images: " + err.message);
+        }
     };
 
     function initCarousel(loadedImages){
@@ -66,7 +61,7 @@ function Coolshow(imageSourceArray){
             loadedImages
         );
 
-        for (var i = 0; i < loadedImages.length; i++)
+        for (let i = 0; i < loadedImages.length; i++)
             flowContainerElement.appendChild(loadedImages[i]);
 
         console.log("Appended images", flowContainerElement);
@@ -110,7 +105,6 @@ function Coolshow(imageSourceArray){
         self.reevaluateImageSize = function(){
             reload(loadedImages);
         };
-
     }
 
     /**
@@ -123,9 +117,9 @@ function Coolshow(imageSourceArray){
      * @param allImages
      */
     function setupControllerButtonActions(nextButton, previousButton, allImages){
-        var nextHammer = new Hammer(nextButton);
-        var previousHammer = new Hammer(previousButton);
-
+        let nextHammer = new Hammer(nextButton)
+        let previousHammer = new Hammer(previousButton)
+    
         nextHammer.on("tap", function(){
             moveSlideshow(allImages, nextSlide);
         });
@@ -137,18 +131,16 @@ function Coolshow(imageSourceArray){
         window.addEventListener("keyup", moveSlideshowOnArrayKeys);
 
         function moveSlideshowOnArrayKeys(e){
-            var key = e.keyCode ? e.keyCode : e.which;
-
-            if (key == 37)
+            let key = e.keyCode ? e.keyCode : e.which
+    
+            if (key === 37)
                 setTimeout(function(){
                     moveSlideshow(allImages, previousSlide);
                 },0);
-            else if (key == 39)
+            else if (key === 39)
                 setTimeout(function(){
                     moveSlideshow(allImages, nextSlide);
                 },0);
-
-
         }
     }
 
@@ -166,8 +158,8 @@ function Coolshow(imageSourceArray){
      * @param allImages
      */
     function setupControllerTouchActions(controllerContainer, allImages){
-        var coolshowHammer = new Hammer(controllerContainer);
-
+        let coolshowHammer = new Hammer(controllerContainer)
+    
         coolshowHammer.on("swipeleft", function(){
             currentSlideshowIndex = nextSlide(allImages, currentSlideshowIndex);
             centerCurrentImage(allImages, currentSlideshowIndex);
@@ -182,11 +174,11 @@ function Coolshow(imageSourceArray){
 
     function createControls(){
         console.log("Creating controls.");
-        var nextButton = document.createElement("div");
+        let nextButton = document.createElement("div")
         nextButton.setAttribute("id", properties.nextButtonId);
         controllerContainerElement.appendChild(nextButton);
 
-        var previousButton = document.createElement("div");
+        let previousButton = document.createElement("div")
         previousButton.setAttribute("id", properties.previousButtonId);
         controllerContainerElement.appendChild(previousButton);
 
@@ -234,7 +226,7 @@ function Coolshow(imageSourceArray){
 
         //Starting from far left, at what X position
         // is the center of the current slideshow image.
-        var offset = getImageCenterPosition(allImages, currentImageIndex);
+        let offset = getImageCenterPosition(allImages, currentImageIndex);
 
         //Get the offset to be the actual center of the view (the slideshow).
         offset -= mainContainer.offsetWidth / 2;
@@ -273,9 +265,9 @@ function Coolshow(imageSourceArray){
      * @returns {{minOffset: number, maxOffset: number}}
      */
     function getOffsetParameters(containerDimensions, images){
-        var scaledImagesTotalWidth = 0;
+        let scaledImagesTotalWidth = 0;
 
-        for(var i = 0; i < images.length; i++)
+        for(let i = 0; i < images.length; i++)
             scaledImagesTotalWidth += (containerDimensions.height / images[i].naturalHeight) * images[i].naturalWidth;
 
         return parameters = {
@@ -295,7 +287,7 @@ function Coolshow(imageSourceArray){
      * @returns {*}
      */
     function getImageCenterPosition(images, index){
-        var leftPos = getOffset(images, index);
+        let leftPos = getOffset(images, index);
 
         console.log("[centerPosition] coolshowImages", images);
         console.log("Index", index);
@@ -312,8 +304,8 @@ function Coolshow(imageSourceArray){
      * @returns {number}
      */
     function getOffset(images, index){
-        var offset = 0;
-        for(var i = 0; i < index; i++)
+        let offset = 0;
+        for(let i = 0; i < index; i++)
             offset += (mainContainer.offsetHeight / images[i].naturalHeight) * images[i].naturalWidth;
 
         return offset;
@@ -321,7 +313,7 @@ function Coolshow(imageSourceArray){
 
     function conformImagesToHeight(images, height){
         console.log("Conforming heights", height);
-        for(var i = 0; i < images.length; i++) {
+        for(let i = 0; i < images.length; i++) {
             images[i].style.height = height + "px";
             console.log("Image " + i, images[i].height);
 

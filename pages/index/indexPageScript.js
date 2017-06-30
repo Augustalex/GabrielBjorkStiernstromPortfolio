@@ -3,8 +3,9 @@
  */
 
 console.log("\n\tLOADED INDEX PAGE SCRIPT\n");
+
 function setFooterSizeToJustFit() {
-    var footer = document.getElementById("footer");
+    let footer = document.getElementById("footer");
     /*
      var calcHeight;
      try {
@@ -21,17 +22,17 @@ function setFooterSizeToJustFit() {
      $("#footer").css("height", calcHeight + newHeightToAdd + "px");
      console.log($("#footer").css("height"));
      console.log("New height to add: ", newHeightToAdd);*/
-
-    var newHeight = window.innerHeight * 0.15;
+    
+    let newHeight = window.innerHeight * 0.15
     footer.style.height = newHeight + "px";
-
+    
     //var height = document.getElementById("footer").offsetHeight;
     //document.getElementById("portfolio_wrapper").style.marginBottom = height + "px";
 }
 
 function setSlideshowSizeToJustFit() {
     newHeight = window.innerHeight * 0.85;
-
+    
     document.getElementById("portfolio_wrapper").style.height = newHeight + "px";
     console.log("New portfolio wrapper size is " + newHeight);
     //document.getElementById("portfolio_wrapper").style.maxHeight = newHeight + "px";
@@ -41,7 +42,6 @@ function setFixedSlideshow() {
     document.getElementById("coolshow").style.position = "fixed";
 }
 
-
 function reevaluateHeights() {
     if (document.getElementsByClassName("coolshow").length == 1) {
         setSlideshowSizeToJustFit();
@@ -49,17 +49,17 @@ function reevaluateHeights() {
     }
     else
         document.getElementById("portfolio_wrapper").style.height = "auto";
-
+    
     setFooterSizeToJustFit();
 }
 
-(function() {
-
+(function () {
+    
     window.windowLoaderPromise = null;
-
+    
     // Loading function for Portfolio categories buttons
-    document.getElementsByClassName("buttonPortfolio")[0].onclick = function(event){
-        if(windowLoaderPromise == null) {
+    document.getElementsByClassName("buttonPortfolio")[0].onclick = function (event) {
+        if (windowLoaderPromise === null) {
             console.log("Loader PROMISE is null");
             windowLoaderPromise =
                 loadPage(event.target.getAttribute("alt"))
@@ -67,7 +67,7 @@ function reevaluateHeights() {
                         console.log("Footer click.");
                         reevaluateHeights();
                     })
-                    .finally(function(){
+                    .finally(function () {
                         console.log("\n\tSETTING WINDOW LOADER TO NULL");
                         windowLoaderPromise = null;
                     });
@@ -83,44 +83,26 @@ function reevaluateHeights() {
             });*/
         }
     };
-
-
+    
     (function setupWindowEventListeners() {
         window.addEventListener("resize", reevaluateHeights);
         window.addEventListener("orientationchange", reevaluateHeights);
     })();
-
+    
     console.log("\tLoading Page.");
-    windowLoaderPromise = loadPage("HTML/home.html")
-        .onSet(function () {
-            console.log("loaded page.");
-        })
-        .finally(function(){
-            windowLoaderPromise = null;
-        });
-
-
+    windowLoaderPromise = loadPage("../home/home.html")
+    
     //Wraps JQuery AJAX load calls with a promise.
-    function loadPage(pageSrc) {
-        var promise = new Promise();
-
-        var element  = document.getElementById("portfolio_wrapper");
-
+    async function loadPage(pageSrc) {
+        const element = document.getElementById("portfolio_wrapper")
+        
         element.innerHTML = "";
         console.log("Emptied portfolio_wrapper");
         console.log("START", new Date().getMilliseconds());
-
-        loadContent(pageSrc)
-            .onSet(function(content){
-                console.log("END", new Date().getMilliseconds() );
-                element.innerHTML = content;
-                promise.set(true);
-            })
-            .onError(function(message){
-                console.log(message);
-            });
-
-        return promise;
+        
+        await loadContent(pageSrc);
+        
+        console.log("END", new Date().getMilliseconds());
+        element.innerHTML = content;
     }
-
 })();
