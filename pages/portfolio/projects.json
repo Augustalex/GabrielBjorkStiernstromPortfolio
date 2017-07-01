@@ -1,0 +1,78 @@
+[
+  {
+    "name": "personalWork",
+    "header": "Personal Work",
+    "description": "A collection of non-commissioned work",
+    "images": [
+      {
+        "name": "dragonValley",
+        "header": "Dragon Valley",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "wastePickers",
+        "header": "Waste Pickers",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "beached",
+        "header": "Beached",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "explorationOfAnOldWorld",
+        "header": "Exploration of an Old World",
+        "fileExtension": ".jpg"
+      },
+      {
+        "name": "aPlaceOfMagic",
+        "header": "A Place of Magic",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "remainderOfTheForgotten",
+        "header": "Remainder of the Forgotten",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "thePhantomsGame",
+        "header": "The Phantoms Game",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "theCartographer",
+        "header": "The Cartographer",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "asteriodMiningFacility",
+        "header": "Asteriod Mining Facility",
+        "fileExtension": ".jpg"
+      },      {
+        "name": "mask",
+        "header": "Mask",
+        "fileExtension": ".jpg"
+      },
+      {
+        "name": "survivor",
+        "header": "Survivor",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "extraterrestialSurface",
+        "header": "Extraterrestial Surface",
+        "fileExtension": ".jpg"
+      },
+      {
+        "name": "eyeOfTheStorm",
+        "header": "Eye of the Storm",
+        "fileExtension": ".png"
+      },
+      {
+        "name": "moon",
+        "header": "Moon",
+        "fileExtension": ".png"
+      }
+    ]
+  }
+]

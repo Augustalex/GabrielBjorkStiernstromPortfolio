@@ -46,7 +46,6 @@ $(window).resize(function(){
 
 function adjustPortfolioWrapperMargins(){	
 	var newMargin = Math.floor($("#footer").height());
-	console.log("New margin: ", newMargin);
 	$("#portfolio_wrapper").css("margin-bottom", newMargin + "px");
 }
 
