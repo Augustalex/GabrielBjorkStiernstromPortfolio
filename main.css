@@ -10,17 +10,17 @@
 
 @font-face {
     font-family: Inkferno;
-    src: url(../../file/fonts/INKFERNO.ttf);
+    src: url(file/fonts/INKFERNO.ttf);
 }
 
 @font-face {
     font-family: Gotu;
-    src: url(../../file/fonts/Gotu.ttf);
+    src: url(file/fonts/Gotu.ttf);
 }
 
 @font-face {
     font-family: Hasta;
-    src: url(../../file/fonts/hasta.ttf);
+    src: url(file/fonts/hasta.ttf);
 }
 
 html, body {
@@ -252,7 +252,7 @@ li#imageButtonListElement {
     width: 11em;
     height: 2.5em;
     margin: 1.7em 3% 0 3%;
-    background-image: url("../../FILES/IMG/signature.png");
+    background-image: url("FILES/IMG/signature.png");
     background-size: 100% 100%;
     opacity: 0.7;
 }
@@ -441,13 +441,13 @@ img.profilepic {
 
 @font-face {
     font-family: Cabin-Medium;
-    src: url(../../FILES/FONTS/Cabin-Medium.otf);
+    src: url(FILES/FONTS/Cabin-Medium.otf);
     font-weight: 600;
 }
 
 @font-face {
     font-family: Cabin-Regular;
-    src: url(../../FILES/FONTS/Cabin-Regular.otf);
+    src: url(FILES/FONTS/Cabin-Regular.otf);
     font-weight: 100;
 }
 
@@ -508,12 +508,12 @@ img.profilepic {
 }
 
 #coolshowNextButton {
-    background-image: url("../../FILES/IMG/ICONS/next.png");
+    background-image: url("FILES/IMG/ICONS/next.png");
     right: 0;
 }
 
 #coolshowPreviousButton {
-    background-image: url("../../FILES/IMG/ICONS/prev.png");
+    background-image: url("FILES/IMG/ICONS/prev.png");
     left: 0;
 }
 

@@ -16,7 +16,7 @@ module.exports = function () {
     
     async function show(wrapperSelector) {
         let images = slideshowImages.map(i => {
-            return QuickImage('../../file/img/slideshow', i)
+            return QuickImage('file/img/slideshow', i)
         })
         
         quickImageBatchLoader.loadAllImages(images).then(() => {

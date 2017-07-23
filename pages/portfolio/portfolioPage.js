@@ -102,7 +102,7 @@ module.exports = function () {
         //     //     .addImage("../../FILES/IMG/PORTFOLIO_IMG/moon_by_gabriel_bjork_stiernstrom.png")
         //     //     .setHeader("Moon").setSubHeader("Personal Work")
         
-        let parsedProjects = projects.map(project => Project(project, "../.."))
+        let parsedProjects = projects.map(project => Project(project, ""))
         Portfolio(parsedProjects, "portfolioLibrary");
     }
 }
