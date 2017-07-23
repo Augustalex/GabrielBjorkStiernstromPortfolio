@@ -10,7 +10,9 @@ module.exports = function (project, rootRelativePath) {
             let quickImage = QuickImage(`${rootRelativePath}/file/img`, image, false)
             return {
                 image: quickImage,
-                header: image.header
+                name: image.name,
+                header: image.header,
+                description: image.description || ''
             }
         })
     

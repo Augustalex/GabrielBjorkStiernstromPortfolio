@@ -25,7 +25,7 @@ module.exports = function (projects, containerId) {
             thumbnail.onclick = () => {
                 let contentFlow = ContentFlow();
                 
-                contentFlow.start(project.images.map(i => i.image.getElement()))
+                contentFlow.start(project.images)
                 project.images.forEach(i => i.image.load())
             }
             

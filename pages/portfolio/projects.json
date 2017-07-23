@@ -53,7 +53,7 @@
         "header": "Hades' Star - Warp Lane Hub"
       },
       {
-        "name": "hadesStarSpaceStationComp_by_gabrielBjorkStiernstrom_high",
+        "name": "hadesStarSpaceStationComp_by_gabrielBjorkStiernstrom",
         "header": "Hades' Star - Space Station Sketches",
         "description": "The following images are a few selected compositional sketches for the different images done for Hades' Star"
       },
@@ -87,27 +87,27 @@
       }
     ]
   },
-  //	{
-  //		"name": "miscClientWork",
-  //		"header": "Misc Client Work",
-  //		"description": "Concept Art - Illustration",
-  //		"images": [
-  //			{
-  //				"name": "inOblivion1_by_gabrielBjorkStiernstrom",
-  //				"header": "In Oblivion Version 1",
-  //				"description": "Commisioned work by Oskar Wetterbrandt"
-  //			},
-  //			{
-  //				"name": "inOblivion_by_gabrielBjorkStiernstrom",
-  //				"header": "In Oblivion Version 2",
-  //				"description": "Commisioned work by Oskar Wetterbrandt"
-  //			},
-  //			{
-  //				"name": "praxticusLabsFutureCity_by_gabrielBjorkStiernstrom",
-  //				"header": "Commisioned work by Praxticus Labs"
-  //			}
-  //		]
-  //	},
+  {
+    "name": "miscWork",
+    "header": "Misc Client Work",
+    "description": "Concept Art - Illustration",
+    "images": [
+      {
+        "name": "inOblivion1_by_gabrielBjorkStiernstrom",
+        "header": "In Oblivion Version 1",
+        "description": "Commisioned work by Oskar Wetterbrandt"
+      },
+      {
+        "name": "inOblivion_by_gabrielBjorkStiernstrom",
+        "header": "In Oblivion Version 2",
+        "description": "Commisioned work by Oskar Wetterbrandt"
+      },
+      {
+        "name": "praxticusLabsFutureCity_by_gabrielBjorkStiernstrom",
+        "header": "Commisioned work by Praxticus Labs"
+      }
+    ]
+  },
   {
     "name": "bookCovers",
     "header": "Cover Illustrations",

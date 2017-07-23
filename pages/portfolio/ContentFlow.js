@@ -11,7 +11,9 @@ module.exports = function (deps = {}) {
         start
     }
     
-    function start(images) {
+    function start(imageFiles) {
+        let images = imageFiles.map(i => i.image.getElement())
+        
         let flowContainer = getOrCreateFlowContainer();
         let flowElement = parseHTML(`<div class="${flowElementClass}"></div>`)
         let closeButton = parseHTML(`<div class="contentFlowContainer-closeButton">X</div>`)
@@ -20,10 +22,23 @@ module.exports = function (deps = {}) {
         document.getElementById("siteWrapper").appendChild(flowContainer)
         flowContainer.style.opacity = 1;
         
-        images.forEach(image => {
-            image.className += ` ${imageClass}`
-            // loadImage(flowElement, image.getAttribute(attributeName));
-            flowElement.appendChild(image)
+        imageFiles.forEach(file => {
+            file.image.getElement().className += ` ${imageClass}`
+            // loadImage(flowElement, file.getAttribute(attributeName));
+            let imageHeaderHTML = file.header ? `
+                <div class="contentFlow-imageHeader">
+                    ${file.header}
+                </div>
+            ` : ''
+            let imageDescriptionHTML = file.description ? `
+                <div class="contentFlow-imageDescription">
+                    ${file.description}
+                </div>
+            ` : ''
+            let el = parseHTML(`<div class="contentFlow-imageWrapper"></div>`)
+            if(file.name) el.appendChild(file.image.getElement())
+            el.appendChild(parseHTML(`<div class="contentFlow-imageTextWrapper">${imageHeaderHTML}${imageDescriptionHTML}</div>`))
+            flowElement.appendChild(el)
         })
         
         closeButton.onclick = () => {
