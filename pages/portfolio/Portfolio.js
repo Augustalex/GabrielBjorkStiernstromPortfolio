@@ -1,10 +1,7 @@
 /**
  * Created by August on 2016-12-06.
  */
-const ContentBox = require('./ContentBox.js')
 const ContentFlow = require('./ContentFlow.js')
-const DynamicImage = require('../../JS/DynamicImage.js')
-const DynamicImageLoader = require('../../JS/DynamicImageLoader.js')()
 let parseHTML = require('../../JS/parseHTML.js')
 
 module.exports = function (projects, containerId) {
@@ -53,22 +50,21 @@ module.exports = function (projects, containerId) {
 }
 
 function fitThumbnailsToContainer(imageContainers, containerId) {
-    let preferredImageSize = 300;
+    let preferredImageWidth = 550;
+    let ratio = 2.2
     
     let container = document.getElementById(containerId);
-    let imagesPerRowFactor = container.offsetWidth / preferredImageSize;
+    let imagesPerRowFactor = container.offsetWidth / preferredImageWidth;
     let fittedImagesPerRow = Math.floor(imagesPerRowFactor);
     
     let imageScaleFactor = 1 + ((imagesPerRowFactor - fittedImagesPerRow) / fittedImagesPerRow);
-    let heightPixelSize = Math.floor(preferredImageSize * imageScaleFactor);
+    let heightPixelSize = Math.floor(preferredImageWidth * imageScaleFactor / ratio);
     let widthPercentage = 100 / fittedImagesPerRow;
     
     for (let i = 0; i < imageContainers.length; i++) {
         setSizePercentageWidthPixelHeight(imageContainers[i], widthPercentage, heightPixelSize);
-        console.log('appending container', imageContainers[i])
         container.appendChild(imageContainers[i]);
     }
-    
 }
 
 function setSizePercentageWidthPixelHeight(element, width, heightPixels) {

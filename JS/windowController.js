@@ -1,4 +1,6 @@
 
+const FOOTER_SIZE = 0.1
+
 module.exports = {
     reevaluateHeights
 }
@@ -22,7 +24,7 @@ function setFooterSizeToJustFit() {
      console.log($("#footer").css("height"));
      console.log("New height to add: ", newHeightToAdd);*/
     
-    let newHeight = window.innerHeight * 0.15
+    let newHeight = window.innerHeight * FOOTER_SIZE
     footer.style.height = newHeight + "px";
     
     //var height = document.getElementById("footer").offsetHeight;
@@ -30,7 +32,7 @@ function setFooterSizeToJustFit() {
 }
 
 function setSlideshowSizeToJustFit() {
-    let newHeight = window.innerHeight * 0.85;
+    let newHeight = window.innerHeight * (1 - FOOTER_SIZE);
     
     document.getElementById("portfolio_wrapper").style.height = newHeight + "px";
     //document.getElementById("portfolio_wrapper").style.maxHeight = newHeight + "px";

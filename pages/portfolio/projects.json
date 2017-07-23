@@ -1,77 +1,280 @@
 [
   {
-    "name": "personalWork",
-    "header": "Personal Work",
-    "description": "A collection of non-commissioned work",
+    "name": "hadesStar",
+    "header": "Hades' Star",
+    "description": "Concept Art - Promotional Art",
     "images": [
       {
-        "name": "dragonValley",
-        "header": "Dragon Valley",
-        "fileExtension": ".png"
+        "name": "hadesStarIcePlanet_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Ice Planet"
       },
       {
-        "name": "wastePickers",
-        "header": "Waste Pickers",
-        "fileExtension": ".png"
+        "name": "hadesStarSupernova_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Supernova"
       },
       {
-        "name": "beached",
-        "header": "Beached",
-        "fileExtension": ".png"
+        "name": "hadesStarJumpGate_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Jump Gate"
       },
       {
-        "name": "explorationOfAnOldWorld",
-        "header": "Exploration of an Old World",
-        "fileExtension": ".jpg"
+        "name": "hadesStarBlackCitadel_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Black Citadel"
       },
       {
-        "name": "aPlaceOfMagic",
-        "header": "A Place of Magic",
-        "fileExtension": ".png"
+        "name": "hadesStarBattleship_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Battleship"
       },
       {
-        "name": "remainderOfTheForgotten",
-        "header": "Remainder of the Forgotten",
-        "fileExtension": ".png"
+        "name": "hadesStarCerberusColussus_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Colussus"
       },
       {
-        "name": "thePhantomsGame",
-        "header": "The Phantoms Game",
-        "fileExtension": ".png"
+        "name": "hadesStarCerberusStation_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Station"
       },
       {
-        "name": "theCartographer",
-        "header": "The Cartographer",
-        "fileExtension": ".png"
+        "name": "hadesStarCerberusSentinel_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Sentinel"
       },
       {
-        "name": "asteriodMiningFacility",
-        "header": "Asteriod Mining Facility",
-        "fileExtension": ".jpg"
-      },      {
-        "name": "mask",
-        "header": "Mask",
-        "fileExtension": ".jpg"
+        "name": "hadesStarCerberusDestroyer_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Destroyer"
       },
       {
-        "name": "survivor",
-        "header": "Survivor",
-        "fileExtension": ".png"
+        "name": "hadesStarCerberusGuardian_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Guardian"
       },
       {
-        "name": "extraterrestialSurface",
-        "header": "Extraterrestial Surface",
-        "fileExtension": ".jpg"
+        "name": "hadesStarSpaceStation_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Space Station"
       },
       {
-        "name": "eyeOfTheStorm",
-        "header": "Eye of the Storm",
-        "fileExtension": ".png"
+        "name": "hadesStarWarpLaneHub_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Warp Lane Hub"
       },
       {
-        "name": "moon",
-        "header": "Moon",
-        "fileExtension": ".png"
+        "name": "hadesStarSpaceStationComp_by_gabrielBjorkStiernstrom_high",
+        "header": "Hades' Star - Space Station Sketches",
+        "description": "The following images are a few selected compositional sketches for the different images done for Hades' Star"
+      },
+      {
+        "name": "hadesStarCerberusStationComp_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Station Sketches"
+      },
+      {
+        "name": "hadesStarCerberusDestroyerComp_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Destroyer Sketches"
+      },
+      {
+        "name": "hadesStarCerberusDestroyerComp2_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Destroyer Sketches 2"
+      },
+      {
+        "name": "hadesStarCerberusGuardianComp_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Cerberus Guardian Sketches"
+      },
+      {
+        "name": "hadesStarWarpLaneHubComp_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Warp Lane Hub Sketches"
+      },
+      {
+        "name": "hadesStarJumpGateComp_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Jump Gate Sketches"
+      },
+      {
+        "name": "hadesStarBlackCitadelComp_by_gabrielBjorkStiernstrom",
+        "header": "Hades' Star - Black Citadel Sketches"
+      }
+    ]
+  },
+  //	{
+  //		"name": "miscClientWork",
+  //		"header": "Misc Client Work",
+  //		"description": "Concept Art - Illustration",
+  //		"images": [
+  //			{
+  //				"name": "inOblivion1_by_gabrielBjorkStiernstrom",
+  //				"header": "In Oblivion Version 1",
+  //				"description": "Commisioned work by Oskar Wetterbrandt"
+  //			},
+  //			{
+  //				"name": "inOblivion_by_gabrielBjorkStiernstrom",
+  //				"header": "In Oblivion Version 2",
+  //				"description": "Commisioned work by Oskar Wetterbrandt"
+  //			},
+  //			{
+  //				"name": "praxticusLabsFutureCity_by_gabrielBjorkStiernstrom",
+  //				"header": "Commisioned work by Praxticus Labs"
+  //			}
+  //		]
+  //	},
+  {
+    "name": "bookCovers",
+    "header": "Cover Illustrations",
+    "description": "Cover illustrations for various authors and books",
+    "images": [
+      {
+        "name": "markusHeitzWedora1_by_gabrielBjorkStiernstrom",
+        "header": "Markus Heitz - Wédora, Staub und Blut",
+        "description": "Note: The typesetting and final color correction is made by Guter Punkt"
+      },
+      {
+        "name": "markusHeitzWedora2_by_gabrielBjorkStiernstrom",
+        "header": "Markus Heitz - Wédora, Schatten und Tod",
+        "description": "Note: The typesetting and final color correction is made by Guter Punkt"
+      },
+      {
+        "name": "",
+        "header": "more comming soon",
+        "description": "More book illustrations coming soon..."
+      }
+    ]
+  },
+  {
+    "name": "personalWork",
+    "header": "Personal Work",
+    "description": "A collection of different personal works",
+    "images": [
+      {
+        "name": "dragonValley_by_gabrielBjorkStiernstrom",
+        "header": "Dragon Valley"
+      },
+      {
+        "name": "explorationOfAnOldWorld_by_gabrielBjorkStiernstrom",
+        "header": "Exploration of an Old World"
+      },
+      {
+        "name": "remainderOfTheForgotten_by_gabrielBjorkStiernstrom",
+        "header": "Remainder of the Forgotten"
+      },
+      {
+        "name": "cartographer_by_gabrielBjorkStiernstrom",
+        "header": "Cartographer"
+      },
+      {
+        "name": "beached_by_gabrielBjorkStiernstrom",
+        "header": "Beached"
+      },
+      {
+        "name": "aPlaceOfMagic_by_gabrielBjorkStiernstrom",
+        "header": "A Place of Magic"
+      },
+      {
+        "name": "extraterrestialSurface_by_gabrielBjorkStiernstrom",
+        "header": "Extraterrestial Surface"
+      },
+      {
+        "name": "survivor_by_gabrielBjorkStiernstrom",
+        "header": "Survivor"
+      },
+      {
+        "name": "eyeOfTheStorm_by_gabrielBjorkStiernstrom",
+        "header": "Eye of the Storm"
+      },
+      {
+        "name": "moon_by_gabrielBjorkStiernstrom",
+        "header": "Moon"
+      }
+    ]
+  },
+  {
+    "name": "bladeRunnerAnalysis",
+    "header": "Blade Runner Analysis",
+    "description": "",
+    "images": [
+      {
+        "name": "bladeRunnerAnalysisLivingStreets_by_gabrielBjorkStiernstrom",
+        "header": "Living Streets"
+      },
+      {
+        "name": "bladeRunnerAnalysisWastePickers_by_gabrielBjorkStiernstrom",
+        "header": "Waste Pickers"
+      },
+      {
+        "name": "bladeRunnerAnalysisSketches_by_gabrielBjorkStiernstrom",
+        "header": "Sketches"
+      }
+    ]
+  },
+  {
+    "name": "thrustChallenge",
+    "header": "Thrust Challenge",
+    "description": "My entry for CGSociety's Thrust Challenge - Honorable Mention",
+    "images": [
+      {
+        "name": "thrustJunkies_by_gabrielBjorkStiernstrom",
+        "header": "Junkies"
+      },
+      {
+        "name": "thrustLeaving_by_gabrielBjorkStiernstrom",
+        "header": "Leaving"
+      },
+      {
+        "name": "thrustDressing_by_gabrielBjorkStiernstrom",
+        "header": "Dressing"
+      },
+      {
+        "name": "thrustTurnaround_by_gabrielBjorkStiernstrom",
+        "header": "Turnaround"
+      },
+      {
+        "name": "thrustSuitRender_by_gabrielBjorkStiernstrom",
+        "header": "Render"
+      },
+      {
+        "name": "thrustSuitConcepts_by_gabrielBjorkStiernstrom",
+        "header": "Suit Concepts"
+      }
+    ]
+  },
+  {
+    "name": "sketches",
+    "header": "Sketches",
+    "description": "A few sketches and rough images",
+    "images": [
+      {
+        "name": "sketches20170621",
+        "header": "Sketches 1001"
+      },
+      {
+        "name": "sketches201617",
+        "header": "Sketches 1002"
+      },
+      {
+        "name": "sketches201517",
+        "header": "Sketches 1003"
+      },
+      {
+        "name": "sketches20170615",
+        "header": "Sketches 1004"
+      },
+      {
+        "name": "sketches20170505",
+        "header": "Sketches 1005"
+      },
+      {
+        "name": "sketches20170615",
+        "header": "Sketches 1006"
+      },
+      {
+        "name": "sketches20170423",
+        "header": "Sketches 1007"
+      },
+      {
+        "name": "sketches20150528",
+        "header": "Sketches 1008"
+      },
+      {
+        "name": "sketchesMask",
+        "header": "Sketches 1009"
+      },
+      {
+        "name": "sketches20170423",
+        "header": "Sketches 1010"
+      },
+      {
+        "name": "sketches20150527",
+        "header": "Sketches 1011"
       }
     ]
   }

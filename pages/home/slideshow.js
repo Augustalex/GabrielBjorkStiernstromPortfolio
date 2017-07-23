@@ -1,106 +1,69 @@
-const DynamicImage = require('../../JS/DynamicImage.js')
-const DynamicImageLoader = require('../../JS/DynamicImageLoader.js')()
+const parseHTML = require('../../JS/parseHTML.js')
 
-module.exports = function (imageSourceArray) {
-    let self = this;
-    
-    //Returns the function (before slideshow setup) if the input number of coolshowImages is too small.
-    if (imageSourceArray.length < 2)
-        return;
-    
-    //Properties of the slideshow that may be set by the user
-    let properties = {
-        containerId: "coolshow",
-        containerClass: 'coolshow',
-        flowContainerId: "coolshowFlow",
-        controllerContainerId: "coolshowControllerContainer",
-        hasCustomControllers: false,
-        nextButtonId: "coolshowNextButton",
-        previousButtonId: "coolshowPreviousButton"
-    };
+const containerClass = 'coolshow'
+const flowContainerId = 'coolshowFlow'
+const controllerContainerId = 'coolshowControllerContainer'
+const nextButtonId = 'coolshowNextButton'
+const previousButtonId = 'coolshowPreviousButton'
+
+module.exports = function (images) {
     
     let currentSlideshowIndex = 0;
     
-    //Carousel automatic parameters
-    let carousel = {
+    let carouselBounds = {
         minOffset: 0,
         maxOffset: 0
     };
     
-    //Setting up the main container
-    let mainContainer = document.getElementsByClassName(properties.containerClass)[0]
+    return {
+        show,
+        recalculateSlideshow: () => recalculateImageDimensions(images.map(i => i.getElement()))
+    }
     
-    //Creating and adding flowContainer to the main container (and also setting proper id)
-    let flowContainerElement = document.createElement("div")
-    flowContainerElement.setAttribute("id", properties.flowContainerId);
-    mainContainer.appendChild(flowContainerElement);
-    
-    //Creating and adding the ControllerContainer to the main container.
-    let controllerContainerElement = document.createElement("div")
-    controllerContainerElement.setAttribute("id", properties.controllerContainerId);
-    mainContainer.appendChild(controllerContainerElement);
-    
-    this.start = async function () {
-        try {
-            let loadedImages = await DynamicImageLoader.loadAllImages(imageSourceArray)
-            initCarousel(loadedImages);
-            document.getElementsByClassName("coolshow")[0].style.visibility = "visible";
-        }
-        catch (err) {
-            console.log("\nCould not load all images: " + err.message);
-        }
-    };
-    
-    function initCarousel(loadedImages) {
-        carousel = getOffsetParameters(
-            {
-                width: mainContainer.offsetWidth,
-                height: mainContainer.offsetHeight
-            },
-            loadedImages
-        );
+    async function show(wrapperSelector) {
+        let root = parseHTML(
+            `<div id="coolshow" class="coolshow">
+                <div id="${flowContainerId}"></div>
+                <div id="${controllerContainerId}">
+                    <div id="${nextButtonId}"></div>
+                    <div id="${previousButtonId}"></div>
+                </div>
+            </div>`
+        )
+        let rootElement = document.querySelector(wrapperSelector)
+        rootElement.innerHTML = root.outerHTML
         
-        for (let i = 0; i < loadedImages.length; i++)
-            flowContainerElement.appendChild(loadedImages[i]);
+        let imageElements = images.map(i => i.getElement())
         
-        //Setting up next and previous event handlers
-        if (!properties.hasCustomControllers)
-            createControls();
+        imageElements
+            .forEach(image => {
+                let flowContainer = rootElement.querySelector(`#${flowContainerId}`)
+                flowContainer.appendChild(image)
+            })
         
+        carouselBounds = getOffsetParameters(imageElements);
+        
+        initControllers(imageElements)
+        recalculateImageDimensions(imageElements)
+        centerCurrentImage(imageElements, 0)
+        
+        document.querySelector('#coolshow').style.opacity = 1
+        root.style.visibility = "visible";
+        
+        window.addEventListener("resize", reloadOnResize);
+        window.addEventListener("orientationchange", reloadOnResize);
+    }
+    
+    function initControllers(images) {
         setupControllerButtonActions(
-            document.getElementById(properties.nextButtonId),
-            document.getElementById(properties.previousButtonId),
-            loadedImages
+            document.getElementById(nextButtonId),
+            document.getElementById(previousButtonId),
+            images
         );
-        
         setupControllerTouchActions(
             document.getElementById("coolshowControllerContainer"),
-            loadedImages
+            images
         );
-        
-        window.addEventListener("resize", resizeReloader);
-        window.addEventListener("orientationchange", resizeReloader);
-        
-        function resizeReloader() {
-            if (!document.getElementsByClassName("coolshow")[0]) {
-                window.removeEventListener("resize", resizeReloader);
-                window.removeEventListener("orientationchange", resizeReloader);
-            }
-            else {
-                reload(loadedImages);
-            }
-        }
-        
-        reload(loadedImages);
-        centerCurrentImage(loadedImages, 0);
-        
-        mainContainer.style.opacity = 1;
-        
-        // windowLoaderPromise.set(true); //TODO fix loading pages and promises with that
-        
-        self.reevaluateImageSize = function () {
-            reload(loadedImages);
-        };
     }
     
     /**
@@ -168,17 +131,6 @@ module.exports = function (imageSourceArray) {
         
     }
     
-    function createControls() {
-        let nextButton = document.createElement("div")
-        nextButton.setAttribute("id", properties.nextButtonId);
-        controllerContainerElement.appendChild(nextButton);
-        
-        let previousButton = document.createElement("div")
-        previousButton.setAttribute("id", properties.previousButtonId);
-        controllerContainerElement.appendChild(previousButton);
-        
-    }
-    
     /**
      * Puts focus on the next element in the slide.
      * If the current slide is the last slide, then focus
@@ -217,16 +169,20 @@ module.exports = function (imageSourceArray) {
      * it sets the x-scroll value of containing element to
      * center the focused image.
      */
-    function centerCurrentImage(allImages, currentImageIndex) {
+    function centerCurrentImage(images, currentImageIndex) {
+        if (images.length <= currentImageIndex) throw new Error("Slideshow image index out of bounds")
+        if(images.some(i => !i.naturalWidth)) return;
+        let mainContainerElement = document.getElementsByClassName(containerClass)[0]
+        if (!mainContainerElement) return
+        let flowContainerElement = document.getElementById(flowContainerId)
         
-        //Starting from far left, at what X position
-        // is the center of the current slideshow image.
-        let offset = getImageCenterPosition(allImages, currentImageIndex);
-        
-        //Get the offset to be the actual center of the view (the slideshow).
-        offset -= mainContainer.offsetWidth / 2;
-        
-        setOffset(flowContainerElement, offset, carousel);
+        let image = images[currentImageIndex]
+        let leftPositionOffset = 0;
+        for (let i = 0; i < currentImageIndex; i++)
+            leftPositionOffset += (mainContainerElement.offsetHeight / images[i].naturalHeight) * images[i].naturalWidth;
+        let virtualImageWidth = (mainContainerElement.offsetHeight / image.naturalHeight) * image.naturalWidth;
+        let offsetToCenter = leftPositionOffset - (mainContainerElement.offsetWidth - virtualImageWidth) * 0.5;
+        setOffset(flowContainerElement, offsetToCenter);
     }
     
     /**
@@ -234,13 +190,12 @@ module.exports = function (imageSourceArray) {
      * as defined in the offsetParameters object (min and max limitations).
      * @param element
      * @param newOffset
-     * @param offsetParameters
      */
-    function setOffset(element, newOffset, offsetParameters) {
-        if (newOffset < offsetParameters.minOffset)
-            newOffset = offsetParameters.minOffset;
-        else if (newOffset > offsetParameters.maxOffset)
-            newOffset = offsetParameters.maxOffset - 5;
+    function setOffset(element, newOffset) {
+        if (newOffset < carouselBounds.minOffset)
+            newOffset = carouselBounds.minOffset;
+        else if (newOffset > carouselBounds.maxOffset)
+            newOffset = carouselBounds.maxOffset - 5;
         
         element.style.left = (newOffset * (-1)).toString() + "px";
     }
@@ -255,81 +210,46 @@ module.exports = function (imageSourceArray) {
      * the scale factor between the coolshowImages actual size v.s. the
      * size of the containing element in the DOM.
      *
-     * @param containerDimensions
      * @param images
      * @returns {{minOffset: number, maxOffset: number}}
      */
-    function getOffsetParameters(containerDimensions, images) {
+    function getOffsetParameters(images) {
+        let container = document.getElementsByClassName(containerClass)[0]
+        if (!container) throw new Error("No slideshow container element present.")
+        
         let scaledImagesTotalWidth = 0;
         
         for (let i = 0; i < images.length; i++)
-            scaledImagesTotalWidth += (containerDimensions.height / images[i].naturalHeight) * images[i].naturalWidth;
-        
+            scaledImagesTotalWidth += (container.offsetHeight / images[i].naturalHeight) * images[i].naturalWidth;
+    
         return {
             minOffset: 0,
-            maxOffset: scaledImagesTotalWidth - containerDimensions.width
+            maxOffset: scaledImagesTotalWidth - container.offsetWidth
         };
-    }
-    
-    /**
-     * Takes all loaded coolshowImages and adds their width up until the specified indexed
-     * image. For the specified image it only adds half of its width, and in that way
-     * getting the total offset value (from the left) to the center of the specified
-     * coolshowImages (in the array of all loaded coolshowImages).
-     *
-     * @param images
-     * @param index
-     * @returns {*}
-     */
-    function getImageCenterPosition(images, index) {
-        let leftPos = getOffset(images, index);
-        
-        leftPos += ((mainContainer.offsetHeight / images[index].naturalHeight) * images[index].naturalWidth) / 2;
-        
-        return leftPos;
-    }
-    
-    /**
-     * Returns the offset value from the left, of the image
-     * at the specified index in an array of coolshowImages.
-     * @param images
-     * @param index
-     * @returns {number}
-     */
-    function getOffset(images, index) {
-        let offset = 0;
-        for (let i = 0; i < index; i++)
-            offset += (mainContainer.offsetHeight / images[i].naturalHeight) * images[i].naturalWidth;
-        
-        return offset;
     }
     
     function conformImagesToHeight(images, height) {
         for (let i = 0; i < images.length; i++) {
             images[i].style.height = height + "px";
-            
-            //testing mini-lightbox
-            images[i].setAttribute("data-image-opened", images[i].src);
         }
     }
     
-    function reload(allImages) {
-        carousel = getOffsetParameters(
-            {
-                width: mainContainer.offsetWidth,
-                height: mainContainer.offsetHeight
-            },
-            allImages
-        );
+    function reloadOnResize() {
+        let slideshowIsPresent = document.getElementsByClassName("coolshow")[0]
+        if (!slideshowIsPresent) {
+            window.removeEventListener("resize", reloadOnResize);
+            window.removeEventListener("orientationchange", reloadOnResize);
+        }
+        else {
+            recalculateImageDimensions(images);
+        }
+    }
+    
+    function recalculateImageDimensions(allImages) {
+        let flowContainer = document.getElementById(flowContainerId)
         
-        conformImagesToHeight(allImages, flowContainerElement.offsetHeight);
-        
-        //currentSlideshowIndex = 0;
+        carouselBounds = getOffsetParameters(allImages);
+        conformImagesToHeight(allImages, flowContainer.offsetHeight);
         centerCurrentImage(allImages, currentSlideshowIndex);
     }
-    
-    this.reevaluateImageSize = function () {
-        console.log("No images to reevaluate.");
-    }
-    
 }

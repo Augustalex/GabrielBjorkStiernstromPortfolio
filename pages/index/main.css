@@ -112,7 +112,7 @@ img {
 }
 
 #footer {
-    height: 15vh;
+    height: 10vh;
     width: 100%;
     color: #EEE;
     margin: 0;
@@ -613,7 +613,7 @@ img.profilepic {
 }
 
 .contentFlowContainer-closeButton {
-    position: absolute;
+    position: fixed;
     right: 1em;
     font-size: 4em;
     color: white;

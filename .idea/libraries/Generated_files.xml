@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/dist/JS/indexPageScript.js" />
+      <root url="file://$PROJECT_DIR$/dist/JS/plugins.js" />
+      <root url="file://$PROJECT_DIR$/dist/bundle.js" />
+      <root url="file://$PROJECT_DIR$/dist/JS/indexPageScript.js" />
+      <root url="file://$PROJECT_DIR$/dist/JS/plugins.js" />
+      <root url="file://$PROJECT_DIR$/dist/bundle.js" />
+      <root url="file://$PROJECT_DIR$/dist/bundle.js" />
+      <root url="file://$PROJECT_DIR$/dist/bundle/mainBundle.js" />
+      <root url="file://$PROJECT_DIR$/dist/bundle/homePageScriptBundle.js" />
+      <root url="file://$PROJECT_DIR$/dist/bundle/portfolioPageScriptBundle.js" />
+      <root url="file://$PROJECT_DIR$/dist/main.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

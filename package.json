@@ -2,9 +2,9 @@
   "name": "gabrielportfolio",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "build.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "build.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "babelify": "^7.3.0",
+    "chokidar": "^1.7.0",
     "watchify": "^3.9.0"
   }
 }

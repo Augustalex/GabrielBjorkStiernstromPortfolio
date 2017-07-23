@@ -32,7 +32,6 @@ module.exports = function (deps = {}) {
         }
         
         flowContainer.onclick = event => {
-            console.log('clicked!', event)
             if (event.target.getAttribute("class") === containerClass)
                 clearContainer(flowContainer)
         }
