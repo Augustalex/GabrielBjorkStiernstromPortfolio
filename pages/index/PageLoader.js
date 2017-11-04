@@ -1,13 +1,12 @@
-
 module.exports = {
     loadPage
 }
 
-async function loadPage(pageSrc, wrapperId){
+async function loadPage(pageSrc, wrapperId) {
     const element = document.getElementById(wrapperId)
     
     element.innerHTML = "";
-
+    
     element.innerHTML = await loadContent(pageSrc)
 }
 

@@ -2,52 +2,52 @@
  * Created by DAW 28 on 2016-12-18.
  */
 
-let HomePage = require('../home/homePage.js')
-let AboutPage = require('../about/aboutPage.js')
-let ProjectsPage = require('../projects/projectsPage.js')
+let HomePage = require('../home/homePage.js');
+let AboutPage = require('../about/aboutPage.js');
+let ProjectsPage = require('../projects/projectsPage.js');
 
-let windowController = require('../../JS/windowController.js')
+let windowController = require('../../JS/windowController.js');
 
-window.windowLoaderPromise = null;
+(async function () {
+    [...document.getElementsByClassName("buttonPortfolio")].forEach(button => {
+        button.addEventListener('click', (event) => {
+            window.location.hash = event.target.id
+            window.location.reload()
+        })
+    });
+    
+    let pageName = window.location.hash.substr(1) || 'home'
+    loadPageByName(pageName)
+    setSelectedNavigationButton(pageName)
+    windowController.reevaluateHeights()
+    
+    window.addEventListener("resize", windowController.reevaluateHeights);
+    window.addEventListener("orientationchange", windowController.reevaluateHeights);
+}())
 
-[...document.getElementsByClassName("buttonPortfolio")].forEach(button => {
-    button.onclick = function (event) {
-        if (windowLoaderPromise === null) {
-            let id = event.target.id
-            
-            switch (id) {
-                case "about":
-                    AboutPage().show("#portfolio_wrapper")
-                    break;
-                case "portfolio":
-                    ProjectsPage().show("#portfolio_wrapper")
-                    break;
-                case "homeButton":
-                    HomePage().show("#portfolio_wrapper")
-                    break
-                default:
-                    HomePage().show("#portfolio_wrapper")
-            }
-            
-            for(let button of document.querySelectorAll('.buttonPortfolio')) {
-                if(button.id !== id) {
-                    button.classList.remove('buttonPortfolio--selected')
-                }
-                else {
-                    button.classList.add('buttonPortfolio--selected')
-                }
-            }
-            windowController.reevaluateHeights()
-            windowLoaderPromise = null;
+function setSelectedNavigationButton(buttonId) {
+    for (let button of document.querySelectorAll('.buttonPortfolio')) {
+        if (button.id !== buttonId) {
+            button.classList.remove('buttonPortfolio--selected')
         }
         else {
-            console.log("Loader PROMISE is NOT null");
+            button.classList.add('buttonPortfolio--selected')
         }
     }
-});
+}
 
-window.addEventListener("resize", windowController.reevaluateHeights);
-window.addEventListener("orientationchange", windowController.reevaluateHeights);
-
-let homePage = HomePage()
-homePage.show('#portfolio_wrapper')
+async function loadPageByName(name) {
+    switch (name) {
+        case "about":
+            await AboutPage().show("#portfolio_wrapper")
+            break;
+        case "portfolio":
+            await ProjectsPage().show("#portfolio_wrapper")
+            break;
+        case "home":
+            await HomePage().show("#portfolio_wrapper")
+            break
+        default:
+            await HomePage().show("#portfolio_wrapper")
+    }
+}
