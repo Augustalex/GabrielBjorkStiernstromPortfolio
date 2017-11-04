@@ -114,6 +114,11 @@
     "description": "Cover illustrations for various authors and books",
     "images": [
       {
+        "name": "isaacAsimovFondazioni_by_gabrielBjorkStiernstrom",
+        "header": "Isaac Asimov - Foundations Trilogy",
+        "description": "Note: The typesetting and final color correction is made by Mondadori"
+      },
+      {
         "name": "markusHeitzWedora1_by_gabrielBjorkStiernstrom",
         "header": "Markus Heitz - Wédora, Staub und Blut",
         "description": "Note: The typesetting and final color correction is made by Guter Punkt"
@@ -125,7 +130,7 @@
       },
       {
         "name": "",
-        "header": "more comming soon",
+        "header": "more coming soon",
         "description": "More book illustrations coming soon..."
       }
     ]
@@ -135,6 +140,18 @@
     "header": "Personal Work",
     "description": "A collection of different personal works",
     "images": [
+      {
+        "name": "looters_by_gabrielBjorkStiernstrom",
+        "header": "Looters"
+      },
+      {
+        "name": "ghostTown_by_gabrielBjorkStiernstrom",
+        "header": "Ghost Town"
+      },
+      {
+        "name": "maurildi_by_gabrielBjorkStiernstrom",
+        "header": "Maurildi"
+      },
       {
         "name": "dragonValley_by_gabrielBjorkStiernstrom",
         "header": "Dragon Valley"
@@ -253,10 +270,6 @@
         "header": "Sketches 1005"
       },
       {
-        "name": "sketches20170615",
-        "header": "Sketches 1006"
-      },
-      {
         "name": "sketches20170423",
         "header": "Sketches 1007"
       },
@@ -267,10 +280,6 @@
       {
         "name": "sketchesMask",
         "header": "Sketches 1009"
-      },
-      {
-        "name": "sketches20170423",
-        "header": "Sketches 1010"
       },
       {
         "name": "sketches20150527",

@@ -7,6 +7,7 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
     let name = image.name
     let defaultFileExtension = '.jpg'
     let imageElement = document.createElement('img')
+    let preload = new Image();
     
     let lowResPath = `${dir}/${name}_low`
     let highResPath = `${dir}/${name}_high`
@@ -20,11 +21,13 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
     function load() {
         return new Promise(resolve => {
             if (hasLoadedLowRes || !hasLowResVersion) {
-                imageElement.onload = () => {
+                let path = `${highResPath}${nextFileExtension()}`
+                preload.onload = () => {
+                    imageElement.src = path
                     resolve()
-                    imageElement.onload = null
+                    preload.onload = null
                 }
-                imageElement.src = `${highResPath}${nextFileExtension()}`
+                preload.src = path
             }
             else {
                 imageElement.onload = () => {

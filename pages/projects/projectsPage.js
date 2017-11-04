@@ -2,7 +2,7 @@
  * Created by DAW 28 on 2016-12-18.
  */
 
-const Portfolio = require('./Portfolio.js')
+const Portfolio = require('./Projects.js')
 const windowController = require('../../JS/windowController.js')
 const Project = require('../../JS/Project.js')
 const projects = require('./projects.json')
@@ -15,7 +15,10 @@ module.exports = function () {
     async function show(wrapperSelector) {
         document.querySelector(wrapperSelector).innerHTML =
             `<div id="portfolioLibrary"></div>`
-        let test = 'test'
+        
+        let parsedProjects = projects.map(project => Project(project, ""))
+        Portfolio(parsedProjects, "portfolioLibrary");
+        
         //     // new DynamicImage()
         //     //     .addImage("../../FILES/IMG/THUMBNAIL/dragonvalley_thumbnail.png")
         //     //     .addImage("../../FILES/IMG/PORTFOLIO_IMG/dragon_valley_by_gabrielbjorkstiernstrom.png")
@@ -102,7 +105,5 @@ module.exports = function () {
         //     //     .addImage("../../FILES/IMG/PORTFOLIO_IMG/moon_by_gabriel_bjork_stiernstrom.png")
         //     //     .setHeader("Moon").setSubHeader("Personal Work")
         
-        let parsedProjects = projects.map(project => Project(project, ""))
-        Portfolio(parsedProjects, "portfolioLibrary");
     }
 }

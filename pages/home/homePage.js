@@ -1,7 +1,4 @@
-
 const Coolshow = require('./slideshow.js')
-const DynamicImage = require('../../JS/DynamicImage.js')
-const DynamicImageLoader = require('../../JS/DynamicImageLoader.js')()
 const windowController = require('../../JS/windowController.js')
 
 const slideshowImages = require('./slideshow.json')
@@ -19,10 +16,10 @@ module.exports = function () {
             return QuickImage('file/img/slideshow', i)
         })
         
-        quickImageBatchLoader.loadAllImages(images).then(() => {
-            console.log('loaded all images!')
-            initSlideshow(images, wrapperSelector)
-        })
+        await quickImageBatchLoader.loadAllImages(images)
+        console.log('loaded all images!')
+        let imageElements = images.map(i => i.getElement())
+        initSlideshow(imageElements, wrapperSelector)
     }
     
     async function initSlideshow(images, wrapperSelector) {

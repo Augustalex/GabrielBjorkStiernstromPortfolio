@@ -1,5 +1,5 @@
 
-const FOOTER_SIZE = 0.1
+const FOOTER_SIZE = 0.15
 
 module.exports = {
     reevaluateHeights
@@ -33,7 +33,7 @@ function setFooterSizeToJustFit() {
 
 function setSlideshowSizeToJustFit() {
     let newHeight = window.innerHeight * (1 - FOOTER_SIZE);
-    
+    console.log('setSlideshowSizeToJustFit', newHeight)
     document.getElementById("portfolio_wrapper").style.height = newHeight + "px";
     //document.getElementById("portfolio_wrapper").style.maxHeight = newHeight + "px";
 }
@@ -47,8 +47,8 @@ function reevaluateHeights() {
         setSlideshowSizeToJustFit();
         setFixedSlideshow();
     }
-    else
-        document.getElementById("portfolio_wrapper").style.height = "100%";
+    // else
+    //     document.getElementById("portfolio_wrapper").style.height = "100%";
     
     setFooterSizeToJustFit();
 }

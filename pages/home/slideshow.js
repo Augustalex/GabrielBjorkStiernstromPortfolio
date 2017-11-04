@@ -17,7 +17,7 @@ module.exports = function (images) {
     
     return {
         show,
-        recalculateSlideshow: () => recalculateImageDimensions(images.map(i => i.getElement()))
+        recalculateSlideshow: () => recalculateImageDimensions(images)
     }
     
     async function show(wrapperSelector) {
@@ -33,19 +33,14 @@ module.exports = function (images) {
         let rootElement = document.querySelector(wrapperSelector)
         rootElement.innerHTML = root.outerHTML
         
-        let imageElements = images.map(i => i.getElement())
+        images.forEach(image => {
+            let flowContainer = rootElement.querySelector(`#${flowContainerId}`)
+            flowContainer.appendChild(image)
+        })
         
-        imageElements
-            .forEach(image => {
-                let flowContainer = rootElement.querySelector(`#${flowContainerId}`)
-                flowContainer.appendChild(image)
-            })
-        
-        carouselBounds = getOffsetParameters(imageElements);
-        
-        initControllers(imageElements)
-        recalculateImageDimensions(imageElements)
-        centerCurrentImage(imageElements, 0)
+        initControllers(images)
+        recalculateImageDimensions(images)
+        centerCurrentImage(images, 0)
         
         document.querySelector('#coolshow').style.opacity = 1
         root.style.visibility = "visible";
@@ -92,14 +87,16 @@ module.exports = function (images) {
         function moveSlideshowOnArrayKeys(e) {
             let key = e.keyCode ? e.keyCode : e.which
             
-            if (key === 37)
+            if (key === 37) {
                 setTimeout(function () {
                     moveSlideshow(allImages, previousSlide);
-                }, 0);
-            else if (key === 39)
+                }, 0)
+            }
+            else if (key === 39) {
                 setTimeout(function () {
                     moveSlideshow(allImages, nextSlide);
-                }, 0);
+                }, 0)
+            }
         }
     }
     
@@ -171,7 +168,9 @@ module.exports = function (images) {
      */
     function centerCurrentImage(images, currentImageIndex) {
         if (images.length <= currentImageIndex) throw new Error("Slideshow image index out of bounds")
-        if(images.some(i => !i.naturalWidth)) return;
+        if (images.some(i => !i.naturalWidth)) return;
+        // if (images.some(i => i.naturalWidth === undefined)) return;
+        
         let mainContainerElement = document.getElementsByClassName(containerClass)[0]
         if (!mainContainerElement) return
         let flowContainerElement = document.getElementById(flowContainerId)
@@ -221,7 +220,7 @@ module.exports = function (images) {
         
         for (let i = 0; i < images.length; i++)
             scaledImagesTotalWidth += (container.offsetHeight / images[i].naturalHeight) * images[i].naturalWidth;
-    
+        
         return {
             minOffset: 0,
             maxOffset: scaledImagesTotalWidth - container.offsetWidth

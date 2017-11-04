@@ -37,7 +37,7 @@ module.exports = function (deps = {}) {
             ` : ''
             let el = parseHTML(`<div class="contentFlow-imageWrapper"></div>`)
             if(file.name) el.appendChild(file.image.getElement())
-            el.appendChild(parseHTML(`<div class="contentFlow-imageTextWrapper">${imageHeaderHTML}${imageDescriptionHTML}</div>`))
+            // el.appendChild(parseHTML(`<div class="contentFlow-imageTextWrapper">${imageHeaderHTML}${imageDescriptionHTML}</div>`))
             flowElement.appendChild(el)
         })
         

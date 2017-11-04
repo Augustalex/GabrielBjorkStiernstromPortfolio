@@ -1,13 +1,6 @@
 
 module.exports = {
     loadAllImages: async quickImages => {
-        // await Promise.all(quickImages.map(i => i.load()))
-        // await Promise.all(quickImages.map(i => i.load()))
-        
-        // await Promise.all(quickImages.map(i => {
-        //     return i.load().then(() => i.load())
-        // }))
-    
         let [first, second, ...rest] = quickImages
         
         await Promise.all([

@@ -23,13 +23,13 @@ function adjustThumbnails(){
 adjustThumbnails();
 
 $(window).resize(function(){
-    var windowWidth = $(window).width();
-    var leftOversDividend = windowWidth/thumbnailWidth;
-    var amountOfThumbnails = Math.floor(leftOversDividend);
-    var leftOvers = leftOversDividend - amountOfThumbnails;
-    var toAdd = thumbnailWidth * leftOvers;
-    var definiteToAdd = toAdd/amountOfThumbnails;
-    var newWidthOfThumbnails = definiteToAdd + thumbnailWidth;
+    let windowWidth = $(window).width()
+    let leftOversDividend = windowWidth / thumbnailWidth
+    let amountOfThumbnails = Math.floor(leftOversDividend)
+    let leftOvers = leftOversDividend - amountOfThumbnails
+    let toAdd = thumbnailWidth * leftOvers
+    let definiteToAdd = toAdd / amountOfThumbnails
+    let newWidthOfThumbnails = definiteToAdd + thumbnailWidth;
 
     if(windowWidth%thumbnailWidth!=0){
         newWidthOfThumbnails = Math.floor(newWidthOfThumbnails);
