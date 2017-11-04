@@ -2,9 +2,9 @@
  * Created by DAW 28 on 2016-12-18.
  */
 
-const Portfolio = require('./Projects.js')
+const Projects = require('./Projects.js')
 const Project = require('../../JS/Project.js')
-const projects = require('./projects.json')
+const projectsData = require('./projects.json')
 
 module.exports = function () {
     return {
@@ -13,9 +13,9 @@ module.exports = function () {
     
     async function show(wrapperSelector) {
         document.querySelector(wrapperSelector).innerHTML =
-            `<div id="portfolioLibrary"></div>`
+            `<div id="projectsLibrary"></div>`
         
-        let parsedProjects = projects.map(project => Project(project, ""))
-        Portfolio(parsedProjects, "portfolioLibrary");
+        let parsedProjects = projectsData.map(data => Project(data, ""))
+        Projects(parsedProjects, "projectsLibrary");
     }
 }

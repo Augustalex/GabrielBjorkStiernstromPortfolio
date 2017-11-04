@@ -355,7 +355,7 @@ ul.social_icons li {
     clear: both;
 }
 
-/*		PORTFOLIO page css		*/
+/*		PROJECTS page css		*/
 
 /*	The outer container for a single thumbnail	*/
 .thumbnailContainer {
@@ -438,7 +438,7 @@ a.lightboxLink {
 }
 
 /*	The div containing all thumbnails.	*/
-div#portfolioLibrary {
+div#projectsLibrary {
     box-sizing: border-box;
     margin: 0;
     padding: 10px 4%;

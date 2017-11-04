@@ -41,7 +41,7 @@ async function loadPageByName(name) {
         case "about":
             await AboutPage().show("#portfolio_wrapper")
             break;
-        case "portfolio":
+        case "projects":
             await ProjectsPage().show("#portfolio_wrapper")
             break;
         case "home":
