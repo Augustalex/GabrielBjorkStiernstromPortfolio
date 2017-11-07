@@ -1,20 +1,15 @@
-
 module.exports = {
-    loadAllImages: async quickImages => {
-        let [first, second, ...rest] = quickImages
-        
-        await Promise.all([
-            first.load(),
-            second.load()
-        ])
-        await first.load()
-        await second.load()
-        
-        await Promise.all(rest.map(i => {
-            return i.load()
-        }))
-        await Promise.all(rest.map(i => {
-            return i.load()
-        }))
+    BatchLoader: function* (images) {
+        let [first, second, ...rest] = images;
+        yield loadImages([first, second]);
+        return (async function () {
+            await loadImages([first, second])
+            await loadImages(rest)
+            await loadImages(rest)
+        }())
     }
+}
+
+async function loadImages(images) {
+    await Promise.all(images.map(i => i.load()))
 }

@@ -16,8 +16,10 @@ module.exports = function () {
             return QuickImage('file/img/slideshow', i)
         })
         
-        await quickImageBatchLoader.loadAllImages(images)
-        console.log('loaded all images!')
+        let batchLoader = quickImageBatchLoader.BatchLoader(images)
+        await batchLoader.next()
+        batchLoader.next()
+        
         let imageElements = images.map(i => i.getElement())
         initSlideshow(imageElements, wrapperSelector)
     }

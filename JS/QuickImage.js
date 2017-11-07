@@ -1,7 +1,6 @@
-
 module.exports = function (dir, originalImage, hasLowResVersion = true) {
     let image = Object.assign({}, originalImage)
-    if(originalImage.fileExtensions) {
+    if (originalImage.fileExtensions) {
         image.fileExtensions = [...originalImage.fileExtensions].reverse()
     }
     let name = image.name
@@ -12,7 +11,7 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
     let lowResPath = `${dir}/${name}_low`
     let highResPath = `${dir}/${name}_high`
     let hasLoadedLowRes = false
-
+    
     return {
         getElement: () => imageElement,
         load
@@ -41,7 +40,7 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
     }
     
     function nextFileExtension() {
-        if(image.fileExtensions){
+        if (image.fileExtensions) {
             return image.fileExtensions.pop() || defaultFileExtension
         }
         return defaultFileExtension
