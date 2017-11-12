@@ -1,5 +1,3 @@
-// let aboutPage = require('./about.html')
-
 module.exports = function () {
     
     return {
@@ -10,7 +8,6 @@ module.exports = function () {
         let element = document.querySelector(wrapperSelector)
         try {
             element.innerHTML = await loadAboutMeHTML()
-            adjustProjectsWrapperMargins()
         }
         catch(err) {
             console.log('Failed to load "About me" page.', err)
@@ -33,9 +30,4 @@ module.exports = function () {
             xhr.send()
         })
     }
-}
-
-function adjustProjectsWrapperMargins() {
-    let newMargin = document.getElementById("footer").offsetHeight;
-    document.getElementById("portfolio_wrapper").style.marginBottom = newMargin + "px";
 }

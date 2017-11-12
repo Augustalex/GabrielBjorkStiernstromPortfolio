@@ -1,4 +1,5 @@
 const parseHTML = require('../../JS/parseHTML.js')
+const slideshowImages = require('./slideshow.json')
 
 const containerClass = 'coolshow'
 const flowContainerId = 'coolshowFlow'
@@ -6,7 +7,18 @@ const controllerContainerId = 'coolshowControllerContainer'
 const nextButtonId = 'coolshowNextButton'
 const previousButtonId = 'coolshowPreviousButton'
 
-module.exports = function (images) {
+const QuickImage = require('../../JS/QuickImage.js')
+const quickImageBatchLoader = require('../../JS/quickImageBatchLoader.js')
+
+
+module.exports = function (imagesRootFolder) {
+    
+    let images = slideshowImages.map(i => {
+        return QuickImage(imagesRootFolder, i)
+    })
+    let imageElements = images.map(i => i.getElement())
+    
+    let batchLoader = quickImageBatchLoader.BatchLoader(images)
     
     let currentSlideshowIndex = 0;
     
@@ -17,10 +29,27 @@ module.exports = function (images) {
     
     return {
         show,
-        recalculateSlideshow: () => recalculateImageDimensions(images)
+        recalculateSlideshow: () => recalculateImageDimensions(imageElements)
+    }
+    
+    async function loadFirstLowResImages() {
+        console.log('loadFirstLowResImages')
+        await batchLoader.next()
+    }
+    
+    async function loadRestLowResImages() {
+        console.log('loadRestLowResImages')
+        await batchLoader.next()
+    }
+    
+    async function loadAllHighResImages() {
+        console.log('loadAllHighResImages')
+        await batchLoader.next()
     }
     
     async function show(wrapperSelector) {
+        await loadFirstLowResImages()
+        
         let root = parseHTML(
             `<div id="coolshow" class="coolshow">
                 <div id="${flowContainerId}"></div>
@@ -33,31 +62,45 @@ module.exports = function (images) {
         let rootElement = document.querySelector(wrapperSelector)
         rootElement.innerHTML = root.outerHTML
         
-        images.forEach(image => {
+        imageElements.forEach(image => {
             let flowContainer = rootElement.querySelector(`#${flowContainerId}`)
             flowContainer.appendChild(image)
         })
         
-        initControllers(images)
-        recalculateImageDimensions(images)
-        centerCurrentImage(images, 0)
-        
+        recalculateImageDimensions(imageElements)
+        console.log('imageElements', JSON.stringify(imageElements))
+        centerFirstImage(imageElements)
         document.querySelector('#coolshow').style.opacity = 1
         root.style.visibility = "visible";
         
+        await loadRestLowResImages()
+        initControllers(imageElements)
+        centerCurrentImage(imageElements, 0)
+        setupResizeListeners();
+        
+        loadAllHighResImages()
+    }
+    
+    function setupResizeListeners() {
         window.addEventListener("resize", reloadOnResize);
         window.addEventListener("orientationchange", reloadOnResize);
     }
     
-    function initControllers(images) {
+    function initControllers(imageElements) {
+        // await Promise.all(images.map(image => new Promise(resolve => {
+        //     image.on('loadedLowRes', resolve)
+        // })))
+        // console.log('ALL LOW RES LOADED, INITIATING CONTROLLERS')
+        
         setupControllerButtonActions(
             document.getElementById(nextButtonId),
             document.getElementById(previousButtonId),
-            images
+            imageElements
         );
+        setupControllerKeyboardActions(imageElements)
         setupControllerTouchActions(
             document.getElementById("coolshowControllerContainer"),
-            images
+            imageElements
         );
     }
     
@@ -82,9 +125,18 @@ module.exports = function (images) {
             moveSlideshow(allImages, previousSlide);
         });
         
-        window.addEventListener("keyup", moveSlideshowOnArrayKeys);
-        
-        function moveSlideshowOnArrayKeys(e) {
+        nextButton.style.opacity = '1';
+        previousButton.style.opacity = '1';
+    }
+    
+    /**
+     * Sets up keyboard listener for LEFT_ARROW and RIGH_ARROW click,
+     * and moves slideshow that direction.
+     *
+     * @param allImages
+     */
+    function setupControllerKeyboardActions(allImages) {
+        window.addEventListener("keyup", e => {
             let key = e.keyCode ? e.keyCode : e.which
             
             if (key === 37) {
@@ -97,7 +149,7 @@ module.exports = function (images) {
                     moveSlideshow(allImages, nextSlide);
                 }, 0)
             }
-        }
+        });
     }
     
     function moveSlideshow(allImages, switchFunction) {
@@ -169,7 +221,6 @@ module.exports = function (images) {
     function centerCurrentImage(images, currentImageIndex) {
         if (images.length <= currentImageIndex) throw new Error("Slideshow image index out of bounds")
         if (images.some(i => !i.naturalWidth)) return;
-        // if (images.some(i => i.naturalWidth === undefined)) return;
         
         let mainContainerElement = document.getElementsByClassName(containerClass)[0]
         if (!mainContainerElement) return
@@ -179,6 +230,21 @@ module.exports = function (images) {
         let leftPositionOffset = 0;
         for (let i = 0; i < currentImageIndex; i++)
             leftPositionOffset += (mainContainerElement.offsetHeight / images[i].naturalHeight) * images[i].naturalWidth;
+        let virtualImageWidth = (mainContainerElement.offsetHeight / image.naturalHeight) * image.naturalWidth;
+        let offsetToCenter = leftPositionOffset - (mainContainerElement.offsetWidth - virtualImageWidth) * 0.5;
+        setOffset(flowContainerElement, offsetToCenter);
+    }
+    
+    function centerFirstImage(images) {
+        if (images.length < 1) throw new Error("Slideshow needs to have 1 image to center first image")
+        let image = images[0]
+        if (!image.naturalWidth) return;
+        
+        let mainContainerElement = document.getElementsByClassName(containerClass)[0]
+        if (!mainContainerElement) return
+        let flowContainerElement = document.getElementById(flowContainerId)
+        
+        let leftPositionOffset = (mainContainerElement.offsetHeight / image.naturalHeight) * image.naturalWidth;
         let virtualImageWidth = (mainContainerElement.offsetHeight / image.naturalHeight) * image.naturalWidth;
         let offsetToCenter = leftPositionOffset - (mainContainerElement.offsetWidth - virtualImageWidth) * 0.5;
         setOffset(flowContainerElement, offsetToCenter);
@@ -240,7 +306,7 @@ module.exports = function (images) {
             window.removeEventListener("orientationchange", reloadOnResize);
         }
         else {
-            recalculateImageDimensions(images);
+            recalculateImageDimensions(imageElements);
         }
     }
     

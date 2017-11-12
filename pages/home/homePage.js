@@ -12,20 +12,19 @@ module.exports = function () {
     }
     
     async function show(wrapperSelector) {
-        let images = slideshowImages.map(i => {
-            return QuickImage('file/img/slideshow', i)
-        })
+        // let images = slideshowImages.map(i => {
+        //     return QuickImage('file/img/slideshow', i)
+        // })
         
-        let batchLoader = quickImageBatchLoader.BatchLoader(images)
-        await batchLoader.next()
-        batchLoader.next()
-        
-        let imageElements = images.map(i => i.getElement())
-        initSlideshow(imageElements, wrapperSelector)
+        // let batchLoader = quickImageBatchLoader.BatchLoader(images)
+        // await batchLoader.next()
+        // batchLoader.next()
+        //
+        initSlideshow('file/img/slideshow', wrapperSelector)
     }
     
-    async function initSlideshow(images, wrapperSelector) {
-        let coolshow = new Coolshow(images)
+    async function initSlideshow(imagesRootFolder, wrapperSelector) {
+        let coolshow = new Coolshow(imagesRootFolder)
         await coolshow.show(wrapperSelector);
         windowController.reevaluateHeights();
         coolshow.recalculateSlideshow();

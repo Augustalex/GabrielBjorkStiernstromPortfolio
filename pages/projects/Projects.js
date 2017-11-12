@@ -128,6 +128,6 @@ function fitThumbnailsToContainer(imageContainers, containerId) {
 }
 
 function adjustProjectsWrapperMargins() {
-    let newMargin = document.getElementById("footer").offsetHeight;
-    document.getElementById("projectsLibrary").style.marginBottom = newMargin + "px";
+    // let newMargin = document.getElementById("footer").offsetHeight;
+    // document.getElementById("projectsLibrary").style.marginBottom = newMargin + "px";
 }

@@ -44,11 +44,9 @@ function setFixedSlideshow() {
 
 function reevaluateHeights() {
     if (document.getElementsByClassName("coolshow").length === 1) {
-        setSlideshowSizeToJustFit();
-        setFixedSlideshow();
+        // setSlideshowSizeToJustFit();
+        // setFixedSlideshow();
     }
-    // else
-    //     document.getElementById("portfolio_wrapper").style.height = "100%";
     
-    setFooterSizeToJustFit();
+    // setFooterSizeToJustFit();
 }
