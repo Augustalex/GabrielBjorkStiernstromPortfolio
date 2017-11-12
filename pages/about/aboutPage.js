@@ -1,3 +1,5 @@
+const ABOUT_ME_PAGE_PATH = 'about.html'
+
 module.exports = function () {
     
     return {
@@ -17,7 +19,7 @@ module.exports = function () {
     async function loadAboutMeHTML() {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest()
-            xhr.open('GET', 'about.html')
+            xhr.open('GET', ABOUT_ME_PAGE_PATH)
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     resolve(xhr.responseText)
