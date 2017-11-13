@@ -19,7 +19,6 @@ module.exports = function (projects, containerId) {
             container.appendChild(i)
         })
         
-        adjustProjectsWrapperMargins()
         appendFlexSpacers(imageContainers, container)
         
         window.addEventListener("resize", resizeReload);
@@ -51,7 +50,6 @@ module.exports = function (projects, containerId) {
         }
         else {
             appendFlexSpacers(imageContainers, container)
-            adjustProjectsWrapperMargins();
         }
     }
 }

@@ -33,18 +33,15 @@ module.exports = function (imagesRootFolder) {
     }
     
     async function loadFirstLowResImages() {
-        console.log('loadFirstLowResImages')
-        await batchLoader.next()
+        await batchLoader.next().value;
     }
     
     async function loadRestLowResImages() {
-        console.log('loadRestLowResImages')
-        await batchLoader.next()
+        await batchLoader.next().value;
     }
     
     async function loadAllHighResImages() {
-        console.log('loadAllHighResImages')
-        await batchLoader.next()
+        await batchLoader.next().value;
     }
     
     async function show(wrapperSelector) {
@@ -68,8 +65,6 @@ module.exports = function (imagesRootFolder) {
         })
         
         recalculateImageDimensions(imageElements)
-        console.log('imageElements', JSON.stringify(imageElements))
-        centerFirstImage(imageElements)
         document.querySelector('#coolshow').style.opacity = 1
         root.style.visibility = "visible";
         
@@ -87,11 +82,6 @@ module.exports = function (imagesRootFolder) {
     }
     
     function initControllers(imageElements) {
-        // await Promise.all(images.map(image => new Promise(resolve => {
-        //     image.on('loadedLowRes', resolve)
-        // })))
-        // console.log('ALL LOW RES LOADED, INITIATING CONTROLLERS')
-        
         setupControllerButtonActions(
             document.getElementById(nextButtonId),
             document.getElementById(previousButtonId),
@@ -190,8 +180,6 @@ module.exports = function (imagesRootFolder) {
             return 0;
         else
             return currentImageIndex + 1;
-        
-        //centerCurrentImage(allImages, currentImageIndex);
     }
     
     /**
@@ -204,8 +192,6 @@ module.exports = function (imagesRootFolder) {
             return allImages.length - 1;
         else
             return currentImageIndex - 1;
-        
-        //centerCurrentImage(allImages, currentImageIndex);
     }
     
     /**
@@ -230,21 +216,6 @@ module.exports = function (imagesRootFolder) {
         let leftPositionOffset = 0;
         for (let i = 0; i < currentImageIndex; i++)
             leftPositionOffset += (mainContainerElement.offsetHeight / images[i].naturalHeight) * images[i].naturalWidth;
-        let virtualImageWidth = (mainContainerElement.offsetHeight / image.naturalHeight) * image.naturalWidth;
-        let offsetToCenter = leftPositionOffset - (mainContainerElement.offsetWidth - virtualImageWidth) * 0.5;
-        setOffset(flowContainerElement, offsetToCenter);
-    }
-    
-    function centerFirstImage(images) {
-        if (images.length < 1) throw new Error("Slideshow needs to have 1 image to center first image")
-        let image = images[0]
-        if (!image.naturalWidth) return;
-        
-        let mainContainerElement = document.getElementsByClassName(containerClass)[0]
-        if (!mainContainerElement) return
-        let flowContainerElement = document.getElementById(flowContainerId)
-        
-        let leftPositionOffset = (mainContainerElement.offsetHeight / image.naturalHeight) * image.naturalWidth;
         let virtualImageWidth = (mainContainerElement.offsetHeight / image.naturalHeight) * image.naturalWidth;
         let offsetToCenter = leftPositionOffset - (mainContainerElement.offsetWidth - virtualImageWidth) * 0.5;
         setOffset(flowContainerElement, offsetToCenter);
