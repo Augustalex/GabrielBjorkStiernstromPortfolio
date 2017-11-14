@@ -24,7 +24,6 @@ let windowController = require('../../JS/windowController.js');
     else {
         pageName = hashParts[1]
     }
-    console.log('pageName', pageName)
     loadPageByName(pageName)
     setSelectedNavigationButton(pageName)
     windowController.reevaluateHeights()
