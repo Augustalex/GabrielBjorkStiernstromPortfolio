@@ -11,16 +11,28 @@ let windowController = require('../../JS/windowController.js');
 (async function () {
     [...document.getElementsByClassName("buttonPortfolio")].forEach(button => {
         button.addEventListener('click', (event) => {
-            window.location.hash = event.target.id
+            window.location.hash = `/${event.target.id}`
             window.location.reload()
         })
     });
     
-    let pageName = window.location.hash.substr(1) || 'home'
+    let pageName
+    let hashParts = window.location.hash.split('/')
+    if(hashParts.length <= 1){
+        pageName = 'home'
+    }
+    else {
+        pageName = hashParts[1]
+    }
+    console.log('pageName', pageName)
     loadPageByName(pageName)
     setSelectedNavigationButton(pageName)
     windowController.reevaluateHeights()
     
+    window.addEventListener('hashchange', (e) => {
+        window.location = e.newURL
+        window.location.reload()
+    })
     window.addEventListener("resize", windowController.reevaluateHeights);
     window.addEventListener("orientationchange", windowController.reevaluateHeights);
 }())

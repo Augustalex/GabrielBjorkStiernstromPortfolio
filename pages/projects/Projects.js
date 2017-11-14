@@ -8,10 +8,13 @@ module.exports = function (projects, containerId) {
     
     let imageContainers = [];
     
-    init();
+    return {
+        init,
+        loadProjectByHash
+    }
     
     async function init() {
-        let projectThumbnails = await Promise.all(projects.map(loadProjectThumbnail))
+        let projectThumbnails = await Promise.all(projects.map(setupProjectThumbnail))
         imageContainers.push(...projectThumbnails)
         let container = document.getElementById(containerId)
         
@@ -19,24 +22,24 @@ module.exports = function (projects, containerId) {
             container.appendChild(i)
         })
         
-        appendFlexSpacers(imageContainers, container)
-        
         window.addEventListener("resize", resizeReload);
         window.addEventListener("orientationchange", resizeReload);
     }
     
-    async function loadProjectThumbnail(project) {
+    function loadProjectByHash(hash) {
+        let lastPart = hash.split('/').pop()
+        let project = projects.find(p => p.name === lastPart)
+        if(!project) return;
+        
+        openProject(project)
+    }
+    
+    async function setupProjectThumbnail(project) {
         let image = await project.thumbnailImage.load();
-        let thumbnail = createThumbnailContainer({
-            header: project.header,
-            description: project.description,
-            image
-        })
+        let thumbnail = createThumbnailContainer(image, project.header, project.description)
         
         thumbnail.onclick = () => {
-            let contentFlow = ContentFlow();
-            contentFlow.start(project.images)
-            project.images.forEach(i => i.image.load())
+            openProject(project)
         }
         
         return thumbnail;
@@ -48,79 +51,25 @@ module.exports = function (projects, containerId) {
             window.removeEventListener("resize", resizeReload);
             window.removeEventListener("orientationchange", resizeReload);
         }
-        else {
-            appendFlexSpacers(imageContainers, container)
-        }
     }
-}
-
-function appendFlexSpacers(imageContainers, container) {
-    let imagesPerRowFactor = container.offsetWidth / imageContainers[0].offsetWidth;
-    let fittedImagesPerRow = Math.max(1, Math.floor(imagesPerRowFactor));
-    let leftOverFrames = Math.floor(imageContainers.length / fittedImagesPerRow);
-    if (leftOverFrames === 0) {
-        let dummies = document.getElementsByClassName('dummyThumbnail')
-        for (let i = 0; i < dummies.length; i++) {
-            dummies.remove()
-        }
-    }
-    if (imageContainers.length % fittedImagesPerRow !== 0) {
-        let dummies = document.getElementsByClassName('dummyThumbnail')
-        if (dummies.length > leftOverFrames) {
-            let toRemove = dummies.length - leftOverFrames
-            for (let i = 0; i < toRemove; i++) {
-                dummies[i].remove()
-            }
-        }
-        else if (dummies.length < leftOverFrames) {
-            let toAdd = leftOverFrames - dummies.length;
-            for (let i = 0; i < toAdd; i++) {
-                let dummy = createThumbnailContainer({isDummy: true})
-                container.appendChild(dummy)
-            }
-        }
-    }
-}
-
-function createThumbnailContainer({image, header, description, isDummy}) {
-    let hasDescription = !!description
     
+    function openProject(project) {
+        let contentFlow = ContentFlow();
+        contentFlow.start(project.images)
+        project.images.forEach(i => i.image.load())
+    }
+}
+
+function createThumbnailContainer(imageElement, header, description) {
     let container = parseHTML(`<div class="thumbnailContainer"></div>`)
-    let imageElement = !isDummy ? image : parseHTML('<div class="thumbnail"></div>')
     imageElement.className += ' thumbnail'
+    container.appendChild(imageElement)
+    let hasDescription = !!description
     let descriptionElement = parseHTML(`<div class="imageDescription">
             <h1>${header || ''}</h1>
             ${hasDescription ? `<p>${description}</p>` : ''}
         </div>`)
-    container.appendChild(imageElement)
     container.appendChild(descriptionElement)
-    if (isDummy) {
-        container.style.opacity = '0'
-        container.className += ' dummyThumbnail'
-    }
     
     return container
-}
-
-function fitThumbnailsToContainer(imageContainers, containerId) {
-    let marginPixels = 10;
-    let preferredImageWidth = 550;
-    let ratio = 2.2
-    
-    let container = document.getElementById(containerId);
-    let imagesPerRowFactor = container.offsetWidth / preferredImageWidth;
-    let fittedImagesPerRow = Math.floor(imagesPerRowFactor);
-    
-    let imageScaleFactor = 1 + ((imagesPerRowFactor - fittedImagesPerRow) / fittedImagesPerRow);
-    let heightPixelSize = Math.floor(preferredImageWidth * imageScaleFactor / ratio);
-    let screenEstateFactor = (container.offsetWidth - fittedImagesPerRow * (marginPixels * 2)) / container.offsetWidth
-    let widthPercentage = screenEstateFactor * 100 / fittedImagesPerRow;
-    
-    for (let i = 0; i < imageContainers.length; i++) {
-        let element = imageContainers[i];
-        element.style.width = `${widthPercentage * 0.99}%`;
-        element.style.height = `${heightPixelSize}px`;
-        element.style.margin = `${marginPixels}px`;
-        container.appendChild(imageContainers[i]);
-    }
 }

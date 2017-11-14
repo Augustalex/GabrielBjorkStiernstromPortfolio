@@ -30,6 +30,7 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
             }
             else {
                 imageElement.onload = () => {
+                    hasLoadedLowRes = true;
                     resolve()
                     imageElement.onload = null
                 }

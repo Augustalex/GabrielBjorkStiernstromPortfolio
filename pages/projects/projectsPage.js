@@ -16,6 +16,8 @@ module.exports = function () {
             `<div id="projectsLibrary"></div>`
         
         let parsedProjects = projectsData.map(data => Project(data, ""))
-        Projects(parsedProjects, "projectsLibrary");
+        let projectsPage = Projects(parsedProjects, "projectsLibrary");
+        await projectsPage.init()
+        projectsPage.loadProjectByHash(window.location.hash)
     }
 }
