@@ -28,10 +28,6 @@ let windowController = require('../../JS/windowController.js');
     setSelectedNavigationButton(pageName)
     windowController.reevaluateHeights()
     
-    window.addEventListener('hashchange', (e) => {
-        window.location = e.newURL
-        window.location.reload()
-    })
     window.addEventListener("resize", windowController.reevaluateHeights);
     window.addEventListener("orientationchange", windowController.reevaluateHeights);
 }())

@@ -42,15 +42,20 @@ module.exports = function (deps = {}) {
         })
         
         closeButton.onclick = () => {
-            clearContainer(flowContainer)
-            delete closeButton.onclick
+            close()
         }
         
         flowContainer.onclick = event => {
             if (event.target.getAttribute("class") === containerClass)
-                clearContainer(flowContainer)
+                close()
         }
         flowContainer.style.pointerEvents = "all";
+        
+        function close() {
+            clearContainer(flowContainer)
+            delete closeButton.onclick
+            window.location.hash = '/projects'
+        }
     }
     
     function getOrCreateFlowContainer() {
