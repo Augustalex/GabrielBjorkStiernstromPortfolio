@@ -39,6 +39,7 @@ module.exports = function (projects, containerId) {
         let thumbnail = createThumbnailContainer(image, project.header, project.description)
         
         thumbnail.onclick = () => {
+            window.location.hash = `/projects/${project.name}`
             openProject(project)
         }
         
