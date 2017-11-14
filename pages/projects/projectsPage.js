@@ -4,7 +4,6 @@
 
 const Projects = require('./Projects.js')
 const Project = require('../../JS/Project.js')
-const projectsData = require('./projects.json')
 
 module.exports = function () {
     return {
@@ -12,6 +11,8 @@ module.exports = function () {
     }
     
     async function show(wrapperSelector) {
+        let projectsData = await loadProjectsJSON()
+
         document.querySelector(wrapperSelector).innerHTML =
             `<div id="projectsLibrary"></div>`
         
@@ -20,4 +21,21 @@ module.exports = function () {
         await projectsPage.init()
         projectsPage.loadProjectByHash(window.location.hash)
     }
+}
+
+async function loadProjectsJSON() {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', 'projects.json')
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                resolve(JSON.parse(xhr.responseText))
+            }
+            else {
+                reject(xhr.status)
+                console.log('Failed to load projects.', xhr.status)
+            }
+        }
+        xhr.send()
+    })
 }

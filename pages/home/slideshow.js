@@ -1,5 +1,4 @@
 const parseHTML = require('../../JS/parseHTML.js')
-const slideshowImages = require('./slideshow.json')
 
 const containerClass = 'coolshow'
 const flowContainerId = 'coolshowFlow'
@@ -13,12 +12,9 @@ const quickImageBatchLoader = require('../../JS/quickImageBatchLoader.js')
 
 module.exports = function (imagesRootFolder) {
     
-    let images = slideshowImages.map(i => {
-        return QuickImage(imagesRootFolder, i)
-    })
-    let imageElements = images.map(i => i.getElement())
-    
-    let batchLoader = quickImageBatchLoader.BatchLoader(images)
+    let images
+    let imageElements
+    let batchLoader
     
     let currentSlideshowIndex = 0;
     
@@ -45,6 +41,13 @@ module.exports = function (imagesRootFolder) {
     }
     
     async function show(wrapperSelector) {
+        const slideshowImages = await loadPortfolioJSON()
+        images = slideshowImages.map(i => {
+            return QuickImage(imagesRootFolder, i)
+        })
+        imageElements = images.map(i => i.getElement())
+        batchLoader = quickImageBatchLoader.BatchLoader(images)
+        
         await loadFirstLowResImages()
         
         let root = parseHTML(
@@ -288,4 +291,21 @@ module.exports = function (imagesRootFolder) {
         conformImagesToHeight(allImages, flowContainer.offsetHeight);
         centerCurrentImage(allImages, currentSlideshowIndex);
     }
+}
+
+async function loadPortfolioJSON() {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', 'slideshow.json')
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                resolve(JSON.parse(xhr.responseText))
+            }
+            else {
+                reject(xhr.status)
+                console.log('Failed to load portfolio.', xhr.status)
+            }
+        }
+        xhr.send()
+    })
 }
