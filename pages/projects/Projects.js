@@ -28,8 +28,9 @@ module.exports = function (projects, containerId) {
     
     function loadProjectByHash(hash) {
         let lastPart = hash.split('/').pop()
-        let project = projects.find(p => p.name === lastPart)
-        if(!project) return;
+        let projectName = lastPart.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+        let project = projects.find(p => p.name === projectName)
+        if (!project) return;
         
         openProject(project)
     }
@@ -39,7 +40,8 @@ module.exports = function (projects, containerId) {
         let thumbnail = createThumbnailContainer(image, project.header, project.description)
         
         thumbnail.onclick = () => {
-            window.location.hash = `/projects/${project.name}`
+            let projectNameKebabCase = project.name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+            window.location.hash = `/projects/${projectNameKebabCase}`
             openProject(project)
         }
         
