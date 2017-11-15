@@ -1,9 +1,9 @@
 <template>
     <site-append>
-        <div class="ContentFlowContainer" @click="close">
+        <div @click="close" ref="flowContainer" class="ContentFlowContainer">
             <div @click="close" class="contentFlowContainer-closeButton">X</div>
             <div @click.stop="" class="ContentFlow">
-                <div v-for="image in images" ref="flowImages" class="contentFlow-imageWrapper">
+                <div v-for="(image, index) in images" @click="imageClick(index)" ref="flowImages" class="contentFlow-imageWrapper">
                 </div>
             </div>
         </div>
@@ -14,9 +14,19 @@
 
     module.exports = {
         props: ['images'],
+        data() {
+            return {
+                scrollTop: 0
+            }
+        },
         methods: {
             close() {
                 this.$emit('close')
+            },
+            imageClick(imageIndex) {
+                let imageElement = this.$refs.flowImages[imageIndex]
+                let offsetToCenter = window.innerHeight * .5 - imageElement.offsetHeight * .5
+                this.$refs.flowContainer.scrollTop = imageElement.offsetTop - offsetToCenter
             }
         },
         mounted() {
