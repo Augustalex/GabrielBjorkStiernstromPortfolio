@@ -6,7 +6,7 @@
                 <h1>
                     {{ project.header }}
                 </h1>
-                <p>
+                <p v-if="project.description">
                     {{ project.description }}
                 </p>
             </div>
