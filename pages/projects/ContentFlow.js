@@ -1,5 +1,6 @@
 let parseHTML = require('../../JS/parseHTML.js')
 let LoadingBox = require('./LoadingBox.js')
+let EventBus = require('../../JS/EventBus.js')
 
 module.exports = function (deps = {}) {
     
@@ -7,13 +8,14 @@ module.exports = function (deps = {}) {
     let flowElementClass = deps.containerClass || "ContentFlow";
     let imageClass = deps.imageClass || "ContentFlowImage";
     
+    let eventBus = EventBus()
+    
     return {
-        start
+        start,
+        on: eventBus.on
     }
     
     function start(imageFiles) {
-        let images = imageFiles.map(i => i.image.getElement())
-        
         let flowContainer = getOrCreateFlowContainer();
         let flowElement = parseHTML(`<div class="${flowElementClass}"></div>`)
         let closeButton = parseHTML(`<div class="contentFlowContainer-closeButton">X</div>`)
@@ -24,20 +26,8 @@ module.exports = function (deps = {}) {
         
         imageFiles.forEach(file => {
             file.image.getElement().className += ` ${imageClass}`
-            // loadImage(flowElement, file.getAttribute(attributeName));
-            let imageHeaderHTML = file.header ? `
-                <div class="contentFlow-imageHeader">
-                    ${file.header}
-                </div>
-            ` : ''
-            let imageDescriptionHTML = file.description ? `
-                <div class="contentFlow-imageDescription">
-                    ${file.description}
-                </div>
-            ` : ''
             let el = parseHTML(`<div class="contentFlow-imageWrapper"></div>`)
             if(file.name) el.appendChild(file.image.getElement())
-            // el.appendChild(parseHTML(`<div class="contentFlow-imageTextWrapper">${imageHeaderHTML}${imageDescriptionHTML}</div>`))
             flowElement.appendChild(el)
         })
         
@@ -54,7 +44,7 @@ module.exports = function (deps = {}) {
         function close() {
             clearContainer(flowContainer)
             delete closeButton.onclick
-            window.location.hash = '/projects'
+            eventBus.emit('close')
         }
     }
     

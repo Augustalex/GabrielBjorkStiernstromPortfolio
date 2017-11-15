@@ -12,14 +12,13 @@ module.exports = function () {
     
     async function show(wrapperSelector) {
         let projectsData = await loadProjectsJSON()
-
+        
         document.querySelector(wrapperSelector).innerHTML =
             `<div id="projectsLibrary"></div>`
         
         let parsedProjects = projectsData.map(data => Project(data, ""))
         let projectsPage = Projects(parsedProjects, "projectsLibrary");
         await projectsPage.init()
-        projectsPage.loadProjectByHash(window.location.hash)
     }
 }
 

@@ -17,7 +17,6 @@ module.exports = function (project, rootRelativePath) {
             }
         })
     
-    
     return {
         name: project.name,
         header: project.header,

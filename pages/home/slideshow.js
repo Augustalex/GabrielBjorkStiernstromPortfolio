@@ -9,7 +9,6 @@ const previousButtonId = 'coolshowPreviousButton'
 const QuickImage = require('../../JS/QuickImage.js')
 const quickImageBatchLoader = require('../../JS/quickImageBatchLoader.js')
 
-
 module.exports = function (imagesRootFolder) {
     
     let images

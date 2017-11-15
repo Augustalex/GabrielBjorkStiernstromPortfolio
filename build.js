@@ -1,7 +1,7 @@
 let fs = require("fs");
 let browserify = require("browserify");
 let p = require('partialify');
-
+let vueify = require('vueify');
 let chokidar = require('chokidar')
 let watcher = chokidar.watch('./pages')
 
@@ -29,6 +29,7 @@ function build() {
     building = true
     return browserify("./pages/index/main.js")
         .transform(p)
+        .transform(vueify)
         .transform("babelify", {presets: ["env"]})
         .bundle()
         .pipe(fs.createWriteStream("./dist/main.js"))
