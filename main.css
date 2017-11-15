@@ -636,9 +636,9 @@ img.profilepic {
 .contentFlowContainer-closeButton {
     position: fixed;
     right: 1em;
-    font-size: 4em;
-    color: white;
-    font-family: monospace;
+    font-size: 3em;
+    color: #666;
+    font-family: "Arial Black";
     cursor: pointer;
 }
 
