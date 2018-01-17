@@ -10,10 +10,19 @@ module.exports = function () {
         let element = document.querySelector(wrapperSelector)
         try {
             element.innerHTML = await loadAboutMeHTML()
+            adjustPortfolioWrapperHeightToExcludeUI();
         }
-        catch(err) {
+        catch (err) {
             console.log('Failed to load "About me" page.', err)
         }
+    }
+    
+    function adjustPortfolioWrapperHeightToExcludeUI() {
+        let portfolioWrapper = document.querySelector('#portfolio_wrapper')
+        portfolioWrapper.style.height = `${Math.round(window.innerHeight * .88)}px`
+        window.addEventListener('resize', () => {
+            portfolioWrapper.style.height = `${Math.round(window.innerHeight * .88)}px`
+        })
     }
     
     async function loadAboutMeHTML() {
