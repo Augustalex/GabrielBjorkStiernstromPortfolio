@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: Inkferno;
     src: url(file/fonts/INKFERNO.ttf);
@@ -104,7 +103,6 @@ img {
     width: 100%;
     height: 88vh;
     position: relative;
-    overflow-y: scroll;
     overflow-x: hidden;
     top: 0;
     left: 0;
@@ -114,7 +112,19 @@ img {
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
-    –webkit-overflow-scrolling: touch;
+
+    overflow-y: scroll; /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
 }
 
 #footer {
@@ -226,6 +236,7 @@ img {
 .aboutMe-project {
     margin: 2em 0;
 }
+
 .aboutMe-project h3 {
     color: #000;
     font-weight: bold;
@@ -340,6 +351,24 @@ ul.social_icons li {
 /*	The outer container for a single thumbnail	*/
 .thumbnailContainer {
     position: relative;
+    margin: 8px 8px;
+    width: 600px;
+}
+
+.thumbnailContainer:hover {
+    cursor: pointer;
+}
+
+@supports (display: grid) {
+    div#projectsLibrary img {
+        width: 100%;
+    }
+
+    .thumbnailContainer {
+        position: relative;
+        margin: unset;
+        width: unset;
+    }
 }
 
 /* The description that will show
@@ -402,13 +431,23 @@ a.lightboxLink {
 
 /*	The div containing all thumbnails.	*/
 div#projectsLibrary {
-    padding: 20px 0 10px 0;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 28vmax));
+    display: flex;
+    width: 92%;
+    flex-wrap: wrap;
+    margin: 0 auto;
     justify-content: center;
-    grid-gap: 20px;
-    -ms-grid-columns: auto auto auto;
+}
+
+@supports (display: grid) {
+    div#projectsLibrary {
+        padding: 20px 0 10px 0;
+        width: 100%;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 28vmax));
+        grid-gap: 20px;
+        -ms-grid-columns: auto auto auto;
+    }
 }
 
 /*	The image contained inside a thumbnailContainer	*/
