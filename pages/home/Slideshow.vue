@@ -147,7 +147,7 @@
                 }
             }
         },
-        async mounted() {
+        mounted() {
             this.images.forEach(image => {
                 this.$refs.coolshowFlow.appendChild(image)
             })

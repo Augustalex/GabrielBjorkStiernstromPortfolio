@@ -2,7 +2,7 @@ let assert = require('assert')
 let sinon = require('sinon')
 let EventBus = require('../../JS/EventBus.js')
 module.exports = {
-    'EventBus': {
+    '//EventBus': {
         'when listen to message and emit message should call listener': function () {
             let eventBus = EventBus()
             let listener = sinon.stub()

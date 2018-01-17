@@ -1,13 +1,13 @@
-let requireAll = require('require-all')
+let DynamicImageVue = require('./pages/home/DynamicImageVue.js')
+let EventBus = require('./JS/eventBus.js')
 let {runTests} = require('./testTools.js')
 
-let suite = requireAll(__dirname)
-delete suite['testRunner']
-delete suite['testTools']
+let suite = {
+    'DynamicImageVue': DynamicImageVue
+}
 
 async function run() {
     await runTests(suite, 'tests')
-    process.exit()
 }
 
 run()
