@@ -1,8 +1,9 @@
 let fs = require("fs");
 let browserify = require("browserify");
-let p = require('partialify');
+let partialify = require('partialify');
 let vueify = require('vueify');
 let chokidar = require('chokidar')
+let envify = require('envify/custom')
 let watcher = chokidar.watch('./pages')
 
 let building = false
@@ -10,10 +11,10 @@ let queued = false
 watcher.on('ready', function () {
     console.log('ready')
     watcher.on('all', function () {
-        try{
+        try {
             build()
         }
-        catch(err) {
+        catch (err) {
             console.log('There was an error when building: ', err.message)
         }
     })
@@ -28,9 +29,14 @@ function build() {
     console.log('\x1b[36m%s\x1b[0m', 'Starting build. . .')
     building = true
     return browserify("./pages/index/main.js")
-        .transform(p)
+        .transform(partialify)
         .transform(vueify)
-        .transform("babelify", {presets: ["env"]})
+        .transform(
+            // Required in order to process node_modules files
+            {global: true},
+            envify({NODE_ENV: 'production'})
+        )
+        .transform("babelify", {presets: ["env"], plugins: ["transform-async-to-generator"]})
         .bundle()
         .pipe(fs.createWriteStream("./dist/main.js"))
         .on('finish', () => {
@@ -38,7 +44,7 @@ function build() {
                 console.log('Running queued rebuild!')
                 build()
             }
-            else{
+            else {
                 console.log('\tDone!\n')
             }
             building = false
