@@ -1,14 +1,34 @@
+
 const FOOTER_SIZE = 0.15
 
 module.exports = {
-    reevaluateHeights,
-    adjustPortfolioWrapperHeightToExcludeUI
+    reevaluateHeights
 }
 
 function setFooterSizeToJustFit() {
     let footer = document.getElementById("footer");
+    /*
+     var calcHeight;
+     try {
+     calcHeight = window.getComputedStyle(footer, null)
+     .getPropertyValue('height');
+     } catch(e) {
+     calcHeight = document.getElementById('example').currentStyle.height;
+     }
+     console.log(calcHeight);
+     var newHeightToAdd = window.innerHeight * 0.15 - (footer.offsetHeight - parseInt(calcHeight, 10));
+
+     console.log(footer.offsetHeight, calcHeight);
+     console.log($("#footer").css("height"));
+     $("#footer").css("height", calcHeight + newHeightToAdd + "px");
+     console.log($("#footer").css("height"));
+     console.log("New height to add: ", newHeightToAdd);*/
+    
     let newHeight = window.innerHeight * FOOTER_SIZE
     footer.style.height = newHeight + "px";
+    
+    //var height = document.getElementById("footer").offsetHeight;
+    //document.getElementById("portfolio_wrapper").style.marginBottom = height + "px";
 }
 
 function setSlideshowSizeToJustFit() {
@@ -29,12 +49,4 @@ function reevaluateHeights() {
     }
     
     // setFooterSizeToJustFit();
-}
-
-function adjustPortfolioWrapperHeightToExcludeUI() {
-    let portfolioWrapper = document.querySelector('#portfolio_wrapper')
-    portfolioWrapper.style.height = `${Math.round(window.innerHeight * .88)}px`
-    window.addEventListener('resize', () => {
-        portfolioWrapper.style.height = `${Math.round(window.innerHeight * .88)}px`
-    })
 }

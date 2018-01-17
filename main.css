@@ -112,7 +112,8 @@ img {
 }
 
 #footer {
-    height: 12vmax;
+    height: 180px;
+    max-height: 12vmax;
     width: 100%;
     color: #EEE;
     margin: 0;
@@ -419,6 +420,7 @@ div#projectsLibrary {
     width: 92%;
     flex-wrap: wrap;
     margin: 0 auto;
+    margin-bottom: 10px;
     justify-content: center;
 }
 

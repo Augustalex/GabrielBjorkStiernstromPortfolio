@@ -3,7 +3,10 @@
         <div @click="close" ref="flowContainer" class="ContentFlowContainer">
             <div @click="close" class="contentFlowContainer-closeButton">X</div>
             <div @click.stop="" class="ContentFlow">
-                <div v-for="(image, index) in images" @click="imageClick(index)" ref="flowImages" class="contentFlow-imageWrapper">
+                <div v-for="(image, index) in images"
+                     @click="imageClick(index)"
+                     ref="flowImages"
+                     class="contentFlow-imageWrapper">
                 </div>
             </div>
         </div>

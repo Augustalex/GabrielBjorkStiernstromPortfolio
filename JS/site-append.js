@@ -11,8 +11,7 @@ Vue.component('site-append', {
     },
     mounted() {
         this.el = this.$el.firstChild
-        let siteWrapper = document.getElementById('siteWrapper')
-        siteWrapper.appendChild(this.el)
+        document.body.appendChild(this.el)
     },
     destroyed() {
         this.el.remove()

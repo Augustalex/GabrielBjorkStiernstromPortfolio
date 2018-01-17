@@ -2,6 +2,7 @@
  * Created by DAW 28 on 2016-12-18.
  */
 
+const windowController = require('../../JS/windowController.js')
 const Projects = require('./Projects.js')
 const Project = require('../../JS/Project.js')
 
@@ -19,6 +20,7 @@ module.exports = function () {
         let parsedProjects = projectsData.map(data => Project(data, ""))
         let projectsPage = Projects(parsedProjects, "projectsLibrary");
         await projectsPage.init()
+        windowController.adjustPortfolioWrapperHeightToExcludeUI();
     }
 }
 

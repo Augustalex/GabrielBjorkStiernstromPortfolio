@@ -15,6 +15,7 @@ module.exports = function () {
         let coolshow = new Coolshow(imagesRootFolder)
         await coolshow.show(wrapperSelector);
         windowController.reevaluateHeights(); // TODO Is this longer needed? After heights changed to viewport heights
+        windowController.adjustPortfolioWrapperHeightToExcludeUI();
     }
     
 }

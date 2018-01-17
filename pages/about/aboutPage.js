@@ -1,3 +1,5 @@
+let windowController = require('../../JS/windowController.js')
+
 const ABOUT_ME_PAGE_PATH = 'about.html'
 
 module.exports = function () {
@@ -10,19 +12,11 @@ module.exports = function () {
         let element = document.querySelector(wrapperSelector)
         try {
             element.innerHTML = await loadAboutMeHTML()
-            adjustPortfolioWrapperHeightToExcludeUI();
+            windowController.adjustPortfolioWrapperHeightToExcludeUI();
         }
         catch (err) {
             console.log('Failed to load "About me" page.', err)
         }
-    }
-    
-    function adjustPortfolioWrapperHeightToExcludeUI() {
-        let portfolioWrapper = document.querySelector('#portfolio_wrapper')
-        portfolioWrapper.style.height = `${Math.round(window.innerHeight * .88)}px`
-        window.addEventListener('resize', () => {
-            portfolioWrapper.style.height = `${Math.round(window.innerHeight * .88)}px`
-        })
     }
     
     async function loadAboutMeHTML() {
