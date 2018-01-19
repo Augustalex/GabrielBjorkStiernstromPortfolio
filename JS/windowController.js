@@ -2,7 +2,8 @@ const FOOTER_SIZE = 0.15
 
 module.exports = {
     reevaluateHeights,
-    adjustPortfolioWrapperHeightToExcludeUI
+    adjustPortfolioWrapperHeightToExcludeUI,
+    adjustPortfolioWrapperHeightToExcludeUIAutomatically
 }
 
 function setFooterSizeToJustFit() {
@@ -33,8 +34,18 @@ function reevaluateHeights() {
 
 function adjustPortfolioWrapperHeightToExcludeUI() {
     let portfolioWrapper = document.querySelector('#portfolio_wrapper')
-    portfolioWrapper.style.height = `${Math.round(window.innerHeight * .88)}px`
+    adjustPortfolioWrapperHeight(portfolioWrapper)
+}
+
+function adjustPortfolioWrapperHeightToExcludeUIAutomatically() {
+    let portfolioWrapper = document.querySelector('#portfolio_wrapper')
+    adjustPortfolioWrapperHeight(portfolioWrapper)
     window.addEventListener('resize', () => {
-        portfolioWrapper.style.height = `${Math.round(window.innerHeight * .88)}px`
+        adjustPortfolioWrapperHeight(portfolioWrapper)
     })
+}
+
+function adjustPortfolioWrapperHeight(portfolioWrapper) {
+    const wrapperHeight = window.innerHeight - 180 //(footerSizePx < maxHeight ? footerSizePx : maxHeight)
+    portfolioWrapper.style.height = `${Math.round(wrapperHeight)}px`
 }

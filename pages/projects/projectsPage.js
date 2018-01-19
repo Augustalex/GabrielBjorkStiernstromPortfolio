@@ -20,7 +20,7 @@ module.exports = function () {
         let parsedProjects = projectsData.map(data => Project(data, ""))
         let projectsPage = Projects(parsedProjects, "projectsLibrary");
         await projectsPage.init()
-        windowController.adjustPortfolioWrapperHeightToExcludeUI();
+        windowController.adjustPortfolioWrapperHeightToExcludeUIAutomatically();
     }
 }
 

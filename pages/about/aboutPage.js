@@ -12,7 +12,7 @@ module.exports = function () {
         let element = document.querySelector(wrapperSelector)
         try {
             element.innerHTML = await loadAboutMeHTML()
-            windowController.adjustPortfolioWrapperHeightToExcludeUI();
+            windowController.adjustPortfolioWrapperHeightToExcludeUIAutomatically();
         }
         catch (err) {
             console.log('Failed to load "About me" page.', err)

@@ -9,6 +9,8 @@
     </div>
 </template>
 <script>
+    let windowController = require('../../JS/windowController.js')
+
     module.exports = {
         props: [
             'images',
@@ -90,9 +92,11 @@
             }
         },
         methods: {
-            reloadOnResize() {
+            async reloadOnResize() {
+                windowController.adjustPortfolioWrapperHeightToExcludeUI()
+                await this.$nextTick();
                 this.setImagesToSlideshowHeight()
-
+                
                 //Force recompute properties as they are dependent on window changes not tracked by Vue
                 this.currentSlideshowIndex -= 1
                 this.currentSlideshowIndex += 1

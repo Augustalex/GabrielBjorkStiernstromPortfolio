@@ -113,7 +113,7 @@ img {
 
 #footer {
     height: 180px;
-    max-height: 12vmax;
+    /*max-height: 12vmax;*/
     width: 100%;
     color: #EEE;
     margin: 0;
