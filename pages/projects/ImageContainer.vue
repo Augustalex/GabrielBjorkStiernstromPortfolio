@@ -2,13 +2,14 @@
   <div
       @click="imageClick"
       ref="imageContainer"
-      class="contentFlow-imageWrapper">
+      class="contentFlow-imageWrapper"
+  >
   </div>
 </template>
 <script>
 
 module.exports = {
-  props: ['image'],
+  props: ['image', 'imageId'],
   data() {
     return {
       scrollTop: 0
@@ -17,6 +18,7 @@ module.exports = {
   mounted() {
     this.$refs.imageContainer.appendChild(this.image);
     this.$refs.imageContainer.classList.add('ContentFlowImage');
+    this.$refs.imageContainer.classList.add(this.imageId);
   },
   methods: {
     imageClick() {

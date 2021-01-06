@@ -8,6 +8,7 @@
                      @click="imageClick(index)"
                      :key="index"
                      class="contentFlow-imageWrapper"
+                    :image-id="`contentFlow-image-${index}`"
                 />
             </div>
         </div>
@@ -29,9 +30,10 @@
                 this.$emit('close')
             },
             imageClick(imageIndex) {
-                let imageElement = this.$refs.flowImages[imageIndex]
-                let offsetToCenter = window.innerHeight * .5 - imageElement.offsetHeight * .5
-                this.$refs.flowContainer.scrollTop = imageElement.offsetTop - offsetToCenter
+                let imageId = `.contentFlow-image-${imageIndex}`;
+                let imageElement = document.querySelector(imageId);
+                let offsetToCenter = window.innerHeight * .5 - imageElement.offsetHeight * .5;
+                this.$refs.flowContainer.scrollTop = imageElement.offsetTop - offsetToCenter;
             }
         },
         components: {ImageContainer}
