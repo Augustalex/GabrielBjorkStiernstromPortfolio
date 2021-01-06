@@ -1,0 +1,2 @@
+User-agent: Googlebot-Image
+Disallow: /FILES/IMG/ICONS/artstation_logo_icon.svg
