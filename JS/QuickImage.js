@@ -6,7 +6,8 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
     let [name, extension] = image.name.split('.');
     console.log('name', name, 'extension', extension);
     let defaultFileExtension = `.${extension}` || '.jpg'
-    let imageElement = new Image();
+    console.log('defaultFileExtension', defaultFileExtension);
+    let imageElement = document.createElement('img');
     let highResPreloadDummy = new Image();
     
     let lowResPath = `${dir}/${name}_low`
@@ -30,6 +31,7 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
                 highResPreloadDummy.src = path
             }
             else {
+                console.log('!');
                 imageElement.onload = () => {
                     hasLoadedLowRes = true;
                     resolve()
