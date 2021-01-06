@@ -1,137 +1,231 @@
 [
   {
+    "name": "uk9",
+    "header": "Unknown 9 | Cinematic Trailer",
+    "description": "(Coming January)",
+    "images": []
+  },
+  {
+    "name": "acRaven",
+    "header": "Assassin's Creed Valhalla | Announcement Trailer",
+    "description": "(Coming January)",
+    "images": []
+  },
+  {
+    "name": "destiny2BeyondLight",
+    "header": "Destiny 2 Beyond Light | Cinematics",
+    "description": "Keyframes & VFX Concept art for Destiny 2 Beyond Light cinematic",
+    "images": [
+      {
+        "name": "destiny2BeyondLight_Digic_keyframe_erisMorn.jpg",
+        "header": "Destiny 2 Beyond Light - Keyframe - Eris Morn Shield"
+      },
+      {
+        "name": "destiny2BeyondLight_Digic_keyframe_exoSlide.jpg",
+        "header": "Destiny 2 Beyond Light - Keyframe - Exo Stranger teleportation"
+      },
+      {
+        "name": "destiny2BeyondLight_Digic_keyframe_drifterInDanger.gif",
+        "header": "Destiny 2 Beyond Light - Keyframe - Drifter in Danger"
+      },
+      {
+        "name": "destiny2BeyondLight_Digic_FXconcept_pyramidCrash_GIF.gif",
+        "header": "Destiny 2 Beyond Light - VFX Concept - Pyramid Crash"
+      },
+      {
+        "name": "destiny2BeyondLight_Digic_FXconcept_exoSlam_GIF.gif",
+        "header": "Destiny 2 Beyond Light - VFX Concept - Exo Stranger Slam"
+      },
+      {
+        "name": "destiny2BeyondLight_Digic_FXconcept_exoPulse_GIF.gif",
+        "header": "Destiny 2 Beyond Light - VFX Concept - Exo Stranger Pulse"
+      },
+      {
+        "name": "destiny2BeyondLight_Digic_FXconcept_formingProj_GIF.gif",
+        "header": "Destiny 2 Beyond Light - VFX Concept - Forming Projectile"
+      },
+      {
+        "name": "destiny2BeyondLight_Digic_FXconcept_projFreeze_GIF.gif",
+        "header": "Destiny 2 Beyond Light - VFX Concept - Projectile Freeze"
+      }
+    ]
+  },
+  {
+    "name": "godfall",
+    "header": "Godfall | Cinematic Trailer",
+    "description": "(Coming January)",
+    "images": []
+  },
+  {
+    "name": "eldenRings",
+    "header": "Elden Ring | E3 Announcement Trailer",
+    "description": "(Coming January)",
+    "images": []
+  },
+  {
+    "name": "apollo",
+    "header": "Battleship Apollo",
+    "description": "(Coming Soon)",
+    "images": []
+  },
+  {
+    "name": "digitGames",
+    "header": "STAR TREK Fleet Command",
+    "description": "(Coming Soon)",
+    "images": []
+  },
+  {
+    "name": "neotech",
+    "header": "Neotech Edge",
+    "description": "Cover illustrations for the TRPG Neotech Edge rulebooks",
+    "images": [
+      {
+        "name": "neotechEdgePRD_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Neotech Edge PRD"
+      },
+      {
+        "name": "neotechEdgeAnon_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Neotech Edge Anon"
+      },
+      {
+        "name": "neotechEdgeSystem_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Neotech Edge System"
+      },
+      {
+        "name": "neotechEdgeSystemSpecial_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Neotech Edge System Special Edition"
+      },
+      {
+        "name": "neotechEdgeBooks_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Neotech Edge System Books"
+      }
+    ]
+  },
+  {
     "name": "hadesStar",
     "header": "Hades' Star",
     "description": "Concept Art - Promotional Art",
     "images": [
       {
-        "name": "hadesStarIcePlanet_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarIcePlanet_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Ice Planet"
       },
       {
-        "name": "hadesStarSupernova_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarSupernova_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Supernova"
       },
       {
-        "name": "hadesStarJumpGate_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarJumpGate_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Jump Gate"
       },
       {
-        "name": "hadesStarBlackCitadel_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarBlackCitadel_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Black Citadel"
       },
       {
-        "name": "hadesStarBattleship_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarBattleship_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Battleship"
       },
       {
-        "name": "hadesStarCerberusColussus_by_gabrielBjorkStiernstrom",
-        "header": "Hades' Star - Cerberus Colussus"
-      },
-      {
-        "name": "hadesStarCerberusStation_by_gabrielBjorkStiernstrom",
-        "header": "Hades' Star - Cerberus Station"
-      },
-      {
-        "name": "hadesStarCerberusSentinel_by_gabrielBjorkStiernstrom",
-        "header": "Hades' Star - Cerberus Sentinel"
-      },
-      {
-        "name": "hadesStarCerberusDestroyer_by_gabrielBjorkStiernstrom",
-        "header": "Hades' Star - Cerberus Destroyer"
-      },
-      {
-        "name": "hadesStarCerberusGuardian_by_gabrielBjorkStiernstrom",
-        "header": "Hades' Star - Cerberus Guardian"
-      },
-      {
-        "name": "hadesStarSpaceStation_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarSpaceStation_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Space Station"
       },
       {
-        "name": "hadesStarWarpLaneHub_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarDrone_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Drone"
+      },
+      {
+        "name": "hadesStarWarpLaneHub_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Warp Lane Hub"
       },
       {
-        "name": "hadesStarSpaceStationComp_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarBlueStarArtifact_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Blue Star Artifact"
+      },
+      {
+        "name": "hadesStarCerberusInterceptor_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Interceptor"
+      },
+      {
+        "name": "hadesStarBlueStar_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Blue Star"
+      },
+      {
+        "name": "hadesStarCerberusBomber_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Bomber"
+      },
+      {
+        "name": "hadesStarCerberusSentinel_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Sentinel"
+      },
+      {
+        "name": "hadesStarCerberusColussus_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Colussus"
+      },
+      {
+        "name": "hadesStarCerberusStation_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Station"
+      },
+      {
+        "name": "hadesStarCerberusDestroyer_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Destroyer"
+      },
+      {
+        "name": "hadesStarCerberusMissile_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Missile Ship"
+      },
+      {
+        "name": "hadesStarCerberusGuardian_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Guardian"
+      },
+      {
+        "name": "hadesStarCerberusPhoenix_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Phoenix"
+      },
+      {
+        "name": "hadesStarSpaceStationComp_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Space Station Sketches",
         "description": "The following images are a few selected compositional sketches for the different images done for Hades' Star"
       },
       {
-        "name": "hadesStarCerberusStationComp_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarCerberusStationComp_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Cerberus Station Sketches"
       },
       {
-        "name": "hadesStarCerberusDestroyerComp_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarCerberusDestroyerComp_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Cerberus Destroyer Sketches"
       },
       {
-        "name": "hadesStarCerberusDestroyerComp2_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarCerberusDestroyerComp2_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Cerberus Destroyer Sketches 2"
       },
       {
-        "name": "hadesStarCerberusGuardianComp_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarCerberusBomberComp_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Bomber Sketches"
+      },
+      {
+        "name": "hadesStarCerberusGuardianComp_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Cerberus Guardian Sketches"
       },
       {
-        "name": "hadesStarWarpLaneHubComp_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarCerberusStormComp_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Storm Sketches"
+      },
+      {
+        "name": "hadesStarDroneComp_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Drone Sketches"
+      },
+      {
+        "name": "hadesStarWarpLaneHubComp_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Warp Lane Hub Sketches"
       },
       {
-        "name": "hadesStarJumpGateComp_by_gabrielBjorkStiernstrom",
+        "name": "hadesStarJumpGateComp_by_gabrielBjorkStiernstrom.jpg",
         "header": "Hades' Star - Jump Gate Sketches"
       },
       {
-        "name": "hadesStarBlackCitadelComp_by_gabrielBjorkStiernstrom",
-        "header": "Hades' Star - Black Citadel Sketches"
-      }
-    ]
-  },
-  {
-    "name": "miscWork",
-    "header": "Misc Client Work",
-    "description": "Concept Art - Illustration",
-    "images": [
-      {
-        "name": "inOblivion1_by_gabrielBjorkStiernstrom",
-        "header": "In Oblivion Version 1",
-        "description": "Commisioned work by Oskar Wetterbrandt"
-      },
-      {
-        "name": "inOblivion_by_gabrielBjorkStiernstrom",
-        "header": "In Oblivion Version 2",
-        "description": "Commisioned work by Oskar Wetterbrandt"
-      },
-      {
-        "name": "praxticusLabsFutureCity_by_gabrielBjorkStiernstrom",
-        "header": "Commisioned work by Praxticus Labs"
-      }
-    ]
-  },
-  {
-    "name": "bookCovers",
-    "header": "Cover Illustrations",
-    "description": "Cover illustrations for various authors and books",
-    "images": [
-      {
-        "name": "isaacAsimovFondazioni_by_gabrielBjorkStiernstrom",
-        "header": "Isaac Asimov - Foundations Trilogy",
-        "description": "Note: The typesetting and final color correction is made by Mondadori"
-      },
-      {
-        "name": "markusHeitzWedora1_by_gabrielBjorkStiernstrom",
-        "header": "Markus Heitz - Wédora, Staub und Blut",
-        "description": "Note: The typesetting and final color correction is made by Guter Punkt"
-      },
-      {
-        "name": "markusHeitzWedora2_by_gabrielBjorkStiernstrom",
-        "header": "Markus Heitz - Wédora, Schatten und Tod",
-        "description": "Note: The typesetting and final color correction is made by Guter Punkt"
-      },
-      {
-        "name": "",
-        "header": "more coming soon",
-        "description": "More book illustrations coming soon..."
+        "name": "hadesStarCerberusPhoenixComp_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Hades' Star - Cerberus Phoenix Sketches"
       }
     ]
   },
@@ -141,56 +235,145 @@
     "description": "A collection of different personal works",
     "images": [
       {
-        "name": "looters_by_gabrielBjorkStiernstrom",
+        "name": "rigPlantation_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Rig Plantation"
+      },
+      {
+        "name": "foreignLands_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Foreign Lands"
+      },
+      {
+        "name": "looters_by_gabrielBjorkStiernstrom.jpg",
         "header": "Looters"
       },
       {
-        "name": "ghostTown_by_gabrielBjorkStiernstrom",
+        "name": "ghostTown_by_gabrielBjorkStiernstrom.jpg",
         "header": "Ghost Town"
       },
       {
-        "name": "maurildi_by_gabrielBjorkStiernstrom",
+        "name": "maurildi_by_gabrielBjorkStiernstrom.jpg",
         "header": "Maurildi"
       },
       {
-        "name": "dragonValley_by_gabrielBjorkStiernstrom",
+        "name": "dragonValley_by_gabrielBjorkStiernstrom.jpg",
         "header": "Dragon Valley"
       },
       {
-        "name": "explorationOfAnOldWorld_by_gabrielBjorkStiernstrom",
+        "name": "explorationOfAnOldWorld_by_gabrielBjorkStiernstrom.jpg",
         "header": "Exploration of an Old World"
       },
       {
-        "name": "remainderOfTheForgotten_by_gabrielBjorkStiernstrom",
+        "name": "remainderOfTheForgotten_by_gabrielBjorkStiernstrom.jpg",
         "header": "Remainder of the Forgotten"
       },
       {
-        "name": "cartographer_by_gabrielBjorkStiernstrom",
+        "name": "cartographer_by_gabrielBjorkStiernstrom.jpg",
         "header": "Cartographer"
       },
       {
-        "name": "beached_by_gabrielBjorkStiernstrom",
+        "name": "beached_by_gabrielBjorkStiernstrom.jpg",
         "header": "Beached"
       },
       {
-        "name": "aPlaceOfMagic_by_gabrielBjorkStiernstrom",
+        "name": "aPlaceOfMagic_by_gabrielBjorkStiernstrom.jpg",
         "header": "A Place of Magic"
       },
       {
-        "name": "extraterrestialSurface_by_gabrielBjorkStiernstrom",
+        "name": "extraterrestialSurface_by_gabrielBjorkStiernstrom.jpg",
         "header": "Extraterrestial Surface"
       },
       {
-        "name": "survivor_by_gabrielBjorkStiernstrom",
+        "name": "survivor_by_gabrielBjorkStiernstrom.jpg",
         "header": "Survivor"
       },
       {
-        "name": "eyeOfTheStorm_by_gabrielBjorkStiernstrom",
+        "name": "eyeOfTheStorm_by_gabrielBjorkStiernstrom.jpg",
         "header": "Eye of the Storm"
       },
       {
-        "name": "moon_by_gabrielBjorkStiernstrom",
+        "name": "moon_by_gabrielBjorkStiernstrom.jpg",
         "header": "Moon"
+      }
+    ]
+  },
+  {
+    "name": "bookCovers",
+    "header": "Cover Illustrations",
+    "description": "Cover illustrations for various authors and books",
+    "images": [
+      {
+        "name": "isaacAsimovFondazioni_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Isaac Asimov - Foundations Trilogy",
+        "description": "Note: The typesetting and final color correction is made by Mondadori"
+      },
+      {
+        "name": "markusHeitzWedora1_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Markus Heitz - Wédora, Staub und Blut",
+        "description": "Note: The typesetting and final color correction is made by Guter Punkt"
+      },
+      {
+        "name": "markusHeitzWedora2_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Markus Heitz - Wédora, Schatten und Tod",
+        "description": "Note: The typesetting and final color correction is made by Guter Punkt"
+      }
+    ]
+  },
+  {
+    "name": "wildWest",
+    "header": "Wild West Challenge - Keyframes",
+    "description": "My entry for ArtStations Wild West Challenge - Honorable Mention",
+    "images": [
+      {
+        "name": "theBetrayal_by_gabrielBjorkStiernstrom.jpg",
+        "header": "ArtStation Wild West Challenge Image 1"
+      },
+      {
+        "name": "theGift_by_gabrielBjorkStiernstrom.jpg",
+        "header": "ArtStation Wild West Challenge Image 2"
+      },
+      {
+        "name": "theMine_by_gabrielBjorkStiernstrom.jpg",
+        "header": "ArtStation Wild West Challenge Image 3"
+      },
+      {
+        "name": "theLady_by_gabrielBjorkStiernstrom.jpg",
+        "header": "ArtStation Wild West Challenge Image 4"
+      }
+    ]
+  },
+  {
+    "name": "miscWork",
+    "header": "Misc Client Work",
+    "description": "Concept Art - Illustration",
+    "images": [
+      {
+        "name": "digicPicturesArtTestA_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Digic Pictures Art Test Action",
+        "description": "Art Test Digic Pictures"
+      },
+      {
+        "name": "digicPicturesArtTestB_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Digic Pictures Art Test Atmosphere",
+        "description": "Art Test Digic Pictures"
+      },
+      {
+        "name": "nukeMissile_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Nuke Missile Card",
+        "description": "Nuke Missile Card Illustration - The Space War"
+      },
+      {
+        "name": "inOblivion1_by_gabrielBjorkStiernstrom.jpg",
+        "header": "In Oblivion Version 1",
+        "description": "Commisioned work by Oskar Wetterbrandt"
+      },
+      {
+        "name": "inOblivion_by_gabrielBjorkStiernstrom.jpg",
+        "header": "In Oblivion Version 2",
+        "description": "Commisioned work by Oskar Wetterbrandt"
+      },
+      {
+        "name": "praxticusLabsFutureCity_by_gabrielBjorkStiernstrom.jpg",
+        "header": "Commisioned work by Praxticus Labs"
       }
     ]
   },
@@ -200,15 +383,15 @@
     "description": "",
     "images": [
       {
-        "name": "bladeRunnerAnalysisLivingStreets_by_gabrielBjorkStiernstrom",
+        "name": "bladeRunnerAnalysisLivingStreets_by_gabrielBjorkStiernstrom.jpg",
         "header": "Living Streets"
       },
       {
-        "name": "bladeRunnerAnalysisWastePickers_by_gabrielBjorkStiernstrom",
+        "name": "bladeRunnerAnalysisWastePickers_by_gabrielBjorkStiernstrom.jpg",
         "header": "Waste Pickers"
       },
       {
-        "name": "bladeRunnerAnalysisSketches_by_gabrielBjorkStiernstrom",
+        "name": "bladeRunnerAnalysisSketches_by_gabrielBjorkStiernstrom.jpg",
         "header": "Sketches"
       }
     ]
@@ -219,27 +402,27 @@
     "description": "My entry for CGSociety's Thrust Challenge - Honorable Mention",
     "images": [
       {
-        "name": "thrustJunkies_by_gabrielBjorkStiernstrom",
+        "name": "thrustJunkies_by_gabrielBjorkStiernstrom.jpg",
         "header": "Junkies"
       },
       {
-        "name": "thrustLeaving_by_gabrielBjorkStiernstrom",
+        "name": "thrustLeaving_by_gabrielBjorkStiernstrom.jpg",
         "header": "Leaving"
       },
       {
-        "name": "thrustDressing_by_gabrielBjorkStiernstrom",
+        "name": "thrustDressing_by_gabrielBjorkStiernstrom.jpg",
         "header": "Dressing"
       },
       {
-        "name": "thrustTurnaround_by_gabrielBjorkStiernstrom",
+        "name": "thrustTurnaround_by_gabrielBjorkStiernstrom.jpg",
         "header": "Turnaround"
       },
       {
-        "name": "thrustSuitRender_by_gabrielBjorkStiernstrom",
+        "name": "thrustSuitRender_by_gabrielBjorkStiernstrom.jpg",
         "header": "Render"
       },
       {
-        "name": "thrustSuitConcepts_by_gabrielBjorkStiernstrom",
+        "name": "thrustSuitConcepts_by_gabrielBjorkStiernstrom.jpg",
         "header": "Suit Concepts"
       }
     ]
@@ -250,40 +433,80 @@
     "description": "A few sketches and rough images",
     "images": [
       {
-        "name": "sketches20170621",
-        "header": "Sketches 1001"
+        "name": "sketches20190915.jpg",
+        "header": "Sketches 1020"
       },
       {
-        "name": "sketches201617",
-        "header": "Sketches 1002"
+        "name": "sketches20190905.jpg",
+        "header": "Sketches 1019"
       },
       {
-        "name": "sketches201517",
-        "header": "Sketches 1003"
+        "name": "sketches20190902.jpg",
+        "header": "Sketches 1018"
       },
       {
-        "name": "sketches20170615",
-        "header": "Sketches 1004"
+        "name": "sketches20190830.jpg",
+        "header": "Sketches 1017"
       },
       {
-        "name": "sketches20170505",
-        "header": "Sketches 1005"
+        "name": "sketches20190826.jpg",
+        "header": "Sketches 1016"
       },
       {
-        "name": "sketches20170423",
-        "header": "Sketches 1007"
+        "name": "sketches20190825.jpg",
+        "header": "Sketches 1015"
       },
       {
-        "name": "sketches20150528",
-        "header": "Sketches 1008"
+        "name": "sketches20190822.jpg",
+        "header": "Sketches 1014"
       },
       {
-        "name": "sketchesMask",
+        "name": "sketches20190820.jpg",
+        "header": "Sketches 1013"
+      },
+      {
+        "name": "sketches20190819.jpg",
+        "header": "Sketches 1012"
+      },
+      {
+        "name": "sketches20170823.jpg",
+        "header": "Sketches 1011"
+      },
+      {
+        "name": "sketches20170507.jpg",
+        "header": "Sketches 1010"
+      },
+      {
+        "name": "sketches20170621.jpg",
         "header": "Sketches 1009"
       },
       {
-        "name": "sketches20150527",
-        "header": "Sketches 1011"
+        "name": "sketches201617.jpg",
+        "header": "Sketches 1008"
+      },
+      {
+        "name": "sketches201517.jpg",
+        "header": "Sketches 1007"
+      },
+      {
+        "name": "sketches20170505.jpg",
+        "header": "Sketches 1005"
+      },
+      {
+        "name": "sketches20170423.jpg",
+        "header": "Sketches 1004"
+      },
+      {
+        "name": "sketches20150528.jpg",
+        "header": "Sketches 1003"
+      },
+      {
+        "name": "sketchesMask.jpg",
+        "header": "Sketches 1002"
+      },
+      {
+        "name": "sketches20150527.jpg",
+        "header": "Sketches 1001"
       }
     ]
   }

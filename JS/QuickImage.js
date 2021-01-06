@@ -3,9 +3,10 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
     if (originalImage.fileExtensions) {
         image.fileExtensions = [...originalImage.fileExtensions].reverse()
     }
-    let name = image.name
-    let defaultFileExtension = '.jpg'
-    let imageElement = document.createElement('img')
+    let [name, extension] = image.name.split('.');
+    console.log('name', name, 'extension', extension);
+    let defaultFileExtension = `.${extension}` || '.jpg'
+    let imageElement = new Image();
     let highResPreloadDummy = new Image();
     
     let lowResPath = `${dir}/${name}_low`

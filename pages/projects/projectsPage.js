@@ -13,7 +13,6 @@ module.exports = function () {
     
     async function show(wrapperSelector) {
         let projectsData = await loadProjectsJSON()
-        
         document.querySelector(wrapperSelector).innerHTML =
             `<div id="projectsLibrary"></div>`
         
