@@ -9,16 +9,21 @@
 <script>
 
 module.exports = {
-  props: ['image', 'imageId'],
+  props: ['imageElement', 'imageContainer', 'imageId'],
   data() {
     return {
       scrollTop: 0
     }
   },
   mounted() {
-    this.$refs.imageContainer.appendChild(this.image);
+    this.$refs.imageContainer.appendChild(this.imageElement);
     this.$refs.imageContainer.classList.add('ContentFlowImage');
     this.$refs.imageContainer.classList.add(this.imageId);
+
+    // this.imageContainer.onLoadHighRes(() => {
+    //   this.$refs.imageContainer.removeChild(this.imageElement);
+    //   this.$refs.imageContainer.appendChild(this.imageContainer.getElement());
+    // });
   },
   methods: {
     imageClick() {

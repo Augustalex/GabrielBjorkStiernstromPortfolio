@@ -3,8 +3,9 @@
         <div @click="close" ref="flowContainer" class="ContentFlowContainer">
             <div @click="close" class="contentFlowContainer-closeButton">X</div>
             <div @click.stop="" class="ContentFlow">
-                <image-container v-for="(image, index) in images"
-                     :image="image"
+                <image-container v-for="([imageElement, imageContainer], index) in images"
+                     :image-element="imageElement"
+                     :image-container="imageContainer"
                      @click="imageClick(index)"
                      :key="index"
                      class="contentFlow-imageWrapper"

@@ -8,7 +8,7 @@ module.exports = function (project, rootRelativePath) {
     
     let images = project.images
         .map(image => {
-            let quickImage = QuickImage(`${rootRelativePath}file/img`, image, false)
+            let quickImage = QuickImage(`${rootRelativePath}file/img`, image)
             return {
                 image: quickImage,
                 name: image.name,

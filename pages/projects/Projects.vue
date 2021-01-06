@@ -31,7 +31,7 @@
             currentOpenProjectImages() {
                 if (!this.currentOpenProject) return null
 
-                return this.currentOpenProject.images.map(i => i.image.getElement())
+                return this.currentOpenProject.images.map(i => [i.image.getElement(), i.image])
             }
         },
         methods: {

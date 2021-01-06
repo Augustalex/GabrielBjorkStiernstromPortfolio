@@ -4,19 +4,21 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
         image.fileExtensions = [...originalImage.fileExtensions].reverse()
     }
     let [name, extension] = image.name.split('.');
-    console.log('name', name, 'extension', extension);
     let defaultFileExtension = `.${extension}` || '.jpg'
-    console.log('defaultFileExtension', defaultFileExtension);
     let imageElement = document.createElement('img');
     let highResPreloadDummy = new Image();
     
     let lowResPath = `${dir}/${name}_low`
     let highResPath = `${dir}/${name}_high`
-    let hasLoadedLowRes = false
-    
+    let hasLoadedLowRes = false;
+    let onLoadHighResCallback = () => {};
+
     return {
         getElement: () => imageElement,
-        load
+        load,
+        onLoadHighRes(callback) {
+            onLoadHighResCallback = callback;
+        }
     }
     
     function load() {
@@ -25,17 +27,22 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
                 let path = `${highResPath}${nextFileExtension()}`
                 highResPreloadDummy.onload = () => {
                     imageElement.src = path
-                    resolve()
+                    resolve();
                     highResPreloadDummy.onload = null
+                    onLoadHighResCallback();
                 }
                 highResPreloadDummy.src = path
             }
             else {
-                console.log('!');
                 imageElement.onload = () => {
                     hasLoadedLowRes = true;
-                    resolve()
-                    imageElement.onload = null
+                    resolve();
+                    imageElement.onload = null;
+
+                    load()
+                        .catch(error => {
+                            console.error('Low res image with name "' + image.name + '" finished loading, but it failed loading its corresponding high res image.', error);
+                        });
                 }
                 imageElement.src = `${lowResPath}${nextFileExtension()}`
             }
@@ -43,9 +50,6 @@ module.exports = function (dir, originalImage, hasLowResVersion = true) {
     }
     
     function nextFileExtension() {
-        if (image.fileExtensions) {
-            return image.fileExtensions.pop() || defaultFileExtension
-        }
-        return defaultFileExtension
+        return defaultFileExtension;
     }
 }
